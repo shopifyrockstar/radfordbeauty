@@ -1,0 +1,364 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+<style type="text/css">
+  /* The Modal (background) */
+  #myBtn {
+  	margin-top:20px;
+  	text-decoration: underline;  
+    font-weight: bold;
+    font-size: 16px;
+    font-family: NimbusSans-Bold,sans-serif;
+  }
+  .modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  }
+
+  /* Modal Content/Box */
+  .modal-content {
+    background-color: #fefefe;
+    margin: 10% auto; /* 15% from the top and centered */
+    padding: 40px 20px;
+    border: 1px solid #888;
+/*     width: 80%; /* Could be more or less, depending on screen size */
+    max-width: 770px;
+    text-align: center;
+  }
+
+  /* The Close Button */
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    margin-top: -30px;
+  }
+
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .sub-title{
+  	font-size: 18px;
+    display: block;
+    margin-bottom: 20px;
+    font-family: NimbusSans-Bold,sans-serif;
+  }
+  .main-heading{
+    font-size: 30px;
+    line-height: 26px;
+    margin-bottom: 20px;
+    font-family: NimbusSans-Bold,sans-serif;
+  }
+  #selector {
+    display: flex;
+    width: 100%;
+    height: 100px;
+    background-size: cover;
+    background-image: url('{{ "ShadeFinderGrad-03.jpg" | asset_url | img_tag: 'master' }}');
+    position: relative;
+    border-radius: 5px;  
+    max-width: 650px;
+    margin: 0 auto;
+  }
+  #selector .sbox {
+    width: 20%;
+    height: 100%;
+    padding: 0;
+    margin:  0;
+    display: inline-block;
+  }
+  #images {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  #photo, #swatch, #bottle{
+    flex: 0 0 33.33%;
+    line-height: 0
+  }
+  #bottle img {
+  	width: 100px
+  }
+  #selection {
+    position: relative;
+    z-index: 2;
+    padding:  20px 0;
+  }
+  #selection-text {
+    position: absolute;
+    z-index: 20;
+    left:0;
+    right:0;
+    margin-left:auto;
+    margin-right:auto;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: #000;
+    font-size: 18px;
+  }
+  #selection-bg {
+    position: absolute;
+    width: 200px;
+    height: 30px;
+    left:0;
+    right:0;
+    margin-left:auto;
+    margin-right:auto;
+    margin-top: 7px;
+    opacity: .5;
+    z-index: 1;
+  }
+
+  button {
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: 100%;
+    margin: 0;
+    user-select: text;
+    max-width: 100%;
+    padding: 8px 10px;
+    background-color: #e7d9cf;
+    border: none;
+    font-family: NimbusSans-Bold,sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 14px;
+    letter-spacing: .16em;
+    color: #000;
+    width: 100%;
+    height: 48px;
+    text-align: center;
+    text-transform: uppercase;
+    cursor: pointer !important;
+    transition: background-color .5s;
+    appearance: none;
+    border-radius: 0;
+  }
+  .modal-content h1, .modal-content h3 {
+   text-align: center; 
+  }
+  .select-card{
+    width: auto;
+    padding: 10px 25px;
+    background-color: transparent;
+    border: 1px solid;
+  }
+  .main-img{
+  	display: block;
+    margin: 0 auto;
+    text-align: center;
+    width: 300px;
+    margin-bottom: 10px;
+  }
+  .btn-mob{
+  	display: none
+  }
+  .fix-content {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 10px;
+    font-size: 16px;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: #000;
+  }
+  .fix-content p{
+  	margin: 0;
+    color: #fff
+  }
+  @media screen and (max-width: 1024px) {
+  	.btn-mob{
+      display: block;
+      margin-top: 10px;
+      text-decoration: underline;
+      font-weight: bold;
+      font-size: 15px;
+      font-family: NimbusSans-Bold,sans-serif;
+  	}
+    .btn-des{
+    	display : none
+    }
+    .product-template-new .container .bottom-section{
+    	margin-top: 20px;
+    }
+  }
+  
+  @media screen and (max-width: 479px) {
+    .modal-content{
+      margin: 25% auto;
+    }
+    .sub-title{
+    	font-size: 16px;
+    }
+    .main-heading {
+      font-size: 22px;
+    }
+    #selector{
+      height: 75px;
+  	}
+    .close{
+    	margin-top: -10px;
+    }
+    #bottle img {
+  		width: 50px
+  	}
+    .fix-content{
+    	font-size: 13px;
+    }
+    .modal-content{padding: 20px}
+  }
+
+</style>
+
+<!-- Trigger/Open The Modal -->
+
+
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <span class="sub-title">SHEER HINT OF COVERAGE</span>
+    <img class="main-img" src="https://cdn.shopify.com/s/files/1/1148/7426/t/44/assets/text-img.png" />
+<!--     <h2 class="main-heading">RADFORD SHADE FINDER</h2> -->
+    
+
+    <div id="images">
+      <div class="image" id="swatch">
+        <img src="{{ 'TINT-beachy_swatch.jpg' | asset_url  }}" />
+      </div>
+      <div class="image" id="photo">
+        <img src="{{ 'beachy.gif' | asset_url  }}" />
+      </div>
+      <div class="image" id="bottle">
+        <img src="{{ 'beachy-transparent.png' | asset_url  }}" />
+      </div>
+    </div>
+
+  <div id="selector" style="background-image: url('{{ "Shadefinder-img.jpg" | asset_url }}');">
+    <div class="sbox" data-shade="shell" data-color="SHELL (FAIR)" data-index="1"></div>
+    <div class="sbox" data-shade="sand" data-index="2" data-color="SAND (LIGHT)"></div>
+    <div class="sbox" data-shade="beachy" data-index="3" data-color="BEACHY (MEDIUM)"></div>
+    <div class="sbox" data-shade="sunkissed" data-index="4" data-color="SUNKISS (TAN)"></div>
+    <div class="sbox" data-shade="bronze" data-index="5" data-color="BRONZE (DEEP)"></div>
+    
+    <div class="fix-content">
+      <p>SELECT YOUR SHADE RANGE</p>
+    </div>
+    
+  </div>
+
+  <div id="selection">
+    <div id="selection-text" data-color="" data-index-id="">"BEACHY"</div>
+    <div id="selection-bg"></div>
+    
+  </div>
+  <br /><br />
+   
+  <button onclick="select_shade(this)" type="button" id="select_shade" class="select_shade select-card" data-index="" data-color="">SELECT SHADE</button>
+  </div>
+
+</div>
+
+<script type="text/javascript">
+$('.sbox').on('click', function() {
+  var shade = $(this).data("shade");
+  var click_val = $(this).data("index");
+  //console.log(click_val);
+  var click_color = $(this).data("color");
+  $('#select_shade').attr('data-index', click_val);
+  $('#select_shade').attr('data-color', click_color);
+  $('#swatch img').attr('src', 'https://cdn.shopify.com/s/files/1/1148/7426/t/44/assets/' + 'TINT-' + shade + '_swatch.jpg');
+  $('#photo img').attr('src', 'https://cdn.shopify.com/s/files/1/1148/7426/t/44/assets/' + 'TINT-' + shade + '.gif');
+  $('#bottle img').attr('src', 'https://cdn.shopify.com/s/files/1/1148/7426/t/44/assets/' + shade + '-transparent.png');
+  
+  $('#selection-text').html('"' + shade + '"');
+
+  if(shade == "shell") {
+      $('#selection-bg').css('background-color', '#e3c6a2');    
+  } else   if(shade == "sand") {
+      $('#selection-bg').css('background-color', '#d69f7a');    
+  } else   if(shade == "beachy") {
+      $('#selection-bg').css('background-color', '#ce986c');    
+  } else   if(shade == "sunkissed") {
+      $('#selection-bg').css('background-color', '#bb794e');    
+  } else {
+    $('#selection-bg').css('background-color', '#6d4427');
+  }
+
+
+
+
+
+});
+
+  // Get the modal
+var modal = document.getElementById("myModal");
+
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+var btn1 = document.getElementById("myBtn1");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks on the button, open the modal
+btn.onclick = function() {
+  //modal.style.display = "block";
+  $("#myModal.modal").css("display","block");
+}
+btn1.onclick = function() {
+ // modal.style.display = "block";
+  $("#myModal.modal").css("display","block");
+
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  //modal.style.display = "none";
+  $("#myModal.modal").css("display","none");
+
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    //modal.style.display = "none";
+    $("#myModal.modal").css("display","none");
+
+  }
+}
+function select_shade(obj)
+  {
+    var click_color= $(obj).attr('data-color');
+    var click_val= $(obj).attr('data-index');
+    $('.variant-swatch-options .variant-color-swatch').removeClass('variant-color-swatch-pdp');
+    $('.variant-swatch-options .variant-color-swatch .swatch-images').removeClass('swatch-active');
+    $('.color-swatch-name span').text(click_color);
+	$('.variant-swatch-options .variant-color-swatch[data-index=' + click_val + ']').addClass("variant-color-swatch-pdp");
+	$('.variant-swatch-options .variant-color-swatch .swatch-images[data-index=' + click_val + ']').addClass("swatch-active");
+    //console.log(click_color);
+	var modal = document.getElementById("myModal");
+    //modal.style.display = "none";
+    $("#myModal.modal").css("display","none");
+
+  }  
+
+
+</script>

@@ -1,0 +1,74 @@
+<script
+    src="https://js.afterpay.com/afterpay-1.x.js"
+    data-min="1.00"
+    data-max="2000.00"
+    async 
+></script>
+
+<script>
+  
+window.addEventListener("load", () => {  
+      let size = "sm"; // xs, sm, md, lg
+      let showUpperLimit = "false";
+      let badgeTheme = "black-on-mint";
+      let isEligible = true;
+      let locale = "en_CA";
+      let currency = "CAD";
+                          
+      {% if template.name contains 'product' or template.name contains 'mask' %}
+        let title = {{product.title | json}};
+        if (title.includes("Gift Card")) isEligible = false; 
+  
+        Afterpay.createPlacements({
+          targetSelector: '.prod-price', 
+          attributes: { 
+             amount:"{{ product.selected_or_first_available_variant.price |   money_without_currency }}",
+//            amountSelector: ".product__price .js-price",
+            size,
+            showUpperLimit,
+            isEligible,
+            badgeTheme,
+	    locale,
+   	    currency
+          }
+        });             
+      {% else if template.name == 'cart' %}
+        let cartItems = {{cart.items | json }};
+        let giftCardPresent = cartItems.some(item => item.gift_card);
+        if (giftCardPresent) {
+          isEligible = false;
+        }
+
+        Afterpay.createPlacements({
+          targetSelector: '.cart__subtotal', 
+          attributes: { 
+            amount:"{{ cart.total_price | money_without_currency }}",
+//             amountSelector: ".cart-subtotal .cart-subtotal__price",
+            size,
+            showUpperLimit,
+            cartIsEligible: isEligible,
+            badgeTheme,
+	    locale,
+   	    currency
+          }
+        });
+      {% endif %}                                     
+  });
+</script>
+<style>
+  @media screen and (max-width:770px){ 
+     afterpay-placement {
+    
+     }
+  }
+  @media screen and (min-width:771px){
+     afterpay-placement {
+    
+     }
+  }
+  afterpay-placement {
+/*     --logo-badge-width: 100px; */
+    margin-top: 5px;
+    margin-bottom: 10px;
+  }
+</style>

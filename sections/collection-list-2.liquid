@@ -1,0 +1,489 @@
+<div class="collection-list-2">
+  <div class="container">
+
+
+    <div class="collection-products">
+      {% assign collection_main = collections[section.settings.collection_main] %}
+      <div class="product-titles">
+        <h2>{{section.settings.collection_header}}</h2>
+        <a href="{{collection_main.url}}" class="shop-all">Shop All</a>
+      </div>
+
+
+
+      <div class="product-list">
+
+
+        <div class="product-div">
+          {%- assign featured_product_1 = all_products[section.settings.featured_prod_1] -%}
+          {% assign first_variant = featured_product_1.selected_or_first_available_variant %}
+          {% assign featured_img_src = first_variant.featured_img.src | default: featured_product_1.featured_image.src %}
+          {% assign price = first_variant.price %}
+          {% assign compare_at_price = first_variant.compare_at_price %}
+          {%- assign custom_variant = featured_product_1.variants -%}
+
+          <div class="badges-block gift-badge">
+            {% for tag in featured_product_1.tags %}
+            {% if tag == 'Vics VDAY Picks'%}
+            <div class="discount__badge left">
+              <img src="https://cdn.shopify.com/s/files/1/1148/7426/files/vics-picks-button-VDAY.png?v=1643806739">
+            </div>
+            {%elsif tag == 'Vics GIFT Picks'%}
+            <div class="discount__badge left">
+              <img src="https://cdn.shopify.com/s/files/1/1148/7426/files/vics-picks-button.png?v=1637664162">
+            </div>
+            {%endif%}
+            {% endfor %}
+            {% if featured_product_1.compare_at_price_max > featured_product_1.price %}
+            <div class="discount__badge right">
+              <span>
+                {{ featured_product_1.compare_at_price_max | minus: featured_product_1.price | times: 100.0 | divided_by: featured_product_1.compare_at_price_max | money_without_currency | replace: ',', '.' | times: 100 | remove: '.0'}}% off
+              </span>
+            </div>
+            {% endif %}
+
+            {% if featured_product_1.metafields.tpsmeta.badge_label != null %}
+              <div class="discount__badge">
+                <span style="background-color: {{featured_product_1.metafields.tpsmeta.badge_color}}">{{ featured_product_1.metafields.tpsmeta.badge_label }}</span>
+              </div>
+            {% endif %}
+  
+
+          </div>
+
+          <div class="boost-pfs-filter-product-item-image">
+
+
+            <a href="{{featured_product_1.url}}">
+              <img src="{{featured_img_src | img_url: 'master'}}" alt="{{ featured_product_1.featured_img.alt }}">
+            </a>
+
+
+            <span class="product-path" style="display: none;">
+              {{featured_product_1.featured_image.src | img_url: 'small' | split: '/products' | first }}
+            </span>
+            <div style="display:none;" class="variant-data">
+              {%for i in (0..featured_product_1.variants.size)%}
+              <p>{{ featured_product_1.variants[i].image }}</p>
+              {%endfor%}
+            </div>
+          </div>
+
+          <form method="post" action="/cart/add" class="AddToCartForm-submit" id="AddToCartForm-new">
+
+
+            {%if featured_product_1.has_only_default_variant != true%}
+            <div class="swatches-popup-mobile">
+              <p class="swatch-popup-btn" >{{featured_product_1.variants.size}} 
+                {% if featured_product_1.tags contains 'Bundles' or featured_product_1.tags contains '_bundles' %}
+                options</p>
+              {%else%}
+              shades</p>  
+            {% endif %} 
+
+            <div class="variant-swatch-popup">
+              <div class="variant-swatch-titles">
+                {% if featured_product_1.tags contains 'Bundles' or featured_product_1.tags contains '_bundles' %}
+                <p>SELECT OPTIONS</p>
+                {%else%}
+                <p>SELECT SHADE</p>
+                {% endif %}
+
+                <button class="swatch-popup-btn-close" >
+                  <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M5.91616 4.84372L9.80997 1.07149C10.0634 0.826121 10.0634 0.429394 9.80997 0.184026C9.55669 -0.0613421 9.14716 -0.0613421 8.89388 0.184026L4.99995 3.95626L1.10614 0.184026C0.852742 -0.0613421 0.443335 -0.0613421 0.190052 0.184026C-0.0633506 0.429394 -0.0633506 0.826121 0.190052 1.07149L4.08386 4.84372L0.190052 8.61596C-0.0633506 8.86133 -0.0633506 9.25805 0.190052 9.50342C0.316278 9.62582 0.482247 9.68731 0.648098 9.68731C0.813948 9.68731 0.979799 9.62582 1.10614 9.50342L4.99995 5.73119L8.89388 9.50342C9.02022 9.62582 9.18607 9.68731 9.35192 9.68731C9.51777 9.68731 9.68362 9.62582 9.80997 9.50342C10.0634 9.25805 10.0634 8.86133 9.80997 8.61596L5.91616 4.84372Z" fill="black"/>
+                  </svg>   
+                </button>
+              </div>
+
+
+
+              <input class="default-variant-id-pdp default-variant-box-def" id="default-variant-box-def" name="id" value="{{ featured_product_1.variants.first.id  }}" type="hidden">
+
+
+              <div class="variant-swatches">
+
+
+                <div class="variant-swatch-options">
+
+                  {%for variant in featured_product_1.variants%}
+                  <div class="current-variant" data-current-product-tags="{{featured_product_1.tags}}">
+                    <input type="radio" value="{{ variant.id }}" data-swatch-for ="color-m-{{variant.id}}" class="variant-color-input variant-color-swatch-mob" name="id" id="color-m-{{variant.id}}" >
+
+
+                    <!-- <p>COLOR:{{variant.title}} </p>  -->
+                    <label for="color-m-{{variant.id}}" data-swatch-for ="color-m-{{variant.id}}" class="variant-color-swatch variant-color-swatch-mob" data-variant-title="{{variant.title}}">
+                      <img class="swatch-images" src="{{variant.title | escape | append : '.jpg' | strip | asset_url}}" alt="{{variant.title}}" onerror="this.src='{{featured_product_1 | img_url}}'">
+                      <p>{{variant.title}}</p>
+                    </label>
+
+                    <!-- {{variant.title | escape | append : '.jpg' | strip }} -->
+                  </div>
+
+                  {%endfor%}
+
+
+                </div>
+
+              </div>
+
+            </div>
+            <div class="variant-swatch-popup-overlay">
+
+            </div>
+            </div>
+
+          {%else%}
+          <div class="swatch-btn-placeholder"></div>
+
+          {%endif%}
+
+          <a href="{{featured_product_1.url }}">
+            <h5 class="colllection-prod-title">{{ featured_product_1.title }}</h5>
+          </a>
+
+          <!-- {% if featured_product_1.has_only_default_variant %}
+<input name="id" id="productSelect" value="{{ featured_product_1.id }}" type="hidden">
+{% else %}
+<select name="id">
+{% for variant in featured_product_1.variants %}
+<option value="{{ variant.id }}">{{ variant.title }}</option>
+{% endfor%}
+</select>
+{% endif %} -->
+
+          <div class="price-swatch-div">
+
+            <p class="product__product-price">{{ price | money }}{% if featured_product_1.compare_at_price_max != 0 %} <strike><span style="font-size: 13px; font-weight: 300; display: inline !important;">{{ featured_product_1.compare_at_price_max | money }}</span></strike>{% endif %}</p>
+
+
+            {% if featured_product_1.has_only_default_variant %}
+            <input class="default-variant-box-def" name="id" value="{{ featured_product_1.variants.first.id }}" type="hidden">
+            {% else %}
+
+
+            <input class="default-variant-id-pdp default-variant-box-def" id="default-variant-box-def" name="id" value="{{ featured_product_1.variants.first.id  }}" type="hidden">
+
+            {%comment%}
+            <div class="variant-swatches">
+              <div class="variant-swatch-options">
+                {%for variant in featured_product_1.variants limit:3%}
+                {%unless featured_product_1.tags contains 'Bundles' or featured_product_1.tags contains '_bundles'%}
+
+                <!-- <p>COLOR:{{variant.title}} </p>  -->
+                <label for="color-{{variant.id}}" class="variant-color-swatch variant-color-swatch-def" data-variant-title="{{variant.title}}">
+                  <img class="swatch-images" src="{{variant.title | escape | append : '.jpg' | strip | asset_url}}" alt="{{variant.title}}" onerror="this.src='{{featured_product_1 | img_url}}';this.style.display='none'">
+                </label>
+                {%endunless%}
+
+                <!-- {{variant.title | escape | append : '.jpg' | strip }} -->
+                <input type="radio" value="{{ variant.id }}" class="variant-color-input" name="id" id="color-{{variant.id}}" style="display: none;">
+                {%endfor%}
+
+                {%if featured_product_1.variants.size > 3%}
+                <a href="{{featured_product_1.url}}" style="color: black;text-decoration: underline;">
+                  +{{featured_product_1.variants.size | minus:3}}
+                </a>
+                {%endif%}
+
+              </div>
+            </div>
+            {%endcomment%}
+            <!-- New Variants -->
+            <div class="variant-swatches">
+              <div class="variant-swatch-options">
+                {%for variant in featured_product_1.variants limit:3%}
+
+                <!-- <p>COLOR:{{variant.title}} </p>  -->
+                <label for="color-{{variant.id}}" class="variant-color-swatch variant-color-swatch-def" data-variant-title="{{variant.title}}">
+                  <img class="swatch-images" src="{{variant.title | escape | append : '.jpg' | strip | asset_url}}" alt="{{variant.title}}" onerror="this.src='{{featured_product_1 | img_url}}'">
+                </label>
+
+                <!-- {{variant.title | escape | append : '.jpg' | strip }} -->
+                <input type="radio" value="{{ variant.id }}" class="variant-color-input" name="id" id="color-{{variant.id}}" style="display: none;">
+                {%endfor%}
+
+                {%if featured_product_1.variants.size > 3%}
+                <a href="{{featured_product_1.url}}" style="color: black;text-decoration: underline;">
+                  +{{featured_product_1.variants.size | minus:3}}
+                </a>
+                {%endif%}
+
+              </div>
+            </div>
+            <!-- New Variants END -->
+
+            {% endif %}
+
+          </div>
+
+
+          <!-- <input type="hidden" name="id" value="{{ featured_product_1.variants.first.id }}" /> -->
+          <input min="1" type="hidden" id="quantity" name="quantity" value="1"/>
+          <input type="submit" value="Add to cart" class="add-to-cart-btn"/>
+          </form>
+
+
+      </div>
+
+
+      <div class="product-div">
+        {%- assign featured_product_2 = all_products[section.settings.featured_prod_2] -%}
+        {% assign first_variant = featured_product_2.selected_or_first_available_variant %}
+        {% assign featured_img_src = first_variant.featured_img.src | default: featured_product_2.featured_image.src %}
+        {% assign price = first_variant.price %}
+        {% assign compare_at_price = first_variant.compare_at_price %}
+        {%- assign custom_variant = featured_product_2.variants -%}
+
+
+        <div class="badges-block gift-badge">
+          {% for tag in featured_product_2.tags %}
+          {% if tag == 'Vics VDAY Picks'%}
+          <div class="discount__badge left">
+            <img src="https://cdn.shopify.com/s/files/1/1148/7426/files/vics-picks-button-VDAY.png?v=1643806739">
+          </div>
+          {%elsif tag == 'Vics GIFT Picks'%}
+          <div class="discount__badge left">
+            <img src="https://cdn.shopify.com/s/files/1/1148/7426/files/vics-picks-button.png?v=1637664162">
+          </div>
+          {%endif%}
+          {% endfor %}
+          {% if featured_product_2.compare_at_price_max > featured_product_2.price %}
+          <div class="discount__badge right">
+            <span>
+              {{ featured_product_2.compare_at_price_max | minus: featured_product_2.price | times: 100.0 | divided_by: featured_product_2.compare_at_price_max | money_without_currency | replace: ',', '.' | times: 100 | remove: '.0'}}% off
+            </span>
+          </div>
+          {% endif %}
+
+          {% if featured_product_2.metafields.tpsmeta.badge_label != null %}
+            <div class="discount__badge">
+              <span style="background-color: {{featured_product_2.metafields.tpsmeta.badge_color}}">{{ featured_product_2.metafields.tpsmeta.badge_label }}</span>
+            </div>
+          {% endif %}
+
+          
+
+        </div>
+
+        <div class="boost-pfs-filter-product-item-image">
+
+
+
+          <a href="{{featured_product_2.url}}">
+            <img src="{{featured_img_src | img_url: 'master'}}" alt="{{ featured_product_2.featured_img.alt }}">
+          </a>
+
+          <span class="product-path" style="display: none;">
+            {{featured_product_2.featured_image.src | img_url: 'small' | split: '/products' | first }}
+          </span>
+          <div style="display:none;" class="variant-data">
+            {%for i in (0..featured_product_2.variants.size)%}
+            <p>{{ featured_product_2.variants[i].image }}</p>
+            {%endfor%}
+          </div>
+        </div>
+
+
+
+
+        <form method="post" action="/cart/add" class="AddToCartForm-submit" id="AddToCartForm-new">
+
+          {%if featured_product_2.has_only_default_variant != true%}
+          <div class="swatches-popup-mobile">
+            <p class="swatch-popup-btn" >{{featured_product_2.variants.size}} 
+              {% if featured_product_2.tags contains 'Bundles' or featured_product_2.tags contains '_bundles' %}
+              options</p>
+            {%else%}
+            shades</p>  
+          {% endif %}
+
+          <div class="variant-swatch-popup">
+            <div class="variant-swatch-titles">
+              {% if featured_product_2.tags contains 'Bundles' or featured_product_2.tags contains '_bundles' %}
+              <p>SELECT OPTIONS</p>
+              {%else%}
+              <p>SELECT SHADE</p>
+              {% endif %}
+              <button class="swatch-popup-btn-close">
+                <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M5.91616 4.84372L9.80997 1.07149C10.0634 0.826121 10.0634 0.429394 9.80997 0.184026C9.55669 -0.0613421 9.14716 -0.0613421 8.89388 0.184026L4.99995 3.95626L1.10614 0.184026C0.852742 -0.0613421 0.443335 -0.0613421 0.190052 0.184026C-0.0633506 0.429394 -0.0633506 0.826121 0.190052 1.07149L4.08386 4.84372L0.190052 8.61596C-0.0633506 8.86133 -0.0633506 9.25805 0.190052 9.50342C0.316278 9.62582 0.482247 9.68731 0.648098 9.68731C0.813948 9.68731 0.979799 9.62582 1.10614 9.50342L4.99995 5.73119L8.89388 9.50342C9.02022 9.62582 9.18607 9.68731 9.35192 9.68731C9.51777 9.68731 9.68362 9.62582 9.80997 9.50342C10.0634 9.25805 10.0634 8.86133 9.80997 8.61596L5.91616 4.84372Z" fill="black"/>
+                </svg>   
+              </button>
+            </div>
+
+            <input class="default-variant-id-pdp default-variant-box-def" id="default-variant-box-def" name="id" value="{{ featured_product_2.variants.first.id  }}" type="hidden">
+
+            {%comment%}
+            <div class="variant-swatches">
+              <div class="variant-swatch-options">
+                {%for variant in featured_product_2.variants%}
+                <div class="current-variant" data-current-product-tags="{{featured_product_2.tags}}">
+                  <input type="radio" value="{{ variant.id }}" data-swatch-for ="color-m-{{variant.id}}" class="variant-color-input variant-color-swatch-mob" name="id" id="color-m-{{variant.id}}" >
+                  <!-- <p>COLOR:{{variant.title}} </p>  -->
+                  <label for="color-m-{{variant.id}}" data-swatch-for ="color-m-{{variant.id}}" class="variant-color-swatch variant-color-swatch-mob" data-variant-title="{{variant.title}}">
+                    <img class="swatch-images" src="{{variant.title | escape | append : '.jpg' | strip | asset_url}}" alt="{{variant.id}}" onerror="this.src='{{featured_product_2 | img_url}}'">
+                    <p>{{variant.title}}</p>
+                  </label>
+                  <!-- {{variant.title | escape | append : '.jpg' | strip }} -->
+                </div>
+                {%endfor%}
+              </div>
+            </div>
+            {%endcomment%}
+            <!-- New Variants -->
+            <div class="variant-swatches">
+              <div class="variant-swatch-options">
+                {%for variant in featured_product_2.variants limit:3%}
+                <!-- <p>COLOR:{{variant.title}} </p>  -->
+                <label for="color-{{variant.id}}" class="variant-color-swatch variant-color-swatch-def" data-variant-title="{{variant.title}}">
+                  <img class="swatch-images" src="{{variant.title | escape | append : '.jpg' | strip | asset_url}}" alt="{{variant.title}}" onerror="this.src='{{featured_product_2 | img_url}}'">
+                </label>
+                <!-- {{variant.title | escape | append : '.jpg' | strip }} -->
+                <input type="radio" value="{{ variant.id }}" class="variant-color-input" name="id" id="color-{{variant.id}}" style="display: none;">
+                {%endfor%}
+                {%if featured_product_2.variants.size > 3%}
+                <a href="{{featured_product_2.url}}" style="color: black;text-decoration: underline;">
+                  +{{featured_product_2.variants.size | minus:3}}
+                </a>
+                {%endif%}
+              </div>
+            </div>
+            <!-- New Variants END -->
+
+          </div>
+          <div class="variant-swatch-popup-overlay">
+
+          </div>
+          </div>
+
+        {%else%}
+        <div class="swatch-btn-placeholder"></div>
+
+        {%endif%}
+
+        <a href="{{featured_product_2.url }}">
+          <h5 class="colllection-prod-title">{{ featured_product_2.title }}</h5>
+        </a>
+
+        <!-- {% if featured_product_2.has_only_default_variant %}
+<input name="id" id="productSelect" value="{{ featured_product_2.id }}" type="hidden">
+{% else %}
+<select name="id">
+{% for variant in featured_product_2.variants %}
+<option value="{{ variant.id }}">{{ variant.title }}</option>
+{% endfor%}
+</select>
+{% endif %} -->
+
+        <div class="price-swatch-div">
+
+
+          <p class="product__product-price">{{ price | money }}{% if featured_product_2.compare_at_price_max != 0 %} <strike><span style="font-size: 13px; font-weight: 300; display: inline !important;">{{ featured_product_2.compare_at_price_max | money }}</span></strike>{% endif %}</p>
+
+          {% if featured_product_2.has_only_default_variant %}
+          <input class="default-variant-box-def" name="id" value="{{ featured_product_2.variants.first.id }}" type="hidden">
+          {% else %}
+
+
+          <input class="default-variant-id-pdp default-variant-box-def" id="default-variant-box-def" name="id" value="{{ featured_product_2.variants.first.id }}" type="hidden">
+
+
+
+          <div class="variant-swatches">
+
+
+            <div class="variant-swatch-options">
+
+              {%for variant in featured_product_2.variants limit:3%}
+
+              {%unless featured_product_2.tags contains 'Bundles' or featured_product_2.tags contains '_bundles'%}
+
+              <!-- <p>COLOR:{{variant.title}} </p>  -->
+              <label for="color-{{variant.id}}" class="variant-color-swatch variant-color-swatch-def" data-variant-title="{{variant.title}}">
+                <img class="swatch-images" src="{{variant.title | escape | append : '.jpg' | strip | asset_url}}" alt="{{variant.title}}" onerror="this.src='{{featured_product_2 | img_url}}';this.style.display='none'">
+              </label>
+
+              {%endunless%}
+              <!-- {{variant.title | escape | append : '.jpg' | strip }} -->
+              <input type="radio" value="{{ variant.id }}" class="variant-color-input" name="id" id="color-{{variant.id}}" style="display: none;">
+              {%endfor%}
+
+              {%if featured_product_2.variants.size > 3%}
+              <a href="{{featured_product_2.url}}" style="color: black;text-decoration: underline;">
+                +{{featured_product_2.variants.size | minus:3}}
+              </a>
+              {%endif%}
+
+            </div>
+
+          </div>
+
+
+
+          {% endif %}
+
+        </div>
+        <!-- <input type="hidden" name="id" value="{{ featured_product_2.variants.first.id }}" /> -->
+        <input min="1" type="hidden" id="quantity" name="quantity" value="1"/>
+        <input type="submit" value="Add to cart" class="add-to-cart-btn"/>
+        </form>
+
+
+    </div>
+
+
+  </div>
+
+</div>
+
+<div class="collection-img">
+  <img src="{{section.settings.user_img_skincare | img_url: 'master'}}" alt="">
+</div>
+
+<div class="collection-title-mobile">
+  <h2>{{section.settings.collection_header}}</h2>
+  <a href="{{collection_main.url}}" class="shop-all">Shop All</a>
+</div>
+</div>
+</div>
+
+
+
+{%schema%}
+{
+"name": "Collection 2",
+"settings": [
+{
+"type": "image_picker",
+"id": "user_img_skincare",
+"label": "User Photo"
+},
+{
+"type":"text",
+"id": "collection_header",
+"label": "Collection Name"
+},
+{
+"type": "collection",
+"id": "collection_main",
+"label": "Choose a Collection"
+},
+{
+"type": "product",
+"id": "featured_prod_1",
+"label": "Choose Featured Product 1"
+},
+{
+"type": "product",
+"id": "featured_prod_2",
+"label": "Choose Featured Product 2"
+}
+],
+"presets": [
+{
+"category": "Collection",
+"name": "Collection 2"
+}]
+}
+{%endschema%}

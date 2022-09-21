@@ -1,0 +1,13 @@
+<div class="custom-video-wrapper">
+    {%assign custom_videos = product.metafields.custom-video-ingr %}
+     {%if custom_videos.size > 0 %}  
+      <h3>Check out the video guide</h3>    
+        {% for file in custom_videos %}
+         {% assign file_key = file | first %}
+         {% assign file_link = file | last %}
+         {% assign file_link = file_link | replace: '/watch?v=', '/embed/'%}
+          <iframe width="560" height="315" src="{{file_link}}" frameborder="0"></iframe>
+         {%endfor%}
+     {%endif%}
+     </div>
+    <br/>

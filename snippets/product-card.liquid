@@ -1,0 +1,16 @@
+{% if hc_url %}
+	{% assign url = hc_url | within: collection %}
+{% else %}
+    {% assign url = product.url | within: collection %}
+{% endif %}
+
+<a href="{{ url }}" class="product-card">
+   <div class="product-card__image-wrapper min-height--product position-relative">
+      <img src="{{ product.featured_image.src | img_url: '335x335' }}" alt="{{ product.featured_image.alt | escape }}" class="product-card__image">
+  </div>
+  <div class="product-card__info">    
+    <div class="product-card__name text-uppercase">{{ product.title }}</div>
+    <div class="product-card__brand">{{ product.vendor }}</div>    
+  </div>
+</a>
+<a href="{{ url }}" class="product-card-button">SUBSCRIBE</a>

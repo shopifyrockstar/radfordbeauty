@@ -1,0 +1,143 @@
+<!-- /templates/cart.liquid -->
+{% comment %}
+  For info on test orders:
+    - General http://docs.shopify.com/manual/your-store/orders/test-orders
+    - Shopify Payments - http://docs.shopify.com/manual/more/shopify-payments/testing-shopify-payments
+{% endcomment %}
+
+{% section 'side-cart' %}
+<div class="main-cart-page">
+{% if cart.item_count > 0 %}
+
+  <h1>Cart</h1>
+  <form action="/cart" method="post" novalidate class="cart table-wrap">
+    <table class="cart-table full table--responsive">
+      <thead class="cart__row cart__header-labels">
+        <th colspan="2" class="text-center">{{ 'product'  }}</th>
+        <th class="text-center">{{ 'price'  }}</th>
+        <th class="text-center">{{ 'quantity'  }}</th>
+        <th class="text-right">{{ 'total'  }}</th>
+      </thead>
+      <tbody>
+        {% for item in cart.items %}
+          <tr class="cart__row table__section">
+            <td data-label="{{ 'product'  }}">
+              <a href="{{ item.url | within: collections.all }}" class="cart__image">
+                {% comment %}
+                  More image size options at:
+                    - http://docs.shopify.com/themes/filters/product-img-url
+                {% endcomment %}
+                <img src="{{ item | img_url: 'medium' }}" alt="{{ item.title | escape }}">
+              </a>
+            </td>
+            <td>
+              <a href="{{ item.url }}" class="h4">
+                {{ item.product.title }}
+<span class="saso-cart-item-discount-notes" data-key="{{item.key}}"></span>
+<span class="saso-cart-item-upsell-notes" data-key="{{item.key}}"></span>
+                                
+<span class='booster-cart-item-success-notes' data-key='{{item.key}}'></span><span class='booster-cart-item-upsell-notes' data-key='{{item.key}}'></span>
+              </a>
+              {% unless item.variant.title contains 'Default' %}
+                <br>
+                <small>{{ item.variant.title }}</small>
+              {% endunless %}
+
+              {% if settings.cart_vendor_enable %}
+                <p>{{ item.vendor }}</p>
+              {% endif %}
+
+              {% comment %}
+                Optional, loop through custom product line items if available
+                For more info on line item properties, visit:
+                  - http://docs.shopify.com/support/your-store/products/how-do-I-collect-additional-information-on-the-product-page-Like-for-a-monogram-engraving-or-customization
+              {% endcomment %}
+              {% assign property_size = item.properties | size %}
+              {% if property_size > 0 %}
+                {% for p in item.properties %}
+                  {% unless p.last == blank %}
+                    {{ p.first }}:
+
+                    {% comment %}
+                      Check if there was an uploaded file associated
+                    {% endcomment %}
+                    {% if p.last contains '/uploads/' %}
+                      <a href="{{ p.last }}">{{ p.last | split: '/' | last }}</a>
+                    {% else %}
+                      {{ p.last }}
+                    {% endif %}
+
+                    <br>
+                  {% endunless %}
+                {% endfor %}
+              {% endif %}
+
+              <a href="/cart/change?line={{ forloop.index }}&amp;quantity=0" class="cart__remove">
+                <small>{{ 'remove'  }}</small>
+              </a>
+            </td>
+            <td data-label="{{ 'price'  }}">
+              <span class="h3">
+                <div class="pn-price-item" data-id="{{ item.key }}">
+<span class="saso-cart-item-price" data-key="{{item.key}}"><div class="pn-price-item" data-id="{{ item.key }}">{{ item.price | money }}</div></span>
+</div>
+              </span>
+            </td>
+            <td data-label="{{ 'quantity'  }}">
+              <input type="number" name="updates[]" id="updates_{{ item.key }}" data-id="{{ item.key }}" value="{{ item.quantity }}" min="0">
+            </td>
+            <td data-label="{{ 'total'  }}" class="text-right">
+              {% if item.original_line_price != item.line_price %}
+                <span class="cart-item__original-price"><s>
+<span class="saso-cart-item-line-price" data-key="{{item.key}}"><div class="pn-total-line-item" data-id="{{ item.key }}">{{ item.original_line_price | money }}</div></span>
+</s></span>
+              {% endif %}
+              <span class="h3">
+                <div class="pn-total-line-item" data-id="{{ item.key }}"><span class='booster-cart-item-line-price' data-key='{{item.key}}'><div class="pn-total-line-item" data-id="{{ item.key }}">
+<span class="saso-cart-item-line-price" data-key="{{item.key}}"><div class="pn-total-line-item" data-id="{{ item.key }}">{{ item.line_price | money }}</div></span>
+</div></span></div>
+              </span>
+              {% for discount in item.discounts %}
+                <span class="cart-item__discount">{{ discount.title }}</span>
+              {% endfor %}
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <div class="grid cart__row">
+      {% if settings.cart_notes_enable %}
+        <div class="grid__item two-thirds small--one-whole">
+          <label for="CartSpecialInstructions">{{ 'note'  }}</label>
+          <textarea name="note" class="input-full" id="CartSpecialInstructions">{{ cart.note }}</textarea>
+        </div>
+      {% endif %}
+      <div class="grid__item text-right{% if settings.cart_notes_enable %} one-third small--one-whole{% endif %}">
+        <p>
+          <span class="cart__subtotal-title">{{ 'subtotal'  }}</span>
+          <span class="h3 cart__subtotal"><span class="wh-original-cart-total">
+<span class=""><span class='wh-original-price'>{{ cart.total_price | money }}</span></span>
+<span class=""></span>
+</span><span class="wh-cart-total"></span><div class="additional-notes"><span class="wh-minimums-note"></span><span class="wh-extra-note"></span></div></span>
+        </p>
+        {% if cart.total_discounts > 0 %}
+          {% assign savings = cart.total_discounts | money %}
+          <p>
+            <span class="cart-subtotal__savings"><em>{{ 'savings_html' : price: savings }}</em></span>
+          </p>
+        {% endif %}
+        <p><em>{{ 'shipping calculated at checkout'  }}</em></p>
+        <button type="submit" name="update" class="btn--secondary update-cart">{{ 'update'  }}</button>
+        <button type="submit" name="checkout" class="btn">{{ 'checkout'  }}</button>
+      </div>
+    </div>
+  </form>
+{% else %}
+  {% comment %}
+    The cart is empty
+  {% endcomment %}
+  <h2>{{ 'Cart'  }}</h2>
+  <p>{{ 'cart is empty'  }}</p>
+  <p>{{ 'continue browsing...'  }}</p>
+{% endif %}
+</div>

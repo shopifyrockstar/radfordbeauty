@@ -1,0 +1,56 @@
+<div class="section-content">
+  <div class="section-block section-block--padding">
+    <div class="section-block__header text-center">
+      <h4 class="h1--mini section-block__title">{{ section.settings.title }}</h4>
+    </div>
+
+    <div class="flex flex--grid flex--grid-center">      
+      {% for block in section.blocks %}
+        <div class="medium-up--one-whole text-left" {{ block.shopify_attributes }}>
+          <div class="question-wrapper">
+            <p>{{ block.settings.faq_question }}</p>
+          </div>
+          <div class="answer-wrapper">
+            {{ block.settings.faq_answer }}
+          </div>
+          
+        </div>
+      {% endfor %}
+    </div>
+
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "FAQ",
+    "class": "faq-section",
+    "max_blocks": 50,
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading",
+        "default": "Logo list"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "text",
+        "name": "FAQ",
+        "settings": [
+          {
+            "type": "text",
+            "id": "faq_question",
+            "label": "Question"
+          },
+          {
+            "type": "text",
+            "id": "faq_answer",
+            "label": "Answer"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

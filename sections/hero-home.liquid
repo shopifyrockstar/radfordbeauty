@@ -1,0 +1,122 @@
+<section class="section section--cover">
+  <div class="cover">
+    <div class="cover__content" style="background-image:url({{section.settings.text_bg_img | img_url : 'master'}});">
+      <div class="cover-block">
+        <span class="cover-title" style="color:{{section.settings.text_1_color}};font-size:{{section.settings.text_1_fontsize}}px;">{{section.settings.text1}}</span>
+        <h1 class="cover-heading" style="color:{{section.settings.text_2_color}};font-size:{{section.settings.text_2_fontsize}}px;">{{section.settings.text2}}</h1>
+        <div class="cover-txtcontent" style="color:{{section.settings.text_3_color}};font-size:{{section.settings.text_3_fontsize}}px;">{{section.settings.text3}}</div>
+        <div class="cover-action">
+          <a href="{{section.settings.btn_link}}" class="btn-primary" style="color:{{section.settings.btn_txt_color}};font-size:{{section.settings.btn_text_fontsize}}px;background-color: {{section.settings.btn_backgound_color}};">{{section.settings.btn_text}}</a>
+        </div>
+      </div>
+    </div>
+    <div class="cover__hero">
+      <img src="{{section.settings.user_img_1 | img_url: 'master'}}" alt="Beauty Care">
+    </div>
+    <div class="cover__hero cover-order">
+      <img src="{{section.settings.user_img_2 | img_url: 'master'}}" alt="Beauty Care">
+    </div>
+  </div>
+</section>
+
+{%schema%}
+{
+
+"name" : "Hero Section",
+"settings" : [
+    {
+        "type": "image_picker",
+        "id": "user_img_1",
+        "label": "First Left"
+    },
+	{
+        "type": "image_picker",
+        "id": "text_bg_img",
+        "label": "Text Background Image"
+    },
+	{
+        "type": "text",
+        "id": "text1",
+        "label": "Text 1"
+    },
+    {
+       "type": "color",
+       "id": "text_1_color",
+       "label": "Color for Text 1",
+       "default": "#ffffff"
+    },
+    {
+      "type": "number",
+      "id": "text_1_fontsize",
+      "label": "Font size for Text 1"
+    },
+	{
+        "type": "text",
+        "id": "text2",
+        "label": "Text 2"
+    },
+	{
+       "type": "color",
+       "id": "text_2_color",
+       "label": "Color for text 2",
+		"default": "#ffffff"
+    },
+	{
+      "type": "number",
+      "id": "text_2_fontsize",
+      "label": "Font size for Text 2"
+    },
+	{
+        "type": "textarea",
+        "id": "text3",
+        "label": "Text 3"
+    },
+	{
+       "type": "color",
+       "id": "text_3_color",
+       "label": "Color for text 3",
+		"default": "#ffffff"
+    },
+	{
+      "type": "number",
+      "id": "text_3_fontsize",
+      "label": "Font size for Text 3"
+    },
+	{
+        "type": "text",
+        "id": "btn_text",
+        "label": "Button Text"
+    },
+    {
+       "type": "color",
+       "id": "btn_txt_color",
+       "label": "Button Text Color",
+       "default": "#ffffff"
+    },
+    {
+       "type": "color",
+       "id": "btn_backgound_color",
+       "label": "Button Background Color",
+       "default": "#000"
+    },
+	{
+      "type": "number",
+      "id": "btn_text_fontsize",
+      "label": "Font size for Button Text"
+    },
+	{
+        "type": "text",
+        "id": "btn_link",
+        "label": "Button Link"
+    },
+    {
+        "type": "image_picker",
+        "id": "user_img_2",
+        "label": "Image Right"
+    }
+
+  ]
+}
+{%endschema%}
+
+

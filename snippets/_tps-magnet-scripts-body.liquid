@@ -1,0 +1,49 @@
+{% comment %} 
+Magnet Scripts added to Radford Beauty
+by TPS on Aug 16, 2022 - https://thepixelshop.teamwork.com/#/tasks/21519689
+{% endcomment %}
+<script type="text/javascript">
+    function openChatWidget() {
+        console.info('openChatWidget');
+        if (localStorage.getItem("MAGNET_WIDGET_STATE") && localStorage.getItem("MAGNET_WIDGET_STATE") === "OPEN" && !/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+            return;
+        }
+        document.querySelector(".hiro-chat-widget-toggle").click();
+    }
+
+    function getMutationObserver(className, func) {
+        return new MutationObserver(function(mutations, o) {
+            mutations.forEach((element) => {
+                element.addedNodes.forEach(node => {
+                    if (node.className === className) {
+                        func();
+                        console.info(`${className} is now appended.`);
+                        o.disconnect();
+                    }
+                });
+            });
+        });
+    }
+
+    const search = window.location.search;
+
+    if (search.indexOf('chat=on') > -1) {
+        const observer = getMutationObserver('hiro-chat-widget-toggle', openChatWidget);
+        observer.observe(document.body, { childList: true });
+    } 
+
+    function startDirectChat() {
+        const getWindowMagnetFunc = setInterval(()=> {
+            if(window.$$magnet) {
+                window.$$magnet.openWithDirectChat();
+                clearInterval(getWindowMagnetFunc);
+            }
+        },1000);
+    }
+
+    if (search.indexOf('chat=start') > -1) {
+        const observer = getMutationObserver('hiro-chat-widget-toggle', startDirectChat);
+        observer.observe(document.body, { childList: true });
+    }
+
+</script>

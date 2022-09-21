@@ -1,0 +1,52 @@
+<div class="page-width">
+
+    <div class="profile">
+
+        <img src="{{ section.settings.user_img | img_url: 'medium'}}" alt="img-alt-txt">
+        <h3>
+            {{ section.settings.user_name }}
+        </h3>
+        <p>
+            {{ section.settings.user_bio}}
+        </p>
+
+    </div>
+    
+</div>
+ 
+
+
+{%schema%}
+{
+    "name" : "Profile",
+
+
+    "settings": [
+
+    {
+        "type": "image_picker",
+        "id": "user_img",
+        "label": "User Photo"
+    },
+    {
+        "type": "text",
+        "id": "user_name",
+        "label": "User Name"
+    },
+    {
+        "type": "richtext",
+        "id": "user_bio",
+        "label": "User Bio"
+    }
+    
+
+  ],
+
+
+    "presets" : [
+    {
+        "category" : "Profile",
+        "name" : "User Profile"
+    }]
+}
+{%endschema%}

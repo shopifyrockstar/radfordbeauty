@@ -1,0 +1,254 @@
+<header class="tps-header">
+  <div class="tps-header-container">
+
+    <div class="tps-header-top">
+      <div class="tps-header-menu-toggle" id="menu-toggle">
+          <svg width="21" height="16" viewBox="0 0 18 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1.44444 1.98889H16.5556C16.8551 1.98889 17.1 1.74514 17.1 1.44444C17.1 1.14375 16.8551 0.9 16.5556 0.9H1.44444C1.14388 0.9 0.9 1.14388 0.9 1.44444C0.9 1.74501 1.14388 1.98889 1.44444 1.98889Z" fill="#212121" stroke="#212121" stroke-width="0.2"/>
+            <path d="M16.5556 6.23325H1.44444C1.14388 6.23325 0.9 6.47713 0.9 6.7777C0.9 7.07826 1.14388 7.32214 1.44444 7.32214H16.5556C16.8551 7.32214 17.1 7.07839 17.1 6.7777C17.1 6.477 16.8551 6.23325 16.5556 6.23325Z" fill="#212121" stroke="#212121" stroke-width="0.2"/>
+            <path d="M16.5556 11.5667H1.44444C1.14375 11.5667 0.9 11.8116 0.9 12.1112C0.9 12.4107 1.14375 12.6556 1.44444 12.6556H16.5556C16.8552 12.6556 17.1 12.4109 17.1 12.1112C17.1 11.8115 16.8552 11.5667 16.5556 11.5667Z" fill="#212121" stroke="#212121" stroke-width="0.2"/>
+          </svg>
+      </div>
+      
+      <div class="tps-header-logo">
+        <a href="{{routes.root_url}}" aria-label="Radford Logo">
+          <img src="{{section.settings.main_logo | img_url: 'large'}}" alt="Radford Logo">
+        </a>
+      </div>
+      
+      <div class="tps-header-icons">
+        <div class="tps-header-search-icon" id="tps-header-search">          
+            <svg class="tps-header-search-icon-img" width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="12.6682" cy="11.7666" r="8.98856" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M18.9219 18.4851L22.4459 22" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>          
+        </div>
+                
+        <div class="tps-header-user-icon">
+          <a href="/account">
+            <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M12.8853 15.3462C9.0177 15.3462 5.71484 15.931 5.71484 18.2729C5.71484 20.6148 8.99675 21.2205 12.8853 21.2205C16.7529 21.2205 20.0548 20.6348 20.0548 18.2938C20.0548 15.9529 16.7739 15.3462 12.8853 15.3462Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M12.8872 12.0059C15.4253 12.0059 17.4825 9.94779 17.4825 7.40969C17.4825 4.8716 15.4253 2.81445 12.8872 2.81445C10.3491 2.81445 8.29104 4.8716 8.29104 7.40969C8.28247 9.93921 10.3263 11.9973 12.8549 12.0059H12.8872Z" stroke="black" stroke-width="1.42857" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+                
+        <div class="tps-header-cart-icon">
+          <a href="/cart" id="open-side-cart">
+            <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M3.6543 3.25L5.7343 3.61L6.6973 15.083C6.7743 16.02 7.5573 16.739 8.4973 16.736H19.4063C20.3033 16.738 21.0643 16.078 21.1913 15.19L22.1403 8.632C22.2463 7.899 21.7373 7.219 21.0053 7.113C20.9413 7.104 6.0683 7.099 6.0683 7.099" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M15.0273 10.7949H17.8003" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M8.05767 20.2026C8.35867 20.2026 8.60167 20.4466 8.60167 20.7466C8.60167 21.0476 8.35867 21.2916 8.05767 21.2916C7.75667 21.2916 7.51367 21.0476 7.51367 20.7466C7.51367 20.4466 7.75667 20.2026 8.05767 20.2026Z" fill="black" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M19.3389 20.2026C19.6399 20.2026 19.8839 20.4466 19.8839 20.7466C19.8839 21.0476 19.6399 21.2916 19.3389 21.2916C19.0379 21.2916 18.7949 21.0476 18.7949 20.7466C18.7949 20.4466 19.0379 20.2026 19.3389 20.2026Z" fill="black" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <div class="tps-header-cart-num-display" id="cart-item-num-display">
+              <span>{{cart.item_count }}</span>
+            </div>
+          </a>
+        </div>
+      </div>      
+    </div>
+    
+    
+    <nav class="tps-header-navigation" id="header-navigation">
+
+      <div class="tps-header-navigation-top">
+        <div class="tps-header-navigation-logo">
+          <a href="{{routes.root_url}}" aria-label="Radford Logo">
+            <img src="{{section.settings.main_logo | img_url: 'large'}}" alt="Radford Logo">
+          </a>
+        </div>
+
+        <svg class="tps-header-navigation-close" id="navigation-close" width="21" height="21" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M9.46586 7.99996L15.696 1.76969C16.1014 1.36443 16.1014 0.709193 15.696 0.30394C15.2907 -0.101313 14.6355 -0.101313 14.2302 0.30394L7.99992 6.53421L1.76983 0.30394C1.36439 -0.101313 0.709337 -0.101313 0.304083 0.30394C-0.101361 0.709193 -0.101361 1.36443 0.304083 1.76969L6.53417 7.99996L0.304083 14.2302C-0.101361 14.6355 -0.101361 15.2907 0.304083 15.696C0.506046 15.8981 0.771596 15.9997 1.03696 15.9997C1.30232 15.9997 1.56768 15.8981 1.76983 15.696L7.99992 9.4657L14.2302 15.696C14.4324 15.8981 14.6977 15.9997 14.9631 15.9997C15.2284 15.9997 15.4938 15.8981 15.696 15.696C16.1014 15.2907 16.1014 14.6355 15.696 14.2302L9.46586 7.99996Z" fill="black"></path>
+        </svg>
+      </div>
+    
+      <ul class="tps-header-navigation-list">
+
+        {% for link in linklists[section.settings.main_linklist].links %}
+          <li class="tps-header-navigation-item" {% if link.active %}aria-current="page"{% endif %}>
+            
+            {% if link.type == 'collection_link'%}
+            <a href="{{ link.url }}" class="tps-navigation-collection" target="_self">{{ link.title }}</a>
+            {% else %}
+            <a href="{{ link.url }}" target="_self">{{ link.title }}</a>
+            {% endif %}
+
+            {% if link.type == 'collection_link'%}
+              <div class='tps-header-navigation-item-info'>
+
+                {% assign collectionName = link.url | split: "/" | slice: 2 %}
+
+                <div class='tps-header-navigation-item-info-container'>
+
+                  <div class='tps-header-navigation-item-info-suggestions'>
+                    <ul>
+                      <li><a href="{{ link.url }}">Shop all {{ link.title }}</a></li>
+
+                      {% if link.links.size > 0 %}
+                        {% for child_link in link.links %}
+                        <li><a href="{{ child_link.url }}?pf_t_tag={{ child_link.title | url_encode }}">{{ child_link.title }}</a></li>
+                        {% endfor %}
+                      {% endif %}
+
+                      {% comment %}
+                      {% for tag in collections[collectionName[0]].all_tags limit:5 %}
+                      <li><a href="{{ link.url }}?pf_t_tag={{ tag | url_encode }}">{{ tag }}</a></li>
+                      {% endfor %}
+                      {% endcomment %}
+              
+                    </ul>
+                  </div>
+                  
+                  <div class='tps-header-navigation-item-info-products'>
+                    <ul>
+                    
+                    {% for product in collections[collectionName[0]].products limit:3 %}
+                      <li>
+                        <a href="{{ product.url }}" target="_self">
+                          <div class='tps-header-navigation-item-info-image' style="background-image:url('{{ product.featured_image.src | img_url: 'large' }}')"></div>
+                          <p class='tps-header-navigation-item-info-title'>{{ product.title }}</p>
+                          <p class='tps-header-navigation-item-info-subtitle'>{{ product.metafields.global.subtitle }}</p>
+                        </a>
+                      </li>
+                    {% endfor %}
+                    
+                    </ul>
+                  </div>
+              
+                </div>
+
+              </div>
+            {% endif %}
+              
+          </li>          
+        {% endfor %}
+         
+      </ul>
+    </nav>
+    
+
+    <div class="tps-header-search">
+      
+      <form action="/search" method="get" role="search" class="tps-header-search-form">
+        <div class="tps-header-search-top">
+          <input type="text" id="tps-header-search-input" placeholder="What are you looking for?" />
+          <button type="reset" id="tps-header-search-clear">Clear</button>
+          <svg class="tps-header-search-close" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M9.46586 7.99996L15.696 1.76969C16.1014 1.36443 16.1014 0.709193 15.696 0.30394C15.2907 -0.101313 14.6355 -0.101313 14.2302 0.30394L7.99992 6.53421L1.76983 0.30394C1.36439 -0.101313 0.709337 -0.101313 0.304083 0.30394C-0.101361 0.709193 -0.101361 1.36443 0.304083 1.76969L6.53417 7.99996L0.304083 14.2302C-0.101361 14.6355 -0.101361 15.2907 0.304083 15.696C0.506046 15.8981 0.771596 15.9997 1.03696 15.9997C1.30232 15.9997 1.56768 15.8981 1.76983 15.696L7.99992 9.4657L14.2302 15.696C14.4324 15.8981 14.6977 15.9997 14.9631 15.9997C15.2284 15.9997 15.4938 15.8981 15.696 15.696C16.1014 15.2907 16.1014 14.6355 15.696 14.2302L9.46586 7.99996Z" fill="black"></path>
+          </svg>  
+        </div>
+
+        <div class="tps-header-search-results">
+          
+          <div class="tps-header-search-results-suggestions">
+            <div class="tps-header-search-results-suggestions-title">Popular Searches</div>
+            
+            <ul class="tps-header-search-results-suggestions-list"></ul>
+
+            <ul class="tps-header-search-results-suggestions-list-start active">          
+              {% for link in linklists[section.settings.search_main_suggestions].links limit:6 %}
+              <li><a href="{{ link.url }}?q={{ link.title }}">{{ link.title }}</a></li>
+              {% endfor %}
+            </ul>
+          </div>
+          
+
+          <div class="tps-header-search-results-products">
+            <div class="tps-header-search-results-products-title">Popular Products</div>
+            
+            <ul class="tps-header-search-results-products-list"></ul>
+
+            <ul class="tps-header-search-results-products-list-start active">
+              {% for product in collections['best-sellers-1'].products limit:4 %}
+                <li>
+                  <a href="{{ product.url }}" target="_self">
+                    <div class="tps-header-search-results-products-image" style="background-image:url('{{ product.featured_image.src | img_url: 'large' }}')"></div>                    
+                    <p class="tps-header-search-results-products-list-title">{{ product.title }}</p>
+                    <span class="tps-header-search-results-products-list-subtitle">{{ product.metafields.global.subtitle }}</span>              
+                  </a>
+                </li>
+              {% endfor %}
+            </ul>
+          </div>
+
+        </div>
+
+        <div class="tps-header-search-submit">
+          <button type="submit">See all results</button>
+        </div>        
+      </form>
+            
+    </div>
+
+
+  </div>
+</header>
+
+
+{% javascript %}
+  const navItens = document.querySelectorAll('.tps-header-navigation-item');
+  const navMenu = document.getElementById('header-navigation');  
+  const navToggle = document.getElementById('menu-toggle');
+  const navClose = document.getElementById('navigation-close');
+      
+  if (navToggle) {
+    navToggle.addEventListener('click', () => {
+      console.log('TOGGLE');
+      navMenu.classList.add('active');
+    });
+  }
+
+  if (navClose) {
+    navClose.addEventListener('click', () => {
+      navMenu.classList.remove('active');
+    });
+  }
+  
+  if (navItens) {
+    navItens.forEach(item => {
+      
+      item.addEventListener('click', () => {   
+
+        if (item.classList.contains('active')) {
+          item.classList.remove('active');
+        } else {
+          const headerList = item.parentElement.children;
+          Array.from(headerList).forEach(info => {
+            info.classList.remove('active');
+          });
+          
+          item.classList.add('active');
+        }        
+        
+      });
+      
+    });
+  }
+{% endjavascript %}
+
+                
+
+{%schema%}
+{
+    "name": "Header",
+    "settings": [
+    {
+      "type": "image_picker",
+      "id": "main_logo",
+      "label": "Header Logo"
+    },
+    {
+      "type": "link_list",
+      "id": "main_linklist",
+      "label": "Menu Navigation"
+    },
+    {
+      "type": "link_list",
+      "id": "search_main_suggestions",
+      "label": "Search Main Suggestions"
+    }
+    ]
+}
+{%endschema%}

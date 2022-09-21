@@ -1,0 +1,324 @@
+
+<div class="tps-billboard">
+  <div class="tps-billboard-grid">
+    <div class="tps-billboard-cell tps-billboard-media" role="img" title="{{ section.settings.tps_billboard_featured_image.alt }}"></div>
+    <div class="tps-billboard-cell tps-billboard-content">
+      <div class="tps-billboard-content-inner">
+        <div class="tps-billboard-content-headline-pre">{{ section.settings.tps_billboard_headline_pre }}</div>
+        <h1 class="tps-billboard-content-headline">{{ section.settings.tps_billboard_headline }}</h1>
+        <div class="tps-billboard-content-text">{{ section.settings.tps_billboard_text }}</div>
+        <div class="tps-billboard-content-actions">
+          <a class="btn-primary" href="{{ section.settings.tps_billboard_action_url }}">{{ section.settings.tps_billboard_action_label }}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Billboard",
+  	"limit": 1,
+    "settings": [
+		{
+          "type": "color_background",
+          "id": "tps_billboard_bg_color",
+          "label": "Billboard section background color",
+		  "default": "#ffffff"
+    	},
+		{
+			"type": "image_picker",
+			"id": "tps_billboard_featured_image_mobile",
+			"label": "Featured Image (mobile)"
+		},
+		{
+			"type": "image_picker",
+			"id": "tps_billboard_featured_image",
+			"label": "Featured Image (desktop)"
+		},
+		{
+			"type": "image_picker",
+			"id": "tps_billboard_featured_image_widescreen",
+			"label": "Featured Image (widescreen)"
+		},
+		{
+			"type" : "checkbox",
+			"id" : "tps_billboard_isEdgeToEdge",
+			"label" : "The billboard image is Edge to Edge",
+			"info" : "When selected, the 'Featured Image' will be shown"
+		},
+		{
+          "type": "image_picker",
+          "id": "tps_billboard_content_bg",
+          "label": "Content Background Image (desktop)",
+		  "info" : "If the billboard image is Edge to Edge, this image will not be shown"
+    	},
+		{
+          "type": "image_picker",
+          "id": "tps_billboard_content_bg_mobile",
+          "label": "Content Background Image (mobile)",
+		  "info" : "This image will be shown on mobile screens, even when the billboard image is configured as Edge to Edge"
+    	},
+        {
+           "type": "color",
+           "id": "tps_billboard_text_color",
+           "label": "Text Color",
+           "default": "#000000"
+        },
+        {
+           "type": "text",
+           "id": "tps_billboard_headline_pre",
+           "label": "Pre Headline",
+		   "placeholder" : "Back in stock!"
+        },
+        {
+           "type": "textarea",
+           "id": "tps_billboard_headline",
+           "label": "Text",
+		   "placeholder" : "CURL"
+        },
+        {
+           "type": "richtext",
+           "id": "tps_billboard_text",
+           "label": "Text"
+        },
+		{
+			"type" : "text",
+			"id" : "tps_billboard_action_label",
+			"label" : "CTA Label"
+		},
+		{
+			"type" : "text",
+			"id" : "tps_billboard_action_aria",
+			"label" : "CTA Aria Label"
+		},
+		{
+			"type" : "url",
+			"id" : "tps_billboard_action_url",
+			"label" : "CTA Url"
+		}
+	]
+  }
+{% endschema %}
+
+
+{% style %}
+
+	{% if section.settings.tps_billboard_bg_color != null %}
+		.tps-billboard {
+			background-color: {{ section.settings.tps_billboard_bg_color }};
+		}
+	{% endif %}
+
+	.tps-billboard-grid {
+		display: flex;
+		flex-direction: column;
+		{% if section.settings.tps_billboard_bg_color != null %}
+			max-width: 1600px;
+			margin: 0 auto;
+		{% endif %}
+	}
+
+    .tps-billboard-cell {
+        flex: 1 0 auto;
+		box-sizing: border-box;
+    }
+
+    .tps-billboard-content,
+    .tps-billboard-media {
+        background-size: cover;
+        background-position: center center;
+		background-repeat: no-repeat;
+		padding: 15px;		
+    }
+
+	.tps-billboard-content-inner {
+		padding: 5px;
+		
+	}
+
+    .tps-billboard-media {
+		{% if section.settings.tps_billboard_featured_image_mobile != null %}
+        	background-image: url({{ section.settings.tps_billboard_featured_image_mobile | img_url : '' }});
+		{% endif %}
+		min-height: 245px;
+    }
+
+    .tps-billboard-content {
+		{% if section.settings.tps_billboard_content_bg_mobile != null %}
+        	background-image: url({{ section.settings.tps_billboard_content_bg_mobile | img_url : '' }});
+		{% endif %}
+		color: {{ section.settings.tps_billboard_text_color }};
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		min-height: 350px;
+		text-align: center;
+    }
+
+	.tps-billboard-content-headline-pre {
+		font-family: LeJeuneText-Regular, Times New Roman, Serif;
+		font-size: 20px;
+		line-height: 1.28; 
+		margin-bottom: 15px;
+		text-transform: uppercase;
+	}
+
+	.tps-billboard-content-headline {
+		font-family: NimbusSans-Regular, sans-serif;
+		font-size: 60px;
+		line-height: 1.08; 
+		margin-bottom: 6px;
+	}
+
+	.tps-billboard-content-text {
+		margin-bottom: 30px;
+	}
+
+	.tps-billboard-content-text > p {
+		margin-top: 0;
+		font-size: 16px;
+		line-height: 1.5;
+		text-transform: uppercase;
+	}
+	.tps-billboard-content-text > p:last-child {
+		margin-bottom: 0;
+	}
+
+	.tps-billboard-content-actions .btn-primary {
+		font-size: 14px;
+		font-weight: 700;
+		letter-spacing: 1.4px;
+		padding: 14px 20px;
+	}
+
+	.tps-billboard-content-actions .btn-primary:hover {
+		color: #fff;
+	}
+
+	@media screen and (max-width: 1024px) {	
+		.tps-billboard-content-text br {
+			display: none;
+		}
+	}
+
+	@media screen and (min-width: 768px) {
+
+		{% if section.settings.tps_billboard_featured_image != null and section.settings.tps_billboard_isEdgeToEdge == true %}
+			.tps-billboard {
+				background-image: url({{section.settings.tps_billboard_featured_image | img_url : ''}});
+				background-size: cover;
+				background-position: center center;
+				background-repeat: no-repeat;
+			}
+		{% endif %}
+
+		.tps-billboard-content,
+    	.tps-billboard-media {
+			min-height: 420px;
+		}
+
+		.tps-billboard-content {
+		{% if section.settings.tps_billboard_content_bg != null and section.settings.tps_billboard_isEdgeToEdge == false %}
+			background-image: url({{section.settings.tps_billboard_content_bg | img_url : ''}});			
+		{% else %}
+			background-image: none;
+		{% endif %}
+		}
+		.tps-billboard-media {
+		{% if section.settings.tps_billboard_featured_image != null and section.settings.tps_billboard_isEdgeToEdge == false %}
+			background-image: url({{ section.settings.tps_billboard_featured_image | img_url : '' }});		
+		{% else %}
+			background-image: none;	
+		{% endif %}
+		}
+		.tps-billboard-grid {
+			flex-direction: row;
+        	align-items: stretch;
+		}
+
+
+        .tps-billboard-cell {
+            flex: 1 0 50%;
+        }
+
+		.tps-billboard-content {
+			order: 1;
+		}
+		.tps-billboard-media {
+			width: auto;
+			padding-bottom: 0;
+			order: 2;
+		}
+
+		.tps-billboard-content-headline-pre {
+			font-size: 20px;
+			margin-bottom: 10px;
+		}
+		.tps-billboard-content-headline {
+			font-size: 80px;
+		}
+		.tps-billboard-content-text {
+			margin-bottom: 35px
+		}
+		.tps-billboard-content-text > p {
+			font-size: 18px;
+		}
+	}
+
+	
+	
+    @media screen and (min-width: 1024px) {
+        .tps-billboard-content,
+    	.tps-billboard-media {
+			min-height: 490px;
+		}
+
+		.tps-billboard-content {
+			flex-basis: 40%;
+		}
+		.tps-billboard-media {
+			flex-basis: 60%;
+
+		}
+    }
+	
+    @media screen and (min-width: 1200px) {
+        .tps-billboard-content,
+    	.tps-billboard-media {
+			min-height: 560px;
+		}
+
+    }
+
+    @media screen and (min-width: 1440px) {
+        .tps-billboard-content,
+    	.tps-billboard-media {
+			min-height: 630px;
+		}
+
+		.tps-billboard-content-headline-pre {
+			font-size: 25px;
+			margin-bottom: 15px;
+		}
+		.tps-billboard-content-headline {
+			font-size: 100px;
+		}
+		.tps-billboard-content-text > p {
+			font-size: 23px;
+		}
+
+    }
+
+	@media screen and (min-width: 1720px) {		
+		{% if section.settings.tps_billboard_featured_image_widescreen != null and section.settings.tps_billboard_isEdgeToEdge == true %}
+			.tps-billboard {
+				background-image: url({{section.settings.tps_billboard_featured_image_widescreen | img_url : ''}});
+			}
+		{% endif %}
+	}
+
+{% endstyle %}
+
+{% javascript %}
+{% endjavascript %}

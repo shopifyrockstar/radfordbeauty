@@ -1,0 +1,619 @@
+{
+  "current": {
+    "checkout_header_image": "shopify:\/\/shop_images\/APRIL_PEACH_FULL_66a2d364-e04b-4093-b996-3181cdd3832c.jpg",
+    "checkout_logo_image": "shopify:\/\/shop_images\/radfordlogo_small_d96cd22f-0d81-4e81-b97a-bf236737bb8d.png",
+    "checkout_logo_position": "left",
+    "checkout_logo_size": "large",
+    "sections": {
+      "header": {
+        "type": "header",
+        "settings": {
+          "main_logo": "shopify:\/\/shop_images\/radford-logo-black.png",
+          "main_linklist": "header-menu-navigation",
+          "search_main_suggestions": "search-suggestions"
+        }
+      },
+      "footer": {
+        "type": "footer",
+        "settings": {
+          "footer_linklist": "footer-menu-new",
+          "footer_linklist_mobile": "footer-menu-new-mobile",
+          "footer_linklist_2": "footer-menu-new-secondary",
+          "footer_logo": "shopify:\/\/shop_images\/radford-footer.png"
+        }
+      },
+      "1624458058243efe35": {
+        "type": "side-cart",
+        "settings": {
+          "collection_title": "You might also like",
+          "collection_main": "best-sellers-1"
+        }
+      },
+      "1624458425845e1791": {
+        "type": "hero-slider",
+        "settings": {
+          "user_img_1": "shopify:\/\/shop_images\/web-banner_img.jpg",
+          "s1_text_header_1": "",
+          "s1_text_header_2": "",
+          "s1_button_text": "Shop Tint",
+          "s1_collection_main": "tint",
+          "user_img_2": "shopify:\/\/shop_images\/Radford_03_05_202113309_crop.jpg",
+          "s2_text_header_1": "",
+          "s2_text_header_2": "",
+          "s2_button_text": "Shop Skincare",
+          "s2_collection_main": "skincare",
+          "user_img_3": "shopify:\/\/shop_images\/victoria-radford-hero.jpg",
+          "s3_text_header_1": "Real Beauty.",
+          "s3_text_header_2": "Made Simple.",
+          "s3_button_text": "Shop Makeup",
+          "s3_collection_main": "makeup-1"
+        }
+      },
+      "1624458530bcd12757": {
+        "type": "brand-logo",
+        "settings": {
+          "section_title": "As seen in",
+          "section_text_color": "#000000",
+          "brand_img_1": "shopify:\/\/shop_images\/vouge.png",
+          "brand_link_1": "",
+          "brand_img_2": "shopify:\/\/shop_images\/elle.png",
+          "brand_link_2": "",
+          "brand_img_3": "shopify:\/\/shop_images\/fashion.png",
+          "brand_link_3": ""
+        }
+      },
+      "1624458682006f497c": {
+        "type": "collection-list",
+        "settings": {
+          "user_img_skincare": "shopify:\/\/shop_images\/Skincare.jpg",
+          "collection_header": "Skincare",
+          "collection_main": "skincare",
+          "featured_prod_1": "buff",
+          "featured_prod_2": "face"
+        }
+      },
+      "1624458752b55df153": {
+        "type": "collection-list-2",
+        "settings": {
+          "user_img_skincare": "shopify:\/\/shop_images\/Makeup_bc8a96b5-6bc4-4cc9-ba48-6ee85666d477.jpg",
+          "collection_header": "Makeup",
+          "collection_main": "makeup-1",
+          "featured_prod_1": "tint-daily-skin-perfector",
+          "featured_prod_2": "glow-power-primer"
+        }
+      },
+      "1624458804943c7e00": {
+        "type": "collection-list",
+        "settings": {
+          "user_img_skincare": "shopify:\/\/shop_images\/Bundles.jpg",
+          "collection_header": "Bundles",
+          "collection_main": "bundles",
+          "featured_prod_1": "buff-aha-duo",
+          "featured_prod_2": "buff-aha-face-trio"
+        }
+      },
+      "1624458864c9df71b9": {
+        "type": "our-promises",
+        "settings": {
+          "section_title": "Our Promise",
+          "section_p_mob": "Victoria Radford is a celebrity makeup artist and skin expert driven by a fearless approach to beauty.",
+          "section_p_desk": "To us, clean beauty is about finding the best ingredient for the best outcome. We believe not every natural ingredient is good for skin, nor is every synthetic ingredient bad. We believe in sourcing REAL ingredients that deliver REAL results.",
+          "user_img_1": "shopify:\/\/shop_images\/radford-promise-1.png",
+          "user_img_2": "shopify:\/\/shop_images\/radford-promise-2.png",
+          "user_img_3": "shopify:\/\/shop_images\/radford-promise-3.png",
+          "user_img_4": "shopify:\/\/shop_images\/radford-promise-4.png",
+          "button_text": "Learn More"
+        }
+      },
+      "1624458910b8d2f575": {
+        "type": "recommended-for-you",
+        "settings": {
+          "collection_main": "all",
+          "collection_title": "Recommended for You"
+        }
+      },
+      "1624458968b21e7a87": {
+        "type": "our-story",
+        "settings": {
+          "section_title": "Our Story",
+          "section_paragraph": "After 20+ years of experience as a celebrity makeup artist and skin esthetician I have learned “the dish can never be better than the ingredients. I created products that only contain clean, effective, ingredients to deliver real results and enhance your natural beauty.",
+          "user_img": "shopify:\/\/shop_images\/victoria-radford-our-story_cde31910-6f0f-4cc8-aaa7-dbd9e15bb04a.jpg",
+          "button_text": "Learn More"
+        }
+      },
+      "1624458992584d406a": {
+        "type": "judgeme_carousel_section",
+        "settings": {
+          "maxwidth": 1080
+        }
+      },
+      "side-cart": {
+        "type": "side-cart",
+        "blocks": {
+          "fed288f0-e021-475c-b9f2-f57f1b7525c1": {
+            "type": "product",
+            "settings": {
+              "product_block": "glow-power-primer"
+            }
+          },
+          "4e809f44-a81a-4d92-b799-72846184129b": {
+            "type": "product",
+            "settings": {
+              "product_block": "glow-mask"
+            }
+          },
+          "57b2f0e8-304e-4912-bda1-b00ed03c01a0": {
+            "type": "product",
+            "settings": {
+              "product_block": "buff"
+            }
+          },
+          "da1ff1e8-755f-4367-83ad-7535d865eb71": {
+            "type": "product",
+            "settings": {
+              "product_block": "buff-face-duo"
+            }
+          },
+          "6ea87488-e166-48b2-ba90-115994137e2b": {
+            "type": "product",
+            "settings": {
+              "product_block": "all-set-loose-powder"
+            }
+          }
+        },
+        "block_order": [
+          "fed288f0-e021-475c-b9f2-f57f1b7525c1",
+          "4e809f44-a81a-4d92-b799-72846184129b",
+          "57b2f0e8-304e-4912-bda1-b00ed03c01a0",
+          "da1ff1e8-755f-4367-83ad-7535d865eb71",
+          "6ea87488-e166-48b2-ba90-115994137e2b"
+        ],
+        "settings": {
+          "collection_title": "You might also like",
+          "collection_main": "all"
+        }
+      },
+      "product-template-new": {
+        "type": "product-template-new",
+        "settings": {
+          "collection_main": "all",
+          "collection_title": "Pairs Well With"
+        }
+      },
+      "collection-template-new": {
+        "type": "collection-template-new",
+        "settings": {
+        }
+      },
+      "about-us-template": {
+        "type": "about-us-template",
+        "settings": {
+          "collection_main": "best-sellers-1",
+          "collection_title": "Victoria's Pick"
+        }
+      },
+      "brand-logo": {
+        "type": "brand-logo",
+        "settings": {
+          "section_title": "As seen in",
+          "section_text_color": "#000000",
+          "section_text_fontsize": 12,
+          "brand_img_1": "shopify:\/\/shop_images\/vouge_53f5e6c6-ccbc-4203-ac3f-d72ff6327d14.png",
+          "brand_link_1": "",
+          "brand_img_2": "shopify:\/\/shop_images\/elle_9f47c4af-fa63-4710-a876-c35d4369ef77.png",
+          "brand_link_2": "",
+          "brand_img_3": "shopify:\/\/shop_images\/fashion_6751e70c-d773-4b18-9ec7-b7f60cbe6071.png",
+          "brand_link_3": ""
+        }
+      },
+      "collection-list": {
+        "type": "collection-list",
+        "settings": {
+          "user_img_skincare": "shopify:\/\/shop_images\/BOOST_VIC_2.jpg",
+          "collection_header": "Skincare",
+          "collection_main": "skincare",
+          "featured_prod_1": "boost-vital-c-e-serum",
+          "featured_prod_2": "eye-visibily-bright-hydrating-repair-cream"
+        }
+      },
+      "collection-list-2": {
+        "type": "collection-list-2",
+        "settings": {
+          "user_img_skincare": "shopify:\/\/shop_images\/Makeout-Balm-03-1080x1080.jpg",
+          "collection_header": "Skincare",
+          "collection_main": "skincare",
+          "featured_prod_1": "clean-vitamin-c-active-clay-gel",
+          "featured_prod_2": "makeout-balm"
+        }
+      },
+      "collection-list-3": {
+        "type": "collection-list-3",
+        "settings": {
+          "user_img_skincare": "shopify:\/\/shop_images\/Radford_03_05_202114370.jpg",
+          "collection_header": "Makeup",
+          "collection_main": "makeup-1",
+          "featured_prod_1": "multi-liner",
+          "featured_prod_2": "glow-power-primer"
+        }
+      },
+      "our-promises": {
+        "type": "our-promises",
+        "settings": {
+          "section_title": "Our Promise",
+          "section_p_mob": "Victoria Radford is a celebrity makeup artist and skin expert driven by a fearless approach to beauty.",
+          "section_p_desk": "To us, clean beauty is about finding the best ingredient for the best outcome. We believe not every natural ingredient is good for skin, nor is every synthetic ingredient bad. We believe in sourcing REAL ingredients that deliver REAL results.",
+          "user_img_1": "shopify:\/\/shop_images\/radford-promise-1.png",
+          "user_img_2": "shopify:\/\/shop_images\/radford-promise-4.png",
+          "user_img_3": "shopify:\/\/shop_images\/radford-promise-3.png",
+          "user_img_4": "shopify:\/\/shop_images\/radford-promise-4.png",
+          "button_text": "Learn More"
+        }
+      },
+      "recommended-for-you": {
+        "type": "recommended-for-you",
+        "settings": {
+          "collection_main": "all",
+          "collection_title": "Recommended for You"
+        }
+      },
+      "our-story": {
+        "type": "our-story",
+        "settings": {
+          "section_title": "Our Story",
+          "section_paragraph": "After 20+ years of experience as a celebrity makeup artist and skin esthetician I have learned the dish can never be better than the ingredients. I created products that only contain clean, effective, ingredients to deliver real results and enhance your natural beauty.",
+          "user_img": "shopify:\/\/shop_images\/victoria-radford-our-story_cde31910-6f0f-4cc8-aaa7-dbd9e15bb04a.jpg",
+          "button_text": "Learn More"
+        }
+      },
+      "hero-home": {
+        "type": "hero-home",
+        "settings": {
+          "user_img_1": "shopify:\/\/shop_images\/hero-face.jpg",
+          "text_bg_img": "shopify:\/\/shop_images\/website_close_up.png",
+          "text1": "INTRODUCING",
+          "text_1_color": "#000000",
+          "text_1_fontsize": 9,
+          "text2": "BOOST",
+          "text_2_color": "#000000",
+          "text_2_fontsize": 42,
+          "text3": "<p style=\"font-size:25px;\" class=\"cover-text\">Vital CE Serum<\/p>",
+          "text_3_color": "#000000",
+          "text_3_fontsize": 16,
+          "btn_text": "SHOP NOW",
+          "btn_txt_color": "#ffffff",
+          "btn_backgound_color": "#000000",
+          "btn_text_fontsize": 14,
+          "btn_link": "https:\/\/radfordbeauty.com\/products\/boost-vital-c-e-serum",
+          "user_img_2": "shopify:\/\/shop_images\/HAND_VANESSA_2.jpg"
+        }
+      },
+      "judgeme_carousel_section": {
+        "type": "judgeme_carousel_section",
+        "settings": {
+          "maxwidth": 1080
+        }
+      },
+      "product-template-mask": {
+        "type": "product-template-mask",
+        "settings": {
+          "collection_main": "all",
+          "collection_title": "Pairs Well With"
+        }
+      },
+      "tps-hero-home": {
+        "type": "tps-hero-home",
+        "settings": {
+          "tps_billboard_bg_color": "#E4D9D0",
+          "tps_billboard_featured_image_mobile": "shopify:\/\/shop_images\/CURL-Mobile-Banner_1.jpg",
+          "tps_billboard_featured_image": "shopify:\/\/shop_images\/CURL-Desktop-Banner.jpg",
+          "tps_billboard_isEdgeToEdge": true,
+          "tps_billboard_text_color": "#1f1616",
+          "tps_billboard_headline_pre": "canada's favourite",
+          "tps_billboard_headline": "eyelash curler",
+          "tps_billboard_text": "<p>triple curl action in one single step<\/p>",
+          "tps_billboard_action_label": "Shop curl Now",
+          "tps_billboard_action_aria": "Shop bestsellers",
+          "tps_billboard_action_url": "shopify:\/\/products\/curl"
+        }
+      },
+      "tps-featured-carousel": {
+        "type": "tps-featured-carousel",
+        "blocks": {
+          "65ca2623-2b0b-46b3-ad6e-0cfc594c2984": {
+            "type": "tps_featured_slide",
+            "settings": {
+              "tps_featured_slide_headline_pre": "featured product",
+              "tps_featured_slide_headline": "Makeout Balm",
+              "tps_featured_slide_badge": "shopify:\/\/shop_images\/MakeoutBalm-Promo-Badge_fc348402-2cc4-4428-a532-77a64e4f3640.png",
+              "tps_featured_slide_byline": "LIP TREATMENT",
+              "tps_featured_slide_text_headline": "",
+              "tps_featured_slide_text": "<p>A nourishing, ultra-glossy peptide lip treatment with a subtle blue tint + fresh mint flavour. For a limited time, every purcahse of Makeout Balm comes with a FREE gift - our bestselling Multi-liner in Blush.<\/p>",
+              "tps_featured_slide_text_html": "<ul class=\"tps-featured-carousel-slide-gridlist\">\n\t<li>\n\t\t<img style=\"width: 30px; height: 30px;\" src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/1148\/7426\/files\/hydration_7baac6b4-9380-4b00-b5d4-f5896393a40e_256x256_crop_center.png?v=1656945274\" alt=\"\" role=\"presentation\">\n\t\t<span>Nourishing, deeply moisturizing and exfoliating <\/span>\n\t<\/li>\n\t<li>\n\t\t<img style=\"width: 30px; height: 30px;\" src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/1148\/7426\/files\/anti-aging_256x256_crop_center.png?v=1656945273\" alt=\"\" role=\"presentation\">\n\t\t<span>Reveals smoother, fuller lips in just one swipe<\/span>\n\t<\/li>\n\t<li>\n\t\t<img style=\"width: 30px; height: 30px;\" src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/1148\/7426\/files\/skin-barrier_256x256_crop_center.png?v=1656945274\" alt=\"\" role=\"presentation\">\n\t\t<span>Vitamin C + E locks in moisture and provides antioxidant protection<\/span>\n\t<\/li>\n\t<li>\n\t\t<img style=\"width: 30px; height: 30px;\" src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/1148\/7426\/files\/sun-protection_256x256_crop_center.png?v=1654114825%22%22\" role=\"presentation\">\n\t\t<span> blue tint creates the illusion of a brighter and whiter smile<\/span>\n\t<\/li>\n<\/ul>",
+              "tps_featured_slide_cta_url": "shopify:\/\/products\/makeout-balm",
+              "tps_featured_slide_cta_label": "Shop Now",
+              "tps_featured_slide_text_footer": "",
+              "tps_featured_slide_image": "shopify:\/\/shop_images\/Feature-Banner-MakeoutBalm.jpg",
+              "tps_featured_slide_video": ""
+            }
+          },
+          "9b067b6e-71c9-475b-a889-2eaf999d3aa0": {
+            "type": "tps_featured_slide",
+            "settings": {
+              "tps_featured_slide_headline_pre": "purchase Makeout balm, and get a free Blush",
+              "tps_featured_slide_headline": "Multi-liner",
+              "tps_featured_slide_badge": "shopify:\/\/shop_images\/MakeoutBalm-Promo-Badge_fc348402-2cc4-4428-a532-77a64e4f3640.png",
+              "tps_featured_slide_byline": "Super smooth, multi-use, long-wearing liner",
+              "tps_featured_slide_text_headline": "",
+              "tps_featured_slide_text": "",
+              "tps_featured_slide_text_html": "<div>\n<div class=\"jdgm-carousel-item__review-rating\" tabindex=\"0\" aria-label=\"5 stars\" role=\"img\"> <span class=\"jdgm-star jdgm--on\"><\/span><span class=\"jdgm-star jdgm--on\"><\/span><span class=\"jdgm-star jdgm--on\"><\/span><span class=\"jdgm-star jdgm--on\"><\/span><span class=\"jdgm-star jdgm--on\"><\/span> <\/div>\n<span style=\"font-family: NimbusSans-Regular,sans-serif; font-size: 1rem; font-weight: 900;\">\nMulti-Liner\n<\/span>\n<p>\nI absolutely LOVE the Radford Beauty multi-liners. They feel incredible on both the lips and eyes and have excellent staying power. The colours are universally flattering and I love that they are vegan and toxin free. So important! These liners will become your favs!\n– Kimberly\n<\/p>\n<\/div>",
+              "tps_featured_slide_cta_url": "shopify:\/\/products\/multi-liner",
+              "tps_featured_slide_cta_label": "Shop Now",
+              "tps_featured_slide_text_footer": "",
+              "tps_featured_slide_image": "shopify:\/\/shop_images\/Radford_03_05_202114370.jpg",
+              "tps_featured_slide_video": ""
+            }
+          }
+        },
+        "block_order": [
+          "65ca2623-2b0b-46b3-ad6e-0cfc594c2984",
+          "9b067b6e-71c9-475b-a889-2eaf999d3aa0"
+        ],
+        "settings": {
+          "tps_bg_color": "#BCCCD0"
+        }
+      },
+      "collection-list-1": {
+        "type": "collection-list-1",
+        "settings": {
+          "user_img_skincare": "shopify:\/\/shop_images\/BOOST_VIC_2_f2b51a04-24aa-433e-b7cc-8a6cd5bea198.jpg",
+          "collection_header": "Bestsellers",
+          "collection_main": "best-sellers-1",
+          "featured_prod_1": "boost-vital-c-e-serum",
+          "featured_prod_2": "curl"
+        }
+      },
+      "collection-list-4": {
+        "type": "collection-list-4",
+        "settings": {
+          "user_img_skincare": "shopify:\/\/shop_images\/Summer-Skin-Mobile-Banner.jpg",
+          "collection_header": "Bundles",
+          "collection_main": "bundles",
+          "featured_prod_1": "ultimate-radford-routine",
+          "featured_prod_2": "summer-skin-bundle"
+        }
+      },
+      "tps-newsletter-icons": {
+        "type": "tps-newsletter-icons",
+        "blocks": {
+          "39fa97bf-77e6-40ea-9462-5b371f384c64": {
+            "type": "icon-description",
+            "settings": {
+              "tps_icon_description_image": "shopify:\/\/shop_images\/first-order.png",
+              "tps_icon_description_title": "FIRST ORDER OFFER",
+              "tps_icon_description_content": "<p>Receive your promo code for 15% off on your first order<\/p>"
+            }
+          },
+          "a07ffce3-205c-422b-91d4-c63363239cd2": {
+            "type": "icon-description",
+            "settings": {
+              "tps_icon_description_image": "shopify:\/\/shop_images\/vip.png",
+              "tps_icon_description_title": "Access",
+              "tps_icon_description_content": "<p>Access to exclusive sales events and promotions<\/p>"
+            }
+          },
+          "dd613792-4581-4808-8124-d5064a5e7f7f": {
+            "type": "icon-description",
+            "settings": {
+              "tps_icon_description_image": "shopify:\/\/shop_images\/secrets.png",
+              "tps_icon_description_title": "Secrets",
+              "tps_icon_description_content": "<p>Skincare secrets and beauty tips from leading industry experts<\/p>"
+            }
+          },
+          "54791905-ca95-407a-83c4-ae85114b4cc2": {
+            "type": "icon-description",
+            "settings": {
+              "tps_icon_description_image": "shopify:\/\/shop_images\/qa.png",
+              "tps_icon_description_title": "Q&A",
+              "tps_icon_description_content": "<p>Your biggest skincare questions answered<\/p>"
+            }
+          },
+          "77245469-4745-42b3-963a-c13cb965b3ad": {
+            "type": "icon-description",
+            "settings": {
+              "tps_icon_description_image": "shopify:\/\/shop_images\/news.png",
+              "tps_icon_description_title": "News & Events",
+              "tps_icon_description_content": "<p>News & information about our latest products & services, as well as what's happening in the community<\/p>"
+            }
+          },
+          "a778962d-05f0-472e-9c35-39c6e0cdb080": {
+            "type": "icon-description",
+            "settings": {
+              "tps_icon_description_image": "shopify:\/\/shop_images\/monthly-promo.png",
+              "tps_icon_description_title": "Monthly Promotion",
+              "tps_icon_description_content": "<p>Every month we will be featuring one Radford product alongside a special promotion<\/p>"
+            }
+          }
+        },
+        "block_order": [
+          "39fa97bf-77e6-40ea-9462-5b371f384c64",
+          "a07ffce3-205c-422b-91d4-c63363239cd2",
+          "dd613792-4581-4808-8124-d5064a5e7f7f",
+          "54791905-ca95-407a-83c4-ae85114b4cc2",
+          "77245469-4745-42b3-963a-c13cb965b3ad",
+          "a778962d-05f0-472e-9c35-39c6e0cdb080"
+        ],
+        "settings": {
+        }
+      },
+      "tps-newsletter-text": {
+        "type": "tps-newsletter-text",
+        "settings": {
+          "tps_newsletter_text": ""
+        }
+      },
+      "tps-newsletter-bottom-image": {
+        "type": "tps-newsletter-bottom-image",
+        "settings": {
+          "tps_newsletter_bottom_image_mobile": "shopify:\/\/shop_images\/newsletter-bottom-mobile.jpg",
+          "tps_newsletter_bottom_image_desktop": "shopify:\/\/shop_images\/newsletter-bottom-desktop.jpg"
+        }
+      },
+      "tps-featured-carousel-sub": {
+        "type": "tps-featured-carousel-sub",
+        "blocks": {
+          "f8640873-1d51-4003-b937-04ab11198083": {
+            "type": "tps_featured_slide",
+            "settings": {
+              "tps_featured_slide_headline_pre": "",
+              "tps_featured_slide_headline": "Set and <br>Forget.",
+              "tps_featured_slide_byline": "",
+              "tps_featured_slide_text_headline": "",
+              "tps_featured_slide_text": "",
+              "tps_featured_slide_text_html": "watch your beauty essentials show up \n<br>\nat your door automatically and 15%...\n<br>\nfor life!",
+              "tps_featured_slide_cta_url": "shopify:\/\/products\/all-set-loose-powder",
+              "tps_featured_slide_cta_label": "Shop subscription products",
+              "tps_featured_slide_text_footer": "",
+              "tps_featured_slide_image": "shopify:\/\/shop_images\/1-1.png",
+              "tps_featured_slide_video": ""
+            }
+          }
+        },
+        "block_order": [
+          "f8640873-1d51-4003-b937-04ab11198083"
+        ],
+        "settings": {
+          "tps_bg_color": "#E7D9CF"
+        }
+      },
+      "sub-perks": {
+        "type": "sub-perks",
+        "blocks": {
+          "45c7d0d1-de51-4e17-a36b-325fa3d7d2a8": {
+            "type": "text_block",
+            "settings": {
+              "enable_image": true,
+              "image": "shopify:\/\/shop_images\/15_Icon_e2656604-8285-4f40-8b31-d6e640f9f8ca.png",
+              "title": "15% off always!",
+              "text": "<p>Get your Radford beauty essentials at 15% off, for life!<\/p>",
+              "button_label": "",
+              "button_link": ""
+            }
+          },
+          "cbcb3d44-c53a-45bb-8094-95214d1b3a56": {
+            "type": "text_block",
+            "settings": {
+              "enable_image": true,
+              "image": "shopify:\/\/shop_images\/Gift_Icon_b88b7d6b-c910-4738-8535-579e7e9c5dce.png",
+              "title": "Welcome Gift",
+              "text": "<p>First orders come with a special little something, just for you!<\/p>",
+              "button_label": "",
+              "button_link": ""
+            }
+          },
+          "db1aa900-38d9-4e62-a762-00bd48d8c3ab": {
+            "type": "text_block",
+            "settings": {
+              "enable_image": true,
+              "image": "shopify:\/\/shop_images\/Calendar_Icon_06596766-9d21-4d38-99bf-de068f2679ba.png",
+              "title": "Customized and Convenient",
+              "text": "<p>Receive the products you need, when you need them. Replenishing is automatic, saving you time (and$$)! Now go, do something you finally have time for.<\/p>",
+              "button_label": "",
+              "button_link": ""
+            }
+          },
+          "95aea7bf-bbad-4380-86a0-6f5e10ba2f0a": {
+            "type": "text_block",
+            "settings": {
+              "enable_image": true,
+              "image": "shopify:\/\/shop_images\/Pause_Cancel_Icon_36e3d203-9a58-45d2-99cf-ef7bcc859424.png",
+              "title": "Change your mind? Going Away?",
+              "text": "<p>Adjust your order, pause it, or cancel it anytime–you’re not locked in. Whatever suits your needs at any given time we are there for you…or not.<\/p>",
+              "button_label": "",
+              "button_link": ""
+            }
+          }
+        },
+        "block_order": [
+          "45c7d0d1-de51-4e17-a36b-325fa3d7d2a8",
+          "cbcb3d44-c53a-45bb-8094-95214d1b3a56",
+          "db1aa900-38d9-4e62-a762-00bd48d8c3ab",
+          "95aea7bf-bbad-4380-86a0-6f5e10ba2f0a"
+        ],
+        "settings": {
+          "title": "THE PERKS"
+        }
+      },
+      "sub-image-with-text": {
+        "type": "sub-image-with-text",
+        "settings": {
+          "image": "shopify:\/\/shop_images\/DSC_6254.png",
+          "layout": "right",
+          "title": "how it works",
+          "text": "<div class=\"element-wrapper\">\n\t<h2 class=\"heading\">1.<\/h2>\n    <p>Subscribe to one or all of your skincare essentials<\/p>\n<\/div>\n<div class=\"element-wrapper\">\n\t<h2 class=\"heading\">2.<\/h2>\n    <p>Adjust or add a one-off item directly onto your exisiting subscription order<\/p>\n<\/div>\n<div class=\"element-wrapper\">\n\t<h2 class=\"heading\">3.<\/h2>\n    <p>Adjust, pause, restart, or cancel whenever you like<\/p>\n<\/div>\n<div class=\"element-wrapper\">\n\t<h2 class=\"heading\">4.<\/h2>\n    <p>Reach out to <a href=\"mailto:info@radfordbeauty.com\">info@radfordbeauty.com<\/a> if you ever need any help<\/p>\n<\/div>\n<div class=\"element-wrapper\">\n\t<h2 class=\"heading\">5.<\/h2>\n    <p>Cross reorder skincare off your to-do list, forever<\/p>\n<\/div>\n<div class=\"button-wrapper\">\n\t<p>Check out our <a href=\"\/pages\/faq\">FAQ<\/a> for more details<\/p>\n\t<p><a class=\"primary-button\" href=\"\/pages\/faq\">Check out our FAQ<\/a><\/p>\n<\/div>",
+          "button_label": "",
+          "button_link": ""
+        }
+      },
+      "sub-featured-collection": {
+        "type": "sub-featured-collection",
+        "settings": {
+          "head": "PRODUCTS",
+          "subhead": "Subscription Best Sellers",
+          "collection": "subscription",
+          "rows": "2"
+        }
+      },
+      "sub-faq": {
+        "type": "sub-faq",
+        "blocks": {
+          "6b5d8c97-50e2-4c2c-8f87-b6b0d3f58ce9": {
+            "type": "text",
+            "settings": {
+              "faq_question": "What products are available for subscription?",
+              "faq_answer": "Blah Blah Blah Blah Blah Blah Blah Blah"
+            }
+          },
+          "72a291a0-c02c-46e2-bf70-b92fc667c1e9": {
+            "type": "text",
+            "settings": {
+              "faq_question": "How often should I have my products delivered",
+              "faq_answer": "AAA BBB AAA BBB AAA BBB AAA BBB"
+            }
+          }
+        },
+        "block_order": [
+          "6b5d8c97-50e2-4c2c-8f87-b6b0d3f58ce9",
+          "72a291a0-c02c-46e2-bf70-b92fc667c1e9"
+        ],
+        "settings": {
+          "title": "Subscription FAQs"
+        }
+      }
+    },
+    "content_for_index": [
+      "1624458058243efe35",
+      "1624458425845e1791",
+      "1624458530bcd12757",
+      "1624458682006f497c",
+      "1624458752b55df153",
+      "1624458804943c7e00",
+      "1624458864c9df71b9",
+      "1624458910b8d2f575",
+      "1624458968b21e7a87",
+      "1624458992584d406a"
+    ],
+    "blocks": {
+      "10605408327587305396": {
+        "type": "shopify:\/\/apps\/easygift-auto-add-to-cart\/blocks\/app-embed\/0f7d4f74-1e89-4820-aec4-6564d7e535d2",
+        "disabled": false,
+        "settings": {
+          "version": "v3"
+        }
+      }
+    }
+  },
+  "presets": {
+    "Default": {
+    }
+  }
+}

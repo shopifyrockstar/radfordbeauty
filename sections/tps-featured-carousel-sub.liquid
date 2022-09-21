@@ -1,0 +1,597 @@
+{% assign blockStatus = false %}
+
+<div class="tps-featured-carousel" style="background-color: {{section.settings.tps_bg_color}};">
+    {% for block in section.blocks %}
+        {% assign blockStatus = true %}
+    
+        {% case block.type %}
+          {% when 'tps_featured_slide' %}
+          <div class="tps-featured-carousel-slide tps-slide tps-slide-{{ forloop.index }}" {{ block.shopify_attributes }}>
+            <div class="tps-featured-carousel-slide-grid">
+              <div class="tps-featured-carousel-slide-grid-cell tps-featured-carousel-slide-media">
+                {% if block.settings.tps_featured_slide_video != null %}
+                <a href="#" 
+                   class="tps-featured-carousel-slide-media-inner tps-featured-carousel-slide-media-video-cta"
+                   style="background-image: url('{{ block.settings.tps_featured_slide_image | img_url : '' }}')"
+                   data-video-id="{{ block.settings.tps_featured_slide_video.id }}" 
+                   data-video-type="{{ block.settings.tps_featured_slide_video.type }}" aria-label="Click here to play the video about {{ block.settings.tps_featured_slide_headline }}">
+                {% else %} 
+                <div class="tps-featured-carousel-slide-media-inner" style="background-image: url('{{ block.settings.tps_featured_slide_image | img_url : '' }}')">
+                {% endif %}
+                    <img src="{{ block.settings.tps_featured_slide_image | img_url : '' }}" class="seo-image" />
+                {% if block.settings.tps_featured_slide_video != null %}
+                </a>
+                {% else %} 
+              	</div>
+                {% endif %}
+              </div>
+              <div class="tps-featured-carousel-slide-grid-cell tps-featured-carousel-slide-content">
+                <div class="tps-featured-carousel-slide-content-inner">
+                    {% if block.settings.tps_featured_slide_headline != null %}
+                          <div class="tps-featured-carousel-slide-headline">
+                            <div class="tps-featured-carousel-slide-headline-text">
+                            	{% if block.settings.tps_featured_slide_headline_pre != null %}
+                            		<div class="tps-featured-carousel-slide-headline-text-headline-pre">{{ block.settings.tps_featured_slide_headline_pre }}</div>
+                          		{% endif %}
+                              <div class="tps-featured-carousel-slide-headline-text-headline">{{ block.settings.tps_featured_slide_headline }}</div>
+                            </div>
+                            
+                            {% if block.settings.tps_featured_slide_badge != null %}
+                                <img class="tps-featured-carousel-slide-badge" src="{{ block.settings.tps_featured_slide_badge | img_url }}" alt="{{ block.settings.tps_featured_slide_badge.alt }}">
+                            {% endif %}
+                          </div>
+                      {% endif %}
+                      {% if block.settings.tps_featured_slide_byline != null %}
+                          <div class="tps-featured-carousel-slide-byline">
+                              {{ block.settings.tps_featured_slide_byline }}
+                          </div>
+                      {% endif %}
+                      {% if block.settings.tps_featured_slide_text_headline != null %}
+                          <div class="tps-featured-carousel-slide-text-headline">
+                              {{ block.settings.tps_featured_slide_text_headline }}
+                          </div>
+                      {% endif %}
+                      {% if block.settings.tps_featured_slide_text != null %}
+                          <div class="tps-featured-carousel-slide-text">
+                              {{ block.settings.tps_featured_slide_text }}
+                              {{ block.settings.tps_featured_slide_text_html }}
+                          </div>
+                      {% endif %}
+                  	  
+                  	  
+                  
+                      {% if block.settings.tps_featured_slide_cta_url != null %}
+                      <div class="tps-featured-carousel-slide-actions">
+                            <a class="btn-primary" href="{{ block.settings.tps_featured_slide_cta_url }}">
+                              {{ block.settings.tps_featured_slide_cta_label }}                          
+                            </a>
+                      </div>
+                      {% endif %}
+                  
+                  	  {% if block.settings.tps_featured_slide_text_footer != null %}
+                      <div class="tps-featured-carousel-slide-text-footer">
+                        {{ block.settings.tps_featured_slide_text_footer }}
+                      </div>
+                      {% endif %}
+                </div>
+              </div>
+            </div>
+          </div>
+        {% endcase %}
+    {% endfor %}
+    </div>
+    
+    {% schema %}
+    {
+        "name": "Featured Carousel",
+        "tag": "section",
+        "limit": 1,
+        "max_blocks": 4,
+        "settings": [                
+                {
+                    "type" : "color_background",
+                    "id" : "tps_bg_color",
+                    "label" : "Background Color",
+                    "default": "#ffffff"
+                }                
+        ],
+        "blocks": [{
+            "name": "Featured Slide",
+            "type": "tps_featured_slide",
+            "settings": [
+                {
+                    "type" : "text",
+                    "id" : "tps_featured_slide_headline_pre",
+                    "label" : "Pre-Headline"
+                },
+                {
+                    "type" : "text",
+                    "id" : "tps_featured_slide_headline",
+                    "label" : "Headline"
+                },                
+				{
+					"type" : "image_picker",
+					"id" : "tps_featured_slide_badge",
+					"label" : "Badge"
+				},
+                {
+                    "type" : "text",
+                    "id" : "tps_featured_slide_byline",
+                    "label" : "Byline"
+                },
+                {
+                    "type" : "text",
+                    "id" : "tps_featured_slide_text_headline",
+                    "label" : "Text Headline (optional)"
+                },
+                {
+                    "type" : "richtext",
+                    "id" : "tps_featured_slide_text",
+                    "label" : "Text"
+                },
+				{
+					"type": "html",
+                    "id": "tps_featured_slide_text_html",
+                    "label": "Html Formatted Text"
+				},
+                {
+                    "type" : "url",
+                    "id" : "tps_featured_slide_cta_url",
+                    "label" : "CTA Url"
+                },
+                {
+                    "type" : "text",
+                    "id" : "tps_featured_slide_cta_label",
+                    "label" : "CTA Label",
+                    "default" : "Shop Now"
+                },
+                {
+                    "type" : "text",
+                    "id" : "tps_featured_slide_text_footer",
+                    "label" : "Footer Text (optional)"
+                },
+                {
+                    "type": "image_picker",
+                    "id": "tps_featured_slide_image",
+                    "label": "Image (Desktop)"
+                },
+                {
+                    "type": "video_url",
+                    "id": "tps_featured_slide_video",
+                    "label": "Video Url",
+                    "accept": [ "youtube" ]
+                }
+            ]
+        }]
+    }
+    {% endschema %}
+
+{% if request.design_mode %}
+
+	<style>
+		.tps-featured-carousel-slide {
+          display: block !important;
+        }
+	</style>
+
+{% endif %}
+
+
+{% if blockStatus %}
+  <style>
+      #shopify-section-tps-featured-carousel {
+        display: block !important;
+      }
+  </style>
+{% else %}
+  <style>
+      #shopify-section-tps-featured-carousel {
+        display: none !important;
+      }
+  </style>
+{% endif %}
+
+                  
+
+    {% stylesheet %}
+    
+      .tps-featured-carousel {
+          padding-top: 10px;
+          padding-bottom: 90px;
+          position: relative;
+		  margin-bottom: 0!important;
+      }
+      
+      
+      /* Slick Dots */
+      
+      .tps-featured-carousel .slick-dots {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        top: auto;
+        bottom: 45px;
+		z-index: 1;
+      }
+    
+      .tps-featured-carousel .slick-dots li {
+        margin: 0 5px;
+        height: 8px;
+        width: 8px;
+       }
+    
+      .tps-featured-carousel .slick-dots li button {
+        border-radius: 4px;
+        background-color: #fff;
+        height: 8px;
+        width: 8px;
+        opacity: 0.5;
+      }
+    
+      .tps-featured-carousel .slick-dots li.slick-active button {
+         opacity: 1;
+      }
+    
+	  /* Slick Arrows */
+
+	  .tps-featured-carousel .slick-arrow { 
+		height: 40px;
+		width: 40px;
+		top: auto; 
+		bottom: 32px; 
+		transform: none;
+		z-index: 2;
+	  }
+
+	  .tps-featured-carousel .slick-arrow.slick-prev { left: 15px; }
+	  .tps-featured-carousel .slick-arrow.slick-next { right: 15px; }
+
+	  .tps-featured-carousel .slick-arrow.slick-prev:before {
+		content: url('data:image/svg+xml,<svg width="40" height="41" viewBox="0 0 40 41" fill="none" xmlns="http://www.w3.org/2000/svg"><circle r="20" transform="matrix(-1 0 0 1 20 20.9834)" fill="black"/><path d="M13.7505 20.9834H26.2505" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M18.7915 15.9629L13.7495 20.9829L18.7915 26.0039" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>');
+		opacity: 1;
+	  }
+
+	  .tps-featured-carousel .slick-arrow.slick-next:before {
+		content: url('data:image/svg+xml,<svg width="40" height="41" viewBox="0 0 40 41" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="20" cy="20.9834" r="20" fill="black"/><path d="M26.2495 20.9834H13.7495" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M21.2085 15.9629L26.2505 20.9829L21.2085 26.0039" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>');
+		opacity: 1;
+	  }
+
+
+      .tps-featured-carousel-slide {
+          display: none;
+      }
+    
+      .tps-featured-carousel-slide-grid {
+          display: flex;
+          flex-direction: column;
+      }
+    
+      .tps-featured-carousel-slide-grid-cell {
+        position: relative;   
+      }
+
+      .tps-featured-carousel-slide-media {
+        height: 225px;
+      }
+      
+	  .tps-featured-carousel-slide-media .seo-image {
+        display: none;
+      }
+      
+	  .tps-featured-carousel-slide-media-video-wrapper,
+      .tps-featured-carousel-slide-media-inner {
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        display: block;
+        position: absolute;
+        left: auto;
+        right: 0;
+        top: 0;
+        bottom: 0;
+		width: 100%;
+		max-width: 720px;
+      }
+      
+	  .tps-featured-carousel-slide-media-video-wrapper {
+        align-items: center;
+		background-color: #000000;
+		display: flex;
+		flex-direction: column;
+        justify-content: center;
+	  }
+
+	  .tps-featured-carousel-slide-media-video-wrapper iframe {		
+        flex: 1 0 100%;
+        width: 100%;
+	  }
+
+      .tps-featured-carousel-slide-media-video-cta:before {
+          content: url('data:image/svg+xml,<svg width="70" height="71" viewBox="0 0 70 71" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="35" cy="35.0649" r="35" fill="black"/><path fill-rule="evenodd" clip-rule="evenodd" d="M24.8652 17.5713V52.5584L50.1118 35.0649L24.8652 17.5713Z" fill="white"/></svg>');
+        display: block;
+        height: 70px;
+        width: 70px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-left: -35px;
+        margin-top: -35px;
+      }
+      
+	  /* Slide Text Content */
+
+      .tps-featured-carousel-slide-content-inner {
+		  box-sizing: border-box;
+		  color: #000000;
+          padding: 45px 15px;
+		  position: relative;
+		  max-width: 720px;
+      }
+
+	  .tps-featured-carousel-slide-badge {
+			position: absolute;
+			top: -45px;
+			right: 20px;
+			z-index: 2;
+	   }
+
+      .tps-featured-carousel-slide-headline {
+          font-family: NimbusSans-bold, sans-serif;
+          font-size: 60px;
+          font-weight: 700;
+          line-height: 1.2;
+      }
+
+	  .tps-featured-carousel-slide-headline-text-headline-pre {			
+            font-family: LeJeuneText-Regular, Times New Roman, Serif;
+			font-weight: 400;
+            font-size: 14px;
+            line-height: 1.1;
+			text-transform: uppercase;			
+	   }
+      
+      .tps-featured-carousel-slide-byline {
+          font-size: 14px;
+          line-height: 1.2;
+          margin-bottom: 25px;
+          text-transform: uppercase;
+      }
+      
+      .tps-featured-carousel-slide-text-headline {
+          font-family: NimbusSans-bold, sans-serif;
+          font-size: 18px;
+          line-height: 1.5;
+          margin-bottom: 8px;
+      }
+      
+      .tps-featured-carousel-slide-text > * {
+            font-family: LeJeuneText-Regular, Times New Roman, Serif;
+            font-size: 14px;
+            line-height: 1.7;
+      }
+      
+      .tps-featured-carousel-slide-text > *:last-child { margin-bottom: 0; }
+
+
+      .tps-featured-carousel-slide-text-footer {
+            font-family: LeJeuneText-Regular, Times New Roman, Serif;
+			font-size: 12px;
+			margin-top: 10px;
+	  }
+
+	  /* Grid List (icons) */
+
+	  .tps-featured-carousel-slide-gridlist {
+		font-family: NimbusSans-Regular, sans-serif;
+		font-size: 12px;
+		line-height: 1.5;
+		padding: 0;
+		margin: 40px 0 0 ;
+		list-style: none;
+	  }
+
+	  .tps-featured-carousel-slide-gridlist > li {
+		display: flex;
+		align-items: flex-start;
+		margin-bottom: 20px; 
+	  }
+
+	  .tps-featured-carousel-slide-gridlist > li > img,
+	  .tps-featured-carousel-slide-gridlist > li > span {
+		display: inline-block;
+		vertical-align: middle;
+		flex: 0 1 auto;
+	  }
+
+	  .tps-featured-carousel-slide-gridlist > li > span {
+			box-sizing: border-box;
+			padding-top: 4.5px;
+			padding-left: 10px;
+			text-transform: uppercase;
+	   }
+
+	  /* Actions */
+
+      .tps-featured-carousel-slide-actions { margin-top: 40px  }
+      
+      .tps-featured-carousel-slide-actions > .btn-primary { 
+        font-size: 14px;
+        margin: 0; 
+      }
+      
+      .tps-featured-carousel-slide-actions > .btn-primary:hover { color: #fff; }
+
+	  /* Tablet Screens (Portrait) */
+
+      @media screen and (min-width: 768px) {
+
+        .tps-featured-carousel {
+            padding-top: 30px;
+            padding-bottom: 40px;
+        }
+
+        
+        /* Slick Dots */
+      
+        .tps-featured-carousel .slick-dots {
+            bottom: 20px;
+        }
+        
+        
+	  	/* Slick Arrows */
+
+	  	.tps-featured-carousel .slick-arrow { 
+			top: 50%;
+			bottom: auto;
+			margin-top: -20px;
+
+		}
+        
+        /* Slide Grid */
+
+        .tps-featured-carousel-slide-grid {
+            flex-direction: row;
+              align-items: stretch;
+        }
+        .tps-featured-carousel-slide-grid-cell {
+            flex: 1 0 50%;
+            min-height: 540px;
+        }
+        
+        .tps-featured-carousel-slide-grid-cell,
+        .tps-featured-carousel-slide-media {
+              min-height: 540px;
+        }
+        
+        /* Slide Text Content */
+
+		.tps-featured-carousel-slide-headline {
+			display: flex;
+			align-items: flex-end;
+		}
+
+		.tps-featured-carousel-slide-headline-text {
+			flex: 0 0 auto;
+			margin-right: 25px;
+		}
+
+		.tps-featured-carousel-slide-badge {
+			flex: 0 0 auto;
+			position: relative;
+			right: auto;	
+			top: 0;
+		}
+
+        .tps-featured-carousel-slide-content {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+        }
+        
+        .tps-featured-carousel-slide-content-inner {
+          padding: 20px 60px 20px 35px;
+        }
+
+
+		/* Grid List (icons) */
+
+		.tps-featured-carousel-slide-gridlist {
+			margin-top: 25px;
+		}
+
+      }
+
+	  /* Tablet Screens (Landscape) */
+	
+	  @media screen and (min-width: 1024px) {
+
+		.tps-featured-carousel-slide-badge {
+			top: -15px;
+		}
+
+		.tps-featured-carousel-slide-gridlist {
+			display: flex;
+			flex-direction: row;
+			flex-wrap: wrap;
+		}
+
+		.tps-featured-carousel-slide-gridlist > li {
+			flex: 0 0 50%;
+		}
+
+		.tps-featured-carousel-slide-gridlist > li > span {
+			padding-left: 7px;
+			padding-right: 15px;
+
+		}
+
+	  }
+
+	  /* Larger Screens (Desktop/Laptop) */
+
+
+      @media screen and (min-width: 1440px) {
+      
+        /* Slide Grid */
+        
+        .tps-featured-carousel-slide-grid-cell,    
+        .tps-featured-carousel-slide-media {
+              min-height: 540px;
+        }  
+        
+        .tps-featured-carousel-slide-media-inner {
+            background-size: contain;
+        }
+        
+      }
+    
+    {% endstylesheet %}
+      
+    {% javascript %}
+
+	console.log(Shopify.designMode);
+
+	if (!Shopify.designMode) {
+
+      $('.tps-featured-carousel').slick({
+        slidesToShow: 1,
+        arrows: true,
+        dots: true,
+        fade: false,
+        infinite: true,
+		adaptiveHeight: true
+      });
+    
+	  const videoCtas = document.querySelectorAll('.tps-featured-carousel-slide-media-video-cta');
+
+	 
+
+	  videoCtas.forEach(cta => {
+		cta.addEventListener('click', event => {
+			event.preventDefault();
+			
+			const target = event.currentTarget;
+			const videoID = target.dataset.videoId;
+
+			// if there is no video ID, then stop
+			if(!videoID) { return false; }
+			// create the video element
+			const videoFrameWrapper = document.createElement('div');
+			videoFrameWrapper.classList.add('tps-featured-carousel-slide-media-video-wrapper');
+			const videoFrame = document.createElement('iframe');
+			videoFrame.title = "YouTube video player";
+			videoFrame.src = 'https://www.youtube-nocookie.com/embed/' + videoID + '?controls=0&autoplay=1&modestbranding=1';
+			videoFrame.setAttribute('allow','accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
+			videoFrame.setAttribute('allowfullscreen','');
+			videoFrame.setAttribute('frameborder','0');
+
+			videoFrameWrapper.appendChild(videoFrame);
+			// replace the video CTA with the video element
+			target.parentNode.replaceChild(videoFrameWrapper, target);			
+
+		});
+	  });
+	}
+
+    {% endjavascript %}
+    

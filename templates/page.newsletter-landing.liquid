@@ -1,0 +1,176 @@
+{% section 'side-cart' %}
+
+<div class="tps-newsletter-landing">
+    <div class="container">
+        <h1 class="tps-newsletter-landing-header">{{ page.title }}</h1>
+        <div class="tps-newsletter-landing-content">{{ page.content }}</div>
+      
+      	{% section 'tps-newsletter-icons' %}
+      
+      <div class="tps-newsletter-landing-forms">
+        <label class="tps-newsletter-landing-forms-header" for="k_id_email">Email Updates</label>
+        <form id="email_signup_newsletter_page" class="flex_box klaviyo_styling klaviyo_gdpr_embed_YzECWA" action="https://manage.kmail-lists.com/subscriptions/subscribe" data-ajax-submit="https://manage.kmail-lists.com/ajax/subscriptions/subscribe" method="GET" target="_blank" novalidate="novalidate">
+          	<input type="hidden" name="g" value="YzECWA">
+			<input type="hidden" name="$fields" value="$consent">
+			<input type="hidden" name="$list_fields" value="$consent">
+            <input type="email" placeholder="Your email address" name="email" id="k_id_email" class="email-input">
+            <button type="submit" class="email-submit-btn" id="email-submit-btn">SIGN UP</button>
+		</form>
+        <p id="email-error_newsletter_page" style="display: none;">Oops! That’s an invalid e-mail address.</p>
+        <p id="email-success_newsletter_page" style="display: none;">Thank you! Kindly check your e-mail for confirmation.</p>
+      </div>
+      
+      {% section 'tps-newsletter-text' %}
+    </div>
+  {% section 'tps-newsletter-bottom-image' %}
+</div>
+
+{% style %}
+.tps-newsletter-landing {
+	padding-top: 40px;
+}
+
+.tps-newsletter-landing .container {
+  	padding-left: 16px;
+  	padding-right: 16px;
+	max-width: 1060px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.tps-newsletter-landing-header {
+	margin-bottom: 5px;
+	font-family: 'Le Jeune Text';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 50px;
+    line-height: 62px;
+	text-align: center;
+}
+
+.tps-newsletter-landing-content {
+	margin-bottom: 40px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    text-align: center;
+}
+
+.tps-newsletter-landing-forms {
+	margin: 70px auto 40px auto;
+	max-width: 555px;
+}
+
+.tps-newsletter-landing-forms-header {
+	display: block;
+	margin-bottom: 10px;
+	font-weight: 400;
+    font-size: 15px;
+    line-height: 18px;
+    color: #000000;
+
+}
+
+.tps-newsletter-landing-forms form {
+	margin: 0 auto;
+	display: flex;
+	width: 100%;
+	max-width: none;
+}
+
+.tps-newsletter-landing-forms form .email-input {
+    height: 48px;
+    border: 1px solid #000000;
+    box-sizing: border-box;
+    border-radius: 2px 0 0 2px;
+    background-color: #ffffff;
+    padding: 12px 24px;
+    font-family: "LeJeuneText-Regular", sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: #000000;
+    outline-width: 0;
+}
+
+.tps-newsletter-landing-forms form .email-input::placeholder {
+    font-family: "LeJeuneText-Regular", sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: #fff;
+    opacity: 0.5;
+}
+
+.tps-newsletter-landing-forms form .email-submit-btn {
+    appearance: none;
+    background-color: #000000;
+    height: 48px;
+    font-family: "NimbusSans-Bold", sans-serif;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 17px;
+    letter-spacing: 0.16em;
+    text-align: center;
+    color: #ffffff;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 0px 2px 2px 0px;
+    cursor: pointer;
+    padding: 18px 13px;
+    position: relative;
+    right: 1px;
+    transition: background-color 0.3s;
+	white-space: nowrap;
+}
+
+.tps-newsletter-landing-forms form .email-submit-btn:hover {
+    background-color: #c3a58f;
+    color: #000000;
+}
+
+.tps-newsletter-landing-forms #email-error_newsletter_page, #email-success_newsletter_page{
+    font-family: "NimbusSans-Regular", sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 17px;
+    letter-spacing: 0em;
+    text-align: left;
+    top: 129px;
+}
+
+#email-success_newsletter_page{
+    width: 60%;
+}
+
+.tps-newsletter-landing-text {
+	margin: 0 auto;
+	max-width: 760px;
+	text-align: center;
+    font-size: 15px;
+    line-height: 19px;
+}
+
+
+@media screen and (min-width: 768px) {
+  .tps-newsletter-landing {
+	padding-top: 60px;
+  }
+  .tps-newsletter-landing-content {
+	margin-bottom: 90px;
+  }
+	.tps-newsletter-landing-forms form .email-submit-btn {
+		padding-left: 36px;
+		padding-right: 36px;
+	}
+}
+{% endstyle %}

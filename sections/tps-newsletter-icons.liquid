@@ -1,0 +1,103 @@
+{% schema %}
+{
+    "name": "Icon Descriptions",
+    "settings": [],
+	"blocks": [
+        {
+            "name": "Icon Description Item",
+            "type": "icon-description",
+            "settings": [
+                {
+                    "type": "image_picker",
+                    "id": "tps_icon_description_image",
+                    "label": "Icon Image"
+                },
+				{
+                    "type": "text",
+                    "id": "tps_icon_description_title",
+                    "label": "Title"
+                },
+                {
+                    "type": "richtext",
+                    "id": "tps_icon_description_content",
+                    "label": "Content"
+                }
+            ]
+        }
+    ]
+}
+{% endschema %}
+
+<div class="tps-icon-descriptions">
+  {% for block in section.blocks %}
+  <div class="tps-icon-descriptions-item" {{ block.shopify_attributes }}>
+    <div class="tps-icon-descriptions-item-left">
+      {{ block.settings.tps_icon_description_image | image_url: width: 70 | image_tag }}
+    </div>
+    <div class="tps-icon-descriptions-item-right">
+      <div class="tps-icon-descriptions-item-title">{{ block.settings.tps_icon_description_title }}</div>
+      <div class="tps-icon-descriptions-item-content">{{ block.settings.tps_icon_description_content }}</div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+{% stylesheet %}
+.tps-icon-descriptions {
+	margin-bottom: -30px;
+}
+
+.tps-icon-descriptions-item {
+	margin-bottom: 30px;
+	text-align: center;
+}
+
+.tps-icon-descriptions-item-title {
+	margin-bottom: 6px;
+	font-size: 18px;
+	line-height: 21px;
+	font-weight: 400;
+	text-transform: uppercase;
+}
+
+.tps-icon-descriptions-item-content {
+	font-size: 14px;
+	line-height: 16.8px;
+	font-weight: 300;
+}
+
+.tps-icon-descriptions-item-content > * {
+	margin: 0;
+}
+
+@media screen and (min-width: 768px) {
+	.tps-icon-descriptions {
+		display: flex;
+		flex-wrap: wrap;
+		margin-left: -50px;
+		margin-right: -50px;
+		margin-bottom: -80px;
+	}
+    .tps-icon-descriptions-item {
+		display: flex;
+		align-items: center;
+		margin-left: 50px;
+		margin-right: 50px;
+		margin-bottom: 80px;
+		width: calc(50% - 100px);
+		text-align: left;
+		
+    }
+    .tps-icon-descriptions-item-left {
+		flex-grow: 0;
+		flex-shrink: 0;
+    }
+	.tps-icon-descriptions-item-left img {
+		display: flex;
+		align-items: center;
+	}
+	.tps-icon-descriptions-item-right {
+		padding-left: 32px;
+    }
+}
+{% endstylesheet %}

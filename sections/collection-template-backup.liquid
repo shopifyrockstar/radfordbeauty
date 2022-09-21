@@ -1,0 +1,1146 @@
+
+<div class="collection-page">
+    <div class="container">
+      <div class="collection__secondary-header">
+        <h1>{{ collection.title }}</h1>
+      </div>
+      <div class="secondary-header-links">
+        <div class="collections-links">
+          <ul>
+            <li class="collection-tab tab-active" data-value=".main-collection">
+              {%if collection.title == "All" or collection.title == "All Radford Products"%}
+              Shop All</li>
+              {%else%}
+              Shop All {{collection.title}}</li>
+              {%endif%}
+
+            <li class="collection-tab" data-value=".face-collection">Face</li>
+            <li class="collection-tab" data-value=".eye-collection">Eye</li>
+            <li class="collection-tab" data-value=".lip-collection">Lip</li>
+            <li class="collection-tab" data-value=".bundles-collection">Bundles</li>
+        </ul>
+        </div>
+       
+    </div>
+      
+  
+      <div class="collection-items__wrapper">
+
+          <!-- MAIN collection -->
+  
+            <div id="collection-item-1" class="collection-content main-collection active">
+
+              <div class="collection__sort_filter">
+
+
+
+                      <div class="filter-sec">
+                        <div class="collection-filter-button">
+
+                          <svg width="16" height="14" viewBox="0 0 16 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M6.60607 10.8288H1.35547" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M8.94922 2.75023H14.1998" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M5.2706 2.70521C5.2706 1.6255 4.3888 0.75 3.30132 0.75C2.21383 0.75 1.33203 1.6255 1.33203 2.70521C1.33203 3.78492 2.21383 4.66042 3.30132 4.66042C4.3888 4.66042 5.2706 3.78492 5.2706 2.70521Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M14.6651 10.7948C14.6651 9.7151 13.784 8.8396 12.6965 8.8396C11.6084 8.8396 10.7266 9.7151 10.7266 10.7948C10.7266 11.8745 11.6084 12.75 12.6965 12.75C13.784 12.75 14.6651 11.8745 14.6651 10.7948Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                          </svg>
+                            
+                          <p>FILTER</p>
+                        </div>
+                        
+
+                        <p class="collection-items-count">{{collection.all_products_count}} ITEMS</p>
+
+                      </div>
+
+
+
+                      <div class="sort-by-sec">
+                        <p class="collection-sort-by">SORT BY: </p>
+
+                        <div class="collection-sort-button">
+                          <p>BESTSELLER</p>
+
+                          <svg width="14" height="9" viewBox="0 0 14 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M0.200887 0.954916C0.444386 0.706533 0.825423 0.683953 1.09393 0.887175L1.17086 0.954916L6.66667 6.56118L12.1625 0.954916C12.406 0.706533 12.787 0.683953 13.0555 0.887175L13.1324 0.954916C13.3759 1.2033 13.3981 1.59198 13.1989 1.86587L13.1324 1.94434L7.15165 8.04508C6.90815 8.29347 6.52711 8.31605 6.25861 8.11282L6.18168 8.04508L0.200887 1.94434C-0.0669623 1.67112 -0.0669623 1.22814 0.200887 0.954916Z" fill="#130F26"/>
+                          </svg>  
+                        </div>
+
+                      </div>
+  
+              </div>
+
+              <!-- paginate code - {{collection.title}} -->
+              {% paginate collection.products by 8%}
+              <div class="collection-items">
+                   
+                    {% for product in collection.products %}
+
+                  
+                      <div class="product-div">
+      
+      
+                        <a href="{{ product.url | within: collection }}">
+                          <img src="{{ product.featured_image.src | img_url: 'large' }}" alt="{{ product.featured_image.alt | escape }}">
+                        </a>
+      
+      
+                        <!-- <a href="{{ product.url | within: collection }}">{{ product.title }}</a>
+                        {{ product.price | money }}
+                        {% unless product.available %}<br><strong>sold out</strong>{% endunless %} -->
+      
+                        <form method="post" action="/cart/add" class="AddToCartForm-submit" id="AddToCartForm-new">
+
+
+                          {%if product.has_only_default_variant != true%}
+                          <div class="swatches-popup-mobile">
+                            <p class="swatch-popup-btn" id="swatch-popup-btn">{{product.variants.size}} shades</p>  
+  
+                            <div class="variant-swatch-popup" id="variant-swatch-popup" >
+                                <div class="variant-swatch-titles">
+                                    <p>SELECT SHADE</p>
+                                    <button class="swatch-popup-btn-close" id="swatch-popup-btn-close">
+                                      <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                          <path d="M5.91616 4.84372L9.80997 1.07149C10.0634 0.826121 10.0634 0.429394 9.80997 0.184026C9.55669 -0.0613421 9.14716 -0.0613421 8.89388 0.184026L4.99995 3.95626L1.10614 0.184026C0.852742 -0.0613421 0.443335 -0.0613421 0.190052 0.184026C-0.0633506 0.429394 -0.0633506 0.826121 0.190052 1.07149L4.08386 4.84372L0.190052 8.61596C-0.0633506 8.86133 -0.0633506 9.25805 0.190052 9.50342C0.316278 9.62582 0.482247 9.68731 0.648098 9.68731C0.813948 9.68731 0.979799 9.62582 1.10614 9.50342L4.99995 5.73119L8.89388 9.50342C9.02022 9.62582 9.18607 9.68731 9.35192 9.68731C9.51777 9.68731 9.68362 9.62582 9.80997 9.50342C10.0634 9.25805 10.0634 8.86133 9.80997 8.61596L5.91616 4.84372Z" fill="black"/>
+                                      </svg>   
+                                    </button>
+                                </div>
+  
+                               <div class="variant-swatches">
+                       
+      
+                                  <div class="variant-swatch-options">
+              
+                                    {%for variant in product.variants%}
+                                    <div class="current-variant">
+                                      <input type="radio" value="{{ variant.id }}" class="variant-color-input" name="id" id="color-{{forloop.index}}" >
+  
+          
+                                      <!-- <p>COLOR:{{variant.title}} </p>  -->
+                                      <label for="color-{{forloop.index}}" class="variant-color-swatch" data-variant-title="{{variant.title}}">
+                                        <img class="swatch-images" src="{{variant.title | escape | append : '.jpg' | strip | asset_url}}" alt="{{variant.title}}" onerror="this.src='{{product | img_url}}'">
+                                        <p>{{variant.title}}</p>
+                                      </label>
+            
+                                      <!-- {{variant.title | escape | append : '.jpg' | strip }} -->
+                                    </div>
+                                   
+                                  {%endfor%}
+              
+                                  </div>
+              
+                                  </div>
+  
+                            </div>
+                            <div class="variant-swatch-popup-overlay">
+  
+                            </div>
+                          </div>
+  
+                          {%else%}
+                          <div class="swatch-btn-placeholder"></div>
+  
+                          {%endif%}
+      
+                          <a href="{{ product.url | within: collection }}">
+                              <h5 class="collection-prod-title">{{ product.title }}</h5>
+                          </a>
+                      
+                        <div class="price-swatch-div">
+      
+                          <p class="product__product-price">{{ product.price | money }}</p>
+      
+      
+                          {% if product.has_only_default_variant %}
+                          <input name="id" value="{{ product.variants.first.id }}" type="hidden">
+                      {% else %}
+      
+
+                        <div class="variant-swatches">
+                       
+      
+                          <div class="variant-swatch-options">
+      
+                            {%for variant in product.variants limit:3%}
+
+                            {%unless product.tags contains 'Bundles' or product.tags contains '_bundles'%}
+
+                                <!-- <p>COLOR:{{variant.title}} </p>  -->
+                                <label for="color-{{forloop.index}}" class="variant-color-swatch" data-variant-title="{{variant.title}}">
+                                  <img class="swatch-images" src="{{variant.title | escape | append : '.jpg' | strip | asset_url}}" alt="{{variant.title}}" onerror="this.src='{{product | img_url}}'">
+                                </label>
+
+                            {%endunless%}
+
+    
+      
+                                <!-- {{variant.title | escape | append : '.jpg' | strip }} -->
+                                <input type="radio" value="{{ variant.id }}" class="variant-color-input" name="id" id="color-{{forloop.index}}" style="display: none;">
+                          {%endfor%}
+
+                          {%if product.variants.size > 3%}
+                          <a href="{{product.url}}" style="color: black;text-decoration: underline;">
+                              +{{product.variants.size | minus:3}}
+                          </a>
+                          {%endif%}
+      
+                          </div>
+      
+                          </div>
+                         
+                      {% endif %}
+      
+                      </div>
+      
+                     
+                          <!-- <input type="hidden" name="id" value="{{ product.variants.first.id }}" /> -->
+                          <input min="1" type="hidden" id="quantity" name="quantity" value="1"/>
+                          <input type="submit" value="Add to cart" class="add-to-cart-btn"/>
+                      </form>
+      
+      
+      
+      
+                       
+                      </div>
+                  
+      
+      
+      
+                    {% else %}
+                      <p>no matches</p>
+                    {% endfor %}
+
+                   
+                    
+
+
+        <div class="upsell-section__bottom-right">
+          <div class="upsell_img_radford">
+            <a href="/collections/makeup-1">
+              {{'radford-collection-page-upsell.jpg'  | asset_img_url: 'master' | img_tag}}
+            </a>
+          </div>
+          <h3>Daily Makeup</h3>
+          <p>Victoria Radford is a celebrity makeup artist and skin expert driven by a fearless approach.</p>
+          <a href="/collections/makeup-1" class="upsell__link">Shop Makeup</a>
+        </div>
+
+
+
+                </div>
+
+                <div class="paginate-link">
+                  {% if paginate.pages > 1 %}
+                  {{ paginate | default_pagination }}
+                {% endif %}
+                </div>
+        
+        {% endpaginate %}
+
+       
+
+    
+              
+            </div>
+
+ <!-- FACE collection -->
+
+            <div id="collection-item-2" class="collection-content face-collection" style="display: none;">
+              {% assign collection_face = collections[section.settings.collection_face] %}
+
+              <!-- paginate code - {{collection_face.title}} -->
+              <div class="collection__sort_filter">
+
+
+
+                <div class="filter-sec">
+                  <div class="collection-filter-button">
+
+                    <svg width="16" height="14" viewBox="0 0 16 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M6.60607 10.8288H1.35547" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      <path d="M8.94922 2.75023H14.1998" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M5.2706 2.70521C5.2706 1.6255 4.3888 0.75 3.30132 0.75C2.21383 0.75 1.33203 1.6255 1.33203 2.70521C1.33203 3.78492 2.21383 4.66042 3.30132 4.66042C4.3888 4.66042 5.2706 3.78492 5.2706 2.70521Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M14.6651 10.7948C14.6651 9.7151 13.784 8.8396 12.6965 8.8396C11.6084 8.8396 10.7266 9.7151 10.7266 10.7948C10.7266 11.8745 11.6084 12.75 12.6965 12.75C13.784 12.75 14.6651 11.8745 14.6651 10.7948Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                      
+                    <p>FILTER</p>
+                  </div>
+                  
+
+                  <p class="collection-items-count">{{collection_face.all_products_count}} ITEMS</p>
+
+                </div>
+
+
+
+                <div class="sort-by-sec">
+                  <p class="collection-sort-by">SORT BY: </p>
+
+                  <div class="collection-sort-button">
+                    <p>BESTSELLER</p>
+
+                    <svg width="14" height="9" viewBox="0 0 14 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M0.200887 0.954916C0.444386 0.706533 0.825423 0.683953 1.09393 0.887175L1.17086 0.954916L6.66667 6.56118L12.1625 0.954916C12.406 0.706533 12.787 0.683953 13.0555 0.887175L13.1324 0.954916C13.3759 1.2033 13.3981 1.59198 13.1989 1.86587L13.1324 1.94434L7.15165 8.04508C6.90815 8.29347 6.52711 8.31605 6.25861 8.11282L6.18168 8.04508L0.200887 1.94434C-0.0669623 1.67112 -0.0669623 1.22814 0.200887 0.954916Z" fill="#130F26"/>
+                    </svg>  
+                  </div>
+
+                </div>
+
+        </div>
+
+        {% paginate collection_face.products by 8%}
+        <div class="collection-items">
+             
+              {% for product in collection_face.products %}
+
+            
+                <div class="product-div">
+
+
+                  <a href="{{ product.url | within: collection_face }}">
+                    <img src="{{ product.featured_image.src | img_url: 'large' }}" alt="{{ product.featured_image.alt | escape }}">
+                  </a>
+
+
+                  <!-- <a href="{{ product.url | within: collection_face }}">{{ product.title }}</a>
+                  {{ product.price | money }}
+                  {% unless product.available %}<br><strong>sold out</strong>{% endunless %} -->
+
+                  <form method="post" action="/cart/add" class="AddToCartForm-submit" id="AddToCartForm-new">
+
+
+                    {%if product.has_only_default_variant != true%}
+                    <div class="swatches-popup-mobile">
+                      <p class="swatch-popup-btn" id="swatch-popup-btn">{{product.variants.size}} shades</p>  
+
+                      <div class="variant-swatch-popup" id="variant-swatch-popup" >
+                          <div class="variant-swatch-titles">
+                              <p>SELECT SHADE</p>
+                              <button class="swatch-popup-btn-close" id="swatch-popup-btn-close">
+                                <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M5.91616 4.84372L9.80997 1.07149C10.0634 0.826121 10.0634 0.429394 9.80997 0.184026C9.55669 -0.0613421 9.14716 -0.0613421 8.89388 0.184026L4.99995 3.95626L1.10614 0.184026C0.852742 -0.0613421 0.443335 -0.0613421 0.190052 0.184026C-0.0633506 0.429394 -0.0633506 0.826121 0.190052 1.07149L4.08386 4.84372L0.190052 8.61596C-0.0633506 8.86133 -0.0633506 9.25805 0.190052 9.50342C0.316278 9.62582 0.482247 9.68731 0.648098 9.68731C0.813948 9.68731 0.979799 9.62582 1.10614 9.50342L4.99995 5.73119L8.89388 9.50342C9.02022 9.62582 9.18607 9.68731 9.35192 9.68731C9.51777 9.68731 9.68362 9.62582 9.80997 9.50342C10.0634 9.25805 10.0634 8.86133 9.80997 8.61596L5.91616 4.84372Z" fill="black"/>
+                                </svg>   
+                              </button>
+                          </div>
+
+                         <div class="variant-swatches">
+                 
+
+                            <div class="variant-swatch-options">
+        
+                              {%for variant in product.variants%}
+                              <div class="current-variant">
+                                <input type="radio" value="{{ variant.id }}" class="variant-color-input" name="id" id="color-{{forloop.index}}" >
+
+    
+                                <!-- <p>COLOR:{{variant.title}} </p>  -->
+                                <label for="color-{{forloop.index}}" class="variant-color-swatch" data-variant-title="{{variant.title}}">
+                                  <img class="swatch-images" src="{{variant.title | escape | append : '.jpg' | strip | asset_url}}" alt="{{variant.title}}" onerror="this.src='{{product | img_url}}'">
+                                  <p>{{variant.title}}</p>
+                                </label>
+      
+                                <!-- {{variant.title | escape | append : '.jpg' | strip }} -->
+                              </div>
+                             
+                            {%endfor%}
+        
+                            </div>
+        
+                            </div>
+
+                      </div>
+                      <div class="variant-swatch-popup-overlay">
+
+                      </div>
+                    </div>
+
+                    {%else%}
+                    <div class="swatch-btn-placeholder"></div>
+
+                    {%endif%}
+
+                    <a href="{{ product.url | within: collection_face }}">
+                        <h5 class="collection-prod-title">{{ product.title }}</h5>
+                    </a>
+                
+                  <div class="price-swatch-div">
+
+                    <p class="product__product-price">{{ product.price | money }}</p>
+
+
+                    {% if product.has_only_default_variant %}
+                    <input name="id" value="{{ product.variants.first.id }}" type="hidden">
+                {% else %}
+
+
+                  <div class="variant-swatches">
+                 
+
+                    <div class="variant-swatch-options">
+
+                      {%for variant in product.variants limit:3%}
+                      {%unless product.tags contains 'Bundles' or product.tags contains '_bundles'%}
+
+                          <!-- <p>COLOR:{{variant.title}} </p>  -->
+                          <label for="color-{{forloop.index}}" class="variant-color-swatch" data-variant-title="{{variant.title}}">
+                            <img class="swatch-images" src="{{variant.title | escape | append : '.jpg' | strip | asset_url}}" alt="{{variant.title}}" onerror="this.src='{{product | img_url}}'">
+                          </label>
+                      {%endunless%}
+
+                          <!-- {{variant.title | escape | append : '.jpg' | strip }} -->
+                          <input type="radio" value="{{ variant.id }}" class="variant-color-input" name="id" id="color-{{forloop.index}}" style="display: none;">
+                    {%endfor%}
+
+                    {%if product.variants.size > 3%}
+                          <a href="{{product.url}}" style="color: black;text-decoration: underline;">
+                              +{{product.variants.size | minus:3}}
+                          </a>
+                    {%endif%}
+
+                    </div>
+
+                    </div>
+                   
+                   
+                {% endif %}
+
+                </div>
+
+               
+                    <!-- <input type="hidden" name="id" value="{{ product.variants.first.id }}" /> -->
+                    <input min="1" type="hidden" id="quantity" name="quantity" value="1"/>
+                    <input type="submit" value="Add to cart" class="add-to-cart-btn"/>
+                </form>
+
+
+
+
+                 
+                </div>
+            
+
+
+
+              {% else %}
+                <p>no matches</p>
+              {% endfor %}
+              <!-- {% if paginate.pages > 1 %}
+                {{ paginate | default_pagination }}
+              {% endif %} -->
+
+
+  <div class="upsell-section__bottom-right">
+    <div class="upsell_img_radford">
+      <a href="/collections/makeup-1">
+        {{'radford-collection-page-upsell.jpg'  | asset_img_url: 'master' | img_tag}}
+      </a>
+    </div>
+    <h3>Daily Makeup</h3>
+    <p>Victoria Radford is a celebrity makeup artist and skin expert driven by a fearless approach.</p>
+    <a href="/collections/makeup-1" class="upsell__link">Shop Makeup</a>
+  </div>
+
+
+
+          </div>
+
+          <div class="paginate-link">
+            {% if paginate.pages > 1 %}
+            {{ paginate | default_pagination}}
+          {% endif %}
+          </div>
+  {% endpaginate %}
+
+
+              
+        
+              
+            </div>
+
+<!-- EYE collection -->
+
+            <div id="collection-item-3" class="collection-content eye-collection" style="display: none;">
+              {% assign collection_eye = collections[section.settings.collection_eye] %}
+
+              <!-- paginate code - {{collection_eye.title}} -->
+              <div class="collection__sort_filter">
+
+
+
+                <div class="filter-sec">
+                  <div class="collection-filter-button">
+
+                    <svg width="16" height="14" viewBox="0 0 16 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M6.60607 10.8288H1.35547" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      <path d="M8.94922 2.75023H14.1998" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M5.2706 2.70521C5.2706 1.6255 4.3888 0.75 3.30132 0.75C2.21383 0.75 1.33203 1.6255 1.33203 2.70521C1.33203 3.78492 2.21383 4.66042 3.30132 4.66042C4.3888 4.66042 5.2706 3.78492 5.2706 2.70521Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M14.6651 10.7948C14.6651 9.7151 13.784 8.8396 12.6965 8.8396C11.6084 8.8396 10.7266 9.7151 10.7266 10.7948C10.7266 11.8745 11.6084 12.75 12.6965 12.75C13.784 12.75 14.6651 11.8745 14.6651 10.7948Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                      
+                    <p>FILTER</p>
+                  </div>
+                  
+
+                  <p class="collection-items-count">{{collection_eye.all_products_count}} ITEMS</p>
+
+                </div>
+
+
+
+                <div class="sort-by-sec">
+                  <p class="collection-sort-by">SORT BY: </p>
+
+                  <div class="collection-sort-button">
+                    <p>BESTSELLER</p>
+
+                    <svg width="14" height="9" viewBox="0 0 14 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M0.200887 0.954916C0.444386 0.706533 0.825423 0.683953 1.09393 0.887175L1.17086 0.954916L6.66667 6.56118L12.1625 0.954916C12.406 0.706533 12.787 0.683953 13.0555 0.887175L13.1324 0.954916C13.3759 1.2033 13.3981 1.59198 13.1989 1.86587L13.1324 1.94434L7.15165 8.04508C6.90815 8.29347 6.52711 8.31605 6.25861 8.11282L6.18168 8.04508L0.200887 1.94434C-0.0669623 1.67112 -0.0669623 1.22814 0.200887 0.954916Z" fill="#130F26"/>
+                    </svg>  
+                  </div>
+
+                </div>
+
+        </div>
+
+     
+        {% paginate collection_eye.products by 8%}
+        <div class="collection-items">
+             
+              {% for product in collection_eye.products %}
+
+            
+                <div class="product-div">
+
+
+                  <a href="{{ product.url | within: collection_eye }}">
+                    <img src="{{ product.featured_image.src | img_url: 'large' }}" alt="{{ product.featured_image.alt | escape }}">
+                  </a>
+
+
+                  <!-- <a href="{{ product.url | within: collection_eye }}">{{ product.title }}</a>
+                  {{ product.price | money }}
+                  {% unless product.available %}<br><strong>sold out</strong>{% endunless %} -->
+
+                  <form method="post" action="/cart/add" class="AddToCartForm-submit" id="AddToCartForm-new">
+
+
+                    {%if product.has_only_default_variant != true%}
+                    <div class="swatches-popup-mobile">
+                      <p class="swatch-popup-btn" id="swatch-popup-btn">{{product.variants.size}} shades</p>  
+
+                      <div class="variant-swatch-popup" id="variant-swatch-popup" >
+                          <div class="variant-swatch-titles">
+                              <p>SELECT SHADE</p>
+                              <button class="swatch-popup-btn-close" id="swatch-popup-btn-close">
+                                <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M5.91616 4.84372L9.80997 1.07149C10.0634 0.826121 10.0634 0.429394 9.80997 0.184026C9.55669 -0.0613421 9.14716 -0.0613421 8.89388 0.184026L4.99995 3.95626L1.10614 0.184026C0.852742 -0.0613421 0.443335 -0.0613421 0.190052 0.184026C-0.0633506 0.429394 -0.0633506 0.826121 0.190052 1.07149L4.08386 4.84372L0.190052 8.61596C-0.0633506 8.86133 -0.0633506 9.25805 0.190052 9.50342C0.316278 9.62582 0.482247 9.68731 0.648098 9.68731C0.813948 9.68731 0.979799 9.62582 1.10614 9.50342L4.99995 5.73119L8.89388 9.50342C9.02022 9.62582 9.18607 9.68731 9.35192 9.68731C9.51777 9.68731 9.68362 9.62582 9.80997 9.50342C10.0634 9.25805 10.0634 8.86133 9.80997 8.61596L5.91616 4.84372Z" fill="black"/>
+                                </svg>   
+                              </button>
+                          </div>
+
+                         <div class="variant-swatches">
+                 
+
+                            <div class="variant-swatch-options">
+        
+                              {%for variant in product.variants%}
+                              <div class="current-variant">
+                                <input type="radio" value="{{ variant.id }}" class="variant-color-input" name="id" id="color-{{forloop.index}}" >
+
+    
+                                <!-- <p>COLOR:{{variant.title}} </p>  -->
+                                <label for="color-{{forloop.index}}" class="variant-color-swatch" data-variant-title="{{variant.title}}">
+                                  <img class="swatch-images" src="{{variant.title | escape | append : '.jpg' | strip | asset_url}}" alt="{{variant.title}}" onerror="this.src='{{product | img_url}}'">
+                                  <p>{{variant.title}}</p>
+                                </label>
+      
+                                <!-- {{variant.title | escape | append : '.jpg' | strip }} -->
+                              </div>
+                             
+                            {%endfor%}
+        
+                            </div>
+        
+                            </div>
+
+                      </div>
+                      <div class="variant-swatch-popup-overlay">
+
+                      </div>
+                    </div>
+
+                    {%else%}
+                    <div class="swatch-btn-placeholder"></div>
+
+                    {%endif%}
+
+                    <a href="{{ product.url | within: collection_eye }}">
+                        <h5 class="collection-prod-title">{{ product.title }}</h5>
+                    </a>
+                
+                  <div class="price-swatch-div">
+
+                    <p class="product__product-price">{{ product.price | money }}</p>
+
+
+                    {% if product.has_only_default_variant %}
+                    <input name="id" value="{{ product.variants.first.id }}" type="hidden">
+                {% else %}
+
+
+
+                    
+                  <div class="variant-swatches">
+                 
+
+                    <div class="variant-swatch-options">
+
+                      {%for variant in product.variants limit:3%}
+
+                      {%unless product.tags contains 'Bundles' or product.tags contains '_bundles'%}
+
+                          <!-- <p>COLOR:{{variant.title}} </p>  -->
+                          <label for="color-{{forloop.index}}" class="variant-color-swatch" data-variant-title="{{variant.title}}">
+                            <img class="swatch-images" src="{{variant.title | escape | append : '.jpg' | strip | asset_url}}" alt="{{variant.title}}" onerror="this.src='{{product | img_url}}'">
+                          </label>
+                      {%endunless%}
+
+                          <!-- {{variant.title | escape | append : '.jpg' | strip }} -->
+                          <input type="radio" value="{{ variant.id }}" class="variant-color-input" name="id" id="color-{{forloop.index}}" style="display: none;">
+                    {%endfor%}
+
+                    {%if product.variants.size > 3%}
+                          <a href="{{product.url}}" style="color: black;text-decoration: underline;">
+                              +{{product.variants.size | minus:3}}
+                          </a>
+                          {%endif%}
+
+                    </div>
+
+                    </div>
+
+              
+                   
+                {% endif %}
+
+                </div>
+
+               
+                    <!-- <input type="hidden" name="id" value="{{ product.variants.first.id }}" /> -->
+                    <input min="1" type="hidden" id="quantity" name="quantity" value="1"/>
+                    <input type="submit" value="Add to cart" class="add-to-cart-btn"/>
+                </form>
+
+
+
+
+                 
+                </div>
+            
+
+
+
+              {% else %}
+                <p>no matches</p>
+              {% endfor %}
+              <!-- {% if paginate.pages > 1 %}
+                {{ paginate | default_pagination }}
+              {% endif %} -->
+
+
+  <div class="upsell-section__bottom-right">
+    <div class="upsell_img_radford">
+      <a href="/collections/makeup-1">
+        {{'radford-collection-page-upsell.jpg'  | asset_img_url: 'master' | img_tag}}
+      </a>
+    </div>
+    <h3>Daily Makeup</h3>
+    <p>Victoria Radford is a celebrity makeup artist and skin expert driven by a fearless approach.</p>
+    <a href="/collections/makeup-1" class="upsell__link">Shop Makeup</a>
+  </div>
+
+
+
+          </div>
+
+          <div class="paginate-link">
+            {% if paginate.pages > 1 %}
+            {{ paginate | default_pagination }}
+          {% endif %}
+          </div>
+  {% endpaginate %}
+              
+              
+            </div>
+
+
+ <!-- LIP collection -->
+
+            <div id="collection-item-4" class="collection-content lip-collection" style="display: none;">
+              {% assign collection_lip = collections[section.settings.collection_lip] %}
+    
+              <!-- paginate code - {{collection_lip.title}} -->
+
+              <div class="collection__sort_filter">
+
+
+
+                <div class="filter-sec">
+                  <div class="collection-filter-button">
+
+                    <svg width="16" height="14" viewBox="0 0 16 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M6.60607 10.8288H1.35547" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      <path d="M8.94922 2.75023H14.1998" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M5.2706 2.70521C5.2706 1.6255 4.3888 0.75 3.30132 0.75C2.21383 0.75 1.33203 1.6255 1.33203 2.70521C1.33203 3.78492 2.21383 4.66042 3.30132 4.66042C4.3888 4.66042 5.2706 3.78492 5.2706 2.70521Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M14.6651 10.7948C14.6651 9.7151 13.784 8.8396 12.6965 8.8396C11.6084 8.8396 10.7266 9.7151 10.7266 10.7948C10.7266 11.8745 11.6084 12.75 12.6965 12.75C13.784 12.75 14.6651 11.8745 14.6651 10.7948Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                      
+                    <p>FILTER</p>
+                  </div>
+                  
+
+                  <p class="collection-items-count">{{collection_lip.all_products_count}} ITEMS</p>
+
+                </div>
+
+
+
+                <div class="sort-by-sec">
+                  <p class="collection-sort-by">SORT BY: </p>
+
+                  <div class="collection-sort-button">
+                    <p>BESTSELLER</p>
+
+                    <svg width="14" height="9" viewBox="0 0 14 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M0.200887 0.954916C0.444386 0.706533 0.825423 0.683953 1.09393 0.887175L1.17086 0.954916L6.66667 6.56118L12.1625 0.954916C12.406 0.706533 12.787 0.683953 13.0555 0.887175L13.1324 0.954916C13.3759 1.2033 13.3981 1.59198 13.1989 1.86587L13.1324 1.94434L7.15165 8.04508C6.90815 8.29347 6.52711 8.31605 6.25861 8.11282L6.18168 8.04508L0.200887 1.94434C-0.0669623 1.67112 -0.0669623 1.22814 0.200887 0.954916Z" fill="#130F26"/>
+                    </svg>  
+                  </div>
+
+                </div>
+
+        </div>
+
+      
+        {% paginate collection_lip.products by 8%}
+        <div class="collection-items">
+             
+              {% for product in collection_lip.products %}
+
+            
+                <div class="product-div">
+
+
+                  <a href="{{ product.url | within: collection_lip }}">
+                    <img src="{{ product.featured_image.src | img_url: 'large' }}" alt="{{ product.featured_image.alt | escape }}">
+                  </a>
+
+
+                  <!-- <a href="{{ product.url | within: collection_lip }}">{{ product.title }}</a>
+                  {{ product.price | money }}
+                  {% unless product.available %}<br><strong>sold out</strong>{% endunless %} -->
+
+                  <form method="post" action="/cart/add" class="AddToCartForm-submit" id="AddToCartForm-new">
+
+
+                    {%if product.has_only_default_variant != true%}
+                    <div class="swatches-popup-mobile">
+                      <p class="swatch-popup-btn" id="swatch-popup-btn">{{product.variants.size}} shades</p>  
+
+                      <div class="variant-swatch-popup" id="variant-swatch-popup" >
+                          <div class="variant-swatch-titles">
+                              <p>SELECT SHADE</p>
+                              <button class="swatch-popup-btn-close" id="swatch-popup-btn-close">
+                                <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M5.91616 4.84372L9.80997 1.07149C10.0634 0.826121 10.0634 0.429394 9.80997 0.184026C9.55669 -0.0613421 9.14716 -0.0613421 8.89388 0.184026L4.99995 3.95626L1.10614 0.184026C0.852742 -0.0613421 0.443335 -0.0613421 0.190052 0.184026C-0.0633506 0.429394 -0.0633506 0.826121 0.190052 1.07149L4.08386 4.84372L0.190052 8.61596C-0.0633506 8.86133 -0.0633506 9.25805 0.190052 9.50342C0.316278 9.62582 0.482247 9.68731 0.648098 9.68731C0.813948 9.68731 0.979799 9.62582 1.10614 9.50342L4.99995 5.73119L8.89388 9.50342C9.02022 9.62582 9.18607 9.68731 9.35192 9.68731C9.51777 9.68731 9.68362 9.62582 9.80997 9.50342C10.0634 9.25805 10.0634 8.86133 9.80997 8.61596L5.91616 4.84372Z" fill="black"/>
+                                </svg>   
+                              </button>
+                          </div>
+
+                         <div class="variant-swatches">
+                 
+
+                            <div class="variant-swatch-options">
+        
+                              {%for variant in product.variants%}
+                              <div class="current-variant">
+                                <input type="radio" value="{{ variant.id }}" class="variant-color-input" name="id" id="color-{{forloop.index}}" >
+
+    
+                                <!-- <p>COLOR:{{variant.title}} </p>  -->
+                                <label for="color-{{forloop.index}}" class="variant-color-swatch" data-variant-title="{{variant.title}}">
+                                  <img class="swatch-images" src="{{variant.title | escape | append : '.jpg' | strip | asset_url}}" alt="{{variant.title}}" onerror="this.src='{{product | img_url}}'">
+                                  <p>{{variant.title}}</p>
+                                </label>
+      
+                                <!-- {{variant.title | escape | append : '.jpg' | strip }} -->
+                              </div>
+                             
+                            {%endfor%}
+        
+                            </div>
+        
+                            </div>
+
+                      </div>
+                      <div class="variant-swatch-popup-overlay">
+
+                      </div>
+                    </div>
+
+                    {%else%}
+                    <div class="swatch-btn-placeholder"></div>
+
+                    {%endif%}
+
+                    <a href="{{ product.url | within: collection_lip }}">
+                        <h5 class="collection-prod-title">{{ product.title }}</h5>
+                    </a>
+                
+                  <div class="price-swatch-div">
+
+                    <p class="product__product-price">{{ product.price | money }}</p>
+
+
+                    {% if product.has_only_default_variant %}
+                    <input name="id" value="{{ product.variants.first.id }}" type="hidden">
+                {% else %}
+
+
+                  <div class="variant-swatches">
+                 
+
+                    <div class="variant-swatch-options">
+
+                      {%for variant in product.variants limit:3%}
+
+                      {%unless product.tags contains 'Bundles' or product.tags contains '_bundles'%}
+
+                          <!-- <p>COLOR:{{variant.title}} </p>  -->
+                          <label for="color-{{forloop.index}}" class="variant-color-swatch" data-variant-title="{{variant.title}}">
+                            <img class="swatch-images" src="{{variant.title | escape | append : '.jpg' | strip | asset_url}}" alt="{{variant.title}}" onerror="this.src='{{product | img_url}}'">
+                          </label>
+
+                      {%endunless%}
+                          <!-- {{variant.title | escape | append : '.jpg' | strip }} -->
+                          <input type="radio" value="{{ variant.id }}" class="variant-color-input" name="id" id="color-{{forloop.index}}" style="display: none;">
+                    {%endfor%}
+
+                    {%if product.variants.size > 3%}
+                          <a href="{{product.url}}" style="color: black;text-decoration: underline;">
+                              +{{product.variants.size | minus:3}}
+                          </a>
+                          {%endif%}
+
+                    </div>
+
+                    </div>
+            
+                   
+                {% endif %}
+
+                </div>
+
+               
+                    <!-- <input type="hidden" name="id" value="{{ product.variants.first.id }}" /> -->
+                    <input min="1" type="hidden" id="quantity" name="quantity" value="1"/>
+                    <input type="submit" value="Add to cart" class="add-to-cart-btn"/>
+                </form>
+
+
+
+
+                 
+                </div>
+            
+
+
+
+              {% else %}
+                <p>no matches</p>
+              {% endfor %}
+              <!-- {% if paginate.pages > 1 %}
+                {{ paginate | default_pagination }}
+              {% endif %} -->
+
+
+  <div class="upsell-section__bottom-right">
+    <div class="upsell_img_radford">
+      <a href="/collections/makeup-1">
+        {{'radford-collection-page-upsell.jpg'  | asset_img_url: 'master' | img_tag}}
+      </a>
+    </div>
+    <h3>Daily Makeup</h3>
+    <p>Victoria Radford is a celebrity makeup artist and skin expert driven by a fearless approach.</p>
+    <a href="/collections/makeup-1" class="upsell__link">Shop Makeup</a>
+  </div>
+
+
+
+          </div>
+          <div class="paginate-link">
+            {% if paginate.pages > 1 %}
+            {{ paginate | default_pagination }}
+          {% endif %}
+          </div>
+  {% endpaginate %}
+              
+              
+            </div>
+
+ <!-- BUNDLES collection -->
+
+            <div id="collection-item-5" class="collection-content bundles-collection" style="display: none;">
+              {% assign collection_bundles = collections[section.settings.collection_bundles] %}
+    
+              <!-- paginate code - {{collection_bundles.title}} -->
+              <div class="collection__sort_filter">
+
+
+
+                <div class="filter-sec">
+                  <div class="collection-filter-button">
+
+                    <svg width="16" height="14" viewBox="0 0 16 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M6.60607 10.8288H1.35547" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      <path d="M8.94922 2.75023H14.1998" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M5.2706 2.70521C5.2706 1.6255 4.3888 0.75 3.30132 0.75C2.21383 0.75 1.33203 1.6255 1.33203 2.70521C1.33203 3.78492 2.21383 4.66042 3.30132 4.66042C4.3888 4.66042 5.2706 3.78492 5.2706 2.70521Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M14.6651 10.7948C14.6651 9.7151 13.784 8.8396 12.6965 8.8396C11.6084 8.8396 10.7266 9.7151 10.7266 10.7948C10.7266 11.8745 11.6084 12.75 12.6965 12.75C13.784 12.75 14.6651 11.8745 14.6651 10.7948Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                      
+                    <p>FILTER</p>
+                  </div>
+                  
+
+                  <p class="collection-items-count">{{collection_bundles.all_products_count}} ITEMS</p>
+
+                </div>
+
+
+
+                <div class="sort-by-sec">
+                  <p class="collection-sort-by">SORT BY: </p>
+
+                  <div class="collection-sort-button">
+                    <p>BESTSELLER</p>
+
+                    <svg width="14" height="9" viewBox="0 0 14 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M0.200887 0.954916C0.444386 0.706533 0.825423 0.683953 1.09393 0.887175L1.17086 0.954916L6.66667 6.56118L12.1625 0.954916C12.406 0.706533 12.787 0.683953 13.0555 0.887175L13.1324 0.954916C13.3759 1.2033 13.3981 1.59198 13.1989 1.86587L13.1324 1.94434L7.15165 8.04508C6.90815 8.29347 6.52711 8.31605 6.25861 8.11282L6.18168 8.04508L0.200887 1.94434C-0.0669623 1.67112 -0.0669623 1.22814 0.200887 0.954916Z" fill="#130F26"/>
+                    </svg>  
+                  </div>
+
+                </div>
+
+        </div>
+
+     
+        {% paginate collection_bundles.products by 8%}
+        <div class="collection-items">
+             
+              {% for product in collection_bundles.products %}
+
+            
+                <div class="product-div">
+
+
+                  <a href="{{ product.url | within: collection_bundles }}">
+                    <img src="{{ product.featured_image.src | img_url: 'large' }}" alt="{{ product.featured_image.alt | escape }}">
+                  </a>
+
+
+                  <!-- <a href="{{ product.url | within: collection_bundles }}">{{ product.title }}</a>
+                  {{ product.price | money }}
+                  {% unless product.available %}<br><strong>sold out</strong>{% endunless %} -->
+
+                  <form method="post" action="/cart/add" class="AddToCartForm-submit" id="AddToCartForm-new">
+
+
+                    {%if product.has_only_default_variant != true%}
+                    <div class="swatches-popup-mobile">
+                      <p class="swatch-popup-btn" id="swatch-popup-btn">{{product.variants.size}} shades</p>  
+
+                      <div class="variant-swatch-popup" id="variant-swatch-popup" >
+                          <div class="variant-swatch-titles">
+                              <p>SELECT SHADE</p>
+                              <button class="swatch-popup-btn-close" id="swatch-popup-btn-close">
+                                <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M5.91616 4.84372L9.80997 1.07149C10.0634 0.826121 10.0634 0.429394 9.80997 0.184026C9.55669 -0.0613421 9.14716 -0.0613421 8.89388 0.184026L4.99995 3.95626L1.10614 0.184026C0.852742 -0.0613421 0.443335 -0.0613421 0.190052 0.184026C-0.0633506 0.429394 -0.0633506 0.826121 0.190052 1.07149L4.08386 4.84372L0.190052 8.61596C-0.0633506 8.86133 -0.0633506 9.25805 0.190052 9.50342C0.316278 9.62582 0.482247 9.68731 0.648098 9.68731C0.813948 9.68731 0.979799 9.62582 1.10614 9.50342L4.99995 5.73119L8.89388 9.50342C9.02022 9.62582 9.18607 9.68731 9.35192 9.68731C9.51777 9.68731 9.68362 9.62582 9.80997 9.50342C10.0634 9.25805 10.0634 8.86133 9.80997 8.61596L5.91616 4.84372Z" fill="black"/>
+                                </svg>   
+                              </button>
+                          </div>
+
+                         <div class="variant-swatches">
+                 
+
+                            <div class="variant-swatch-options">
+        
+                              {%for variant in product.variants%}
+                              <div class="current-variant">
+                                <input type="radio" value="{{ variant.id }}" class="variant-color-input" name="id" id="color-{{forloop.index}}" >
+
+    
+                                <!-- <p>COLOR:{{variant.title}} </p>  -->
+                                <label for="color-{{forloop.index}}" class="variant-color-swatch" data-variant-title="{{variant.title}}">
+                                  <img class="swatch-images" src="{{variant.title | escape | append : '.jpg' | strip | asset_url}}" alt="{{variant.title}}" onerror="this.src='{{product | img_url}}'">
+                                  <p>{{variant.title}}</p>
+                                </label>
+      
+                                <!-- {{variant.title | escape | append : '.jpg' | strip }} -->
+                              </div>
+                             
+                            {%endfor%}
+        
+                            </div>
+        
+                            </div>
+
+                      </div>
+                      <div class="variant-swatch-popup-overlay">
+
+                      </div>
+                    </div>
+
+                    {%else%}
+                    <div class="swatch-btn-placeholder"></div>
+
+                    {%endif%}
+
+                    <a href="{{ product.url | within: collection_bundles }}">
+                        <h5 class="collection-prod-title">{{ product.title }}</h5>
+                    </a>
+                
+                  <div class="price-swatch-div">
+
+                    <p class="product__product-price">{{ product.price | money }}</p>
+
+      <!-- special case for bundles section -->
+                    <!-- {% if product.has_only_default_variant %} -->
+                    <input name="id" value="{{ product.variants.first.id }}" type="hidden">
+                <!-- {% else %} -->
+
+          
+              
+
+                    
+                  <div class="variant-swatches">
+                 
+
+                    <div class="variant-swatch-options">
+
+                      {%for variant in product.variants limit:3%}
+                      {%unless product.tags contains 'Bundles' or product.tags contains '_bundles'%}
+
+                          <!-- <p>COLOR:{{variant.title}} </p>  -->
+                          <label for="color-{{forloop.index}}" class="variant-color-swatch" data-variant-title="{{variant.title}}">
+                            <img class="swatch-images" src="{{variant.title | escape | append : '.jpg' | strip | asset_url}}" alt="{{variant.title}}" onerror="this.src='{{product | img_url}}'">
+                          </label>
+
+                      {%endunless%}
+
+                      
+                          <!-- {{variant.title | escape | append : '.jpg' | strip }} -->
+                          <input type="radio" value="{{ variant.id }}" class="variant-color-input" name="id" id="color-{{forloop.index}}" style="display: none;">
+                    {%endfor%}
+
+                    {%if product.variants.size > 3%}
+                          <a href="{{product.url}}" style="color: black;text-decoration: underline;">
+                              +{{product.variants.size | minus:3}}
+                          </a>
+                          {%endif%}
+
+                    </div>
+
+                    </div>
+                  
+                   
+                <!-- {% endif %} -->
+
+                </div>
+
+               
+                    <!-- <input type="hidden" name="id" value="{{ product.variants.first.id }}" /> -->
+                    <input min="1" type="hidden" id="quantity" name="quantity" value="1"/>
+                    <input type="submit" value="Add to cart" class="add-to-cart-btn"/>
+                </form>
+
+
+
+
+                 
+                </div>
+            
+
+
+
+              {% else %}
+                <p>no matches</p>
+              {% endfor %}
+              <!-- {% if paginate.pages > 1 %}
+                {{ paginate | default_pagination }}
+              {% endif %} -->
+
+
+  <div class="upsell-section__bottom-right">
+    <div class="upsell_img_radford">
+      <a href="/collections/makeup-1">
+        {{'radford-collection-page-upsell.jpg'  | asset_img_url: 'master' | img_tag}}
+      </a>
+    </div>
+    <h3>Daily Makeup</h3>
+    <p>Victoria Radford is a celebrity makeup artist and skin expert driven by a fearless approach.</p>
+    <a href="/collections/makeup-1" class="upsell__link">Shop Makeup</a>
+  </div>
+
+
+
+          </div>
+
+          <div class="paginate-link">
+            {% if paginate.pages > 1 %}
+            {{ paginate | default_pagination }}
+          {% endif %}
+          </div>
+  {% endpaginate %}
+              
+            </div>
+  
+      
+       
+  
+      </div>
+  
+     
+    </div>
+  </div>
+
+
+
+  {%schema%}
+  {
+    "name": "Collections Page",
+    "settings": [
+    
+      {
+        "type": "collection",
+        "id": "collection_face",
+        "label": "Choose Collection 1 - Face"
+    },
+    {
+      "type": "collection",
+      "id": "collection_eye",
+      "label": "Choose Collection 2 - Eye"
+    },
+    {
+      "type": "collection",
+      "id": "collection_lip",
+      "label": "Choose Collection 2 - Lip"
+    },
+    {
+      "type": "collection",
+      "id": "collection_bundles",
+      "label": "Choose Collection 2 - Bundles"
+    }
+    
+    ]
+
+  }
+  {%endschema%}

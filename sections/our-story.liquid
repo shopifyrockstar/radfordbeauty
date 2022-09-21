@@ -1,0 +1,59 @@
+<div class="our-story">
+    <div class="container">
+        <div class="text-container">
+            <h2>{{section.settings.section_title}}</h2>
+            <p>{{section.settings.section_paragraph}}</p>
+
+            <div class="story-button">
+                <a href="pages/about-us-1">{{section.settings.button_text}}</a>
+            </div>
+
+        </div>
+        <div class="img-container">
+            <img src="{{section.settings.user_img | img_url: 'master'}}" alt="">
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+{%schema%}
+{
+    "name" : "Our Story",
+    "settings" : [
+    {
+        "type": "text",
+        "id": "section_title",
+        "label": "Section Title",
+        "default": "Our Story"
+    },
+    {
+        "type": "text",
+        "id": "section_paragraph",
+        "label": "Section Paragraph",
+        "default": "After 20+ years of experience as a celebrity makeup artist and skin esthetician I have learned “the dish can never be better than the ingredients. I created products that only contain clean, effective, ingredients to deliver real results and enhance your natural beauty."
+    },
+    {
+        "type": "image_picker",
+        "id": "user_img",
+        "label": "User Picture"
+    },
+    {
+        "type": "text",
+        "id": "button_text",
+        "label": "Button Text",
+        "default": "Learn More"
+
+    }
+    ],
+    "presets" : [
+    {
+        "category": "Images",
+        "name": "Our Story"
+    }
+    ]
+}
+{%endschema%}

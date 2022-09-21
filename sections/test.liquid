@@ -1,0 +1,82 @@
+<div class="test">
+    <div class="container">
+
+    <h2 class="section-heading">{{section.settings.collection_title}}</h2>
+
+
+    {% assign collection_main = collections[section.settings.collection_main] %}
+    <ul class="test-grid">
+    {%for product in collection_main.products%}
+
+    {% assign first_variant = product.selected_or_first_available_variant %}
+    {% assign featured_img_src = first_variant.featured_img.src | default: product.featured_image.src %}
+    {% assign price = first_variant.price %}
+    {% assign compare_at_price = first_variant.compare_at_price %}
+    {%- assign custom_variant = product.variants -%}
+    
+        <li><div class="product-div">
+            <a href="{{product.url}}">
+                <img src="{{featured_img_src | img_url: 'master'}}" alt="{{ product.featured_img.alt }}">
+            </a>
+            <a href="{{ product.url }}">
+                <h5 class="prod-title">{{ product.title }}</h5>
+            </a>
+            {% if compare_at_price > price %}
+            <!-- <s class="product__compare-at-price">{{ compare_at_price | money }}</s> -->
+            <p class="product__product-price">{{ price | money }}</p>
+            {% else %}
+            <p class="product__product-price">{{ price | money }}</p>
+            {% endif %}
+            <form method="post" action="/cart/add">
+                {% if product.has_only_default_variant %}
+            <input name="id" value="{{ variant.id }}" type="hidden">
+            {% else %}
+            <!-- <select name="id">
+                {% for variant in product.variants %}
+                <option value="{{ variant.id }}">{{ variant.title }}</option>
+                {% endfor%}
+            </select> -->
+            {% endif %}
+                <!-- <input type="hidden" name="id" value="{{ product.variants.first.id }}" /> -->
+                <input min="1" type="hidden" id="quantity" name="quantity" value="1"/>
+                <input type="submit" value="Add to cart" class="add-to-cart-btn" />
+            </form>
+            <!-- {%for variant in custom_variant%}
+            {{variant.url}}
+            {%endfor%} -->
+            
+        </div></li>
+    
+    {%endfor%}
+    </ul>
+
+    </div>
+    
+    
+    
+
+</div>
+
+
+{%schema%}
+{
+    "name": "test",
+    "settings": [
+    {
+        "type": "collection",
+        "id": "collection_main",
+        "label": "Choose a Collection"
+    },
+   {
+       "type": "text",
+       "id": "collection_title",
+       "label": "Section Heading",
+       "default": "Recommended for You"
+   }],
+    "presets": [
+    {
+        "category": "Profile",
+        "name": "test"
+    }]
+}
+{%endschema%}

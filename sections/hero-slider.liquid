@@ -1,0 +1,166 @@
+<div class="hero-slider">
+    <div class="slider">
+        <div class="slides">
+
+            {% assign collection_main_1 = collections[section.settings.s1_collection_main] %}
+            {% assign collection_main_2 = collections[section.settings.s2_collection_main] %}
+            {% assign collection_main_3 = collections[section.settings.s3_collection_main] %}
+    
+            <!--  radio  -->
+            <input type="radio" name="radio-btn" id="radio1">
+            <input type="radio" name="radio-btn" id="radio2">
+            <input type="radio" name="radio-btn" id="radio3">
+    
+    
+            <!--  images  -->
+            <div class="slide first">
+                    <img src="{{section.settings.user_img_1 | img_url: 'master'}}" alt="hero-image-1">
+                    <div class="slider-text">
+                        <h1>{{section.settings.s1_text_header_1}} <br> {{section.settings.s1_text_header_2}} </h1>
+                    </div>
+                    <a href="{{collection_main_1.url}}"><div class="slider-button">
+                        {{section.settings.s1_button_text}}
+                    </div></a>
+            </div>
+            <div class="slide">
+                    <img src="{{section.settings.user_img_2| img_url: 'master'}}" alt="hero-image-2">
+                    <div class="slider-text">
+                        <h1>{{section.settings.s2_text_header_1}} <br> {{section.settings.s2_text_header_2}} </h1>
+                    </div>
+                    <a href="{{collection_main_2.url}}"><div class="slider-button">
+                        {{section.settings.s2_button_text}}
+                    </div></a>
+            </div>
+            <div class="slide">
+                <img src="{{section.settings.user_img_3| img_url: 'master'}}" alt="hero-image-3">
+                <div class="slider-text">
+                    <h1>{{section.settings.s3_text_header_1}} <br> {{section.settings.s3_text_header_2}} </h1>
+                </div>
+                <a href="{{collection_main_3.url}}"><div class="slider-button">
+                    {{section.settings.s3_button_text}}
+                </div></a>
+            </div>
+    
+    
+            <!--  auto navigation  -->
+            <div class="navigation-auto">
+                <div class="auto-btn1"></div>
+                <div class="auto-btn2"></div>
+                <div class="auto-btn3"></div>
+            </div>
+        </div>
+    
+        <!--  manual navigation  -->
+        <div class="navigation-manual">
+            <label for="radio1" class="manual-btn"></label>
+            <label for="radio2" class="manual-btn"></label>
+            <label for="radio3" class="manual-btn"></label>
+        </div>
+    </div>
+
+    <!-- <div class="slider-text">
+        <h1>{{section.settings.text_header_1}} <br> {{section.settings.text_header_2}} </h1>
+    </div> -->
+
+   
+
+    <!-- <div class="slider-button">
+        <a href="{{collection_main.url}}">{{section.settings.button_text}}</a>
+    </div> -->
+
+</div>
+
+{%schema%}
+{
+
+"name" : "Image Slider with Text",
+"settings" : [
+{
+    "type": "image_picker",
+    "id": "user_img_1",
+    "label": "First Slide Image"
+},
+{
+    "type": "text",
+    "id": "s1_text_header_1",
+    "label": "First Slide Header Text 1"
+},
+{
+    "type": "text",
+    "id": "s1_text_header_2",
+    "label": "First Slide Header Text 1"
+},
+{
+    "type": "text",
+    "id": "s1_button_text",
+    "label": "First Slide Button Text"
+},
+{
+    "type": "collection",
+    "id": "s1_collection_main",
+    "label": "First Slide Collection Link"
+},
+{
+    "type": "image_picker",
+    "id": "user_img_2",
+    "label": "Second Slide Image"
+},
+{
+    "type": "text",
+    "id": "s2_text_header_1",
+    "label": "Second Slide Header Text 1"
+},
+{
+    "type": "text",
+    "id": "s2_text_header_2",
+    "label": "Second Slide Header Text 1"
+},
+{
+    "type": "text",
+    "id": "s2_button_text",
+    "label": "Second Slide Button Text"
+},
+{
+    "type": "collection",
+    "id": "s2_collection_main",
+    "label": "Second Slide Collection Link"
+},
+{
+    "type": "image_picker",
+    "id": "user_img_3",
+    "label": "First Slide Image"
+},
+{
+    "type": "text",
+    "id": "s3_text_header_1",
+    "label": "Third Slide Header Text 1"
+},
+{
+    "type": "text",
+    "id": "s3_text_header_2",
+    "label": "Third Slide Header Text 1"
+},
+{
+    "type": "text",
+    "id": "s3_button_text",
+    "label": "Third Slide Button Text"
+},
+{
+    "type": "collection",
+    "id": "s3_collection_main",
+    "label": "Third Slide Collection Link"
+}
+
+
+
+],
+"presets" : [
+{
+    "category" : "Image Slider",
+    "name" : "Image Slider with Text"
+}]
+
+}
+{%endschema%}
+
+

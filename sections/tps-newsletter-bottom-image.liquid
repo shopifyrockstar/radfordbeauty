@@ -1,0 +1,44 @@
+{% schema %}
+  {
+    "name": "Newsletter Bottom Image",
+    "settings": [
+		{
+          "type": "image_picker",
+          "id": "tps_newsletter_bottom_image_mobile",
+          "label": "Image Mobile"
+    	},
+		{
+          "type": "image_picker",
+          "id": "tps_newsletter_bottom_image_desktop",
+          "label": "Image Desktop"
+    	}
+	]
+  }
+{% endschema %}
+
+<div class="tps-newsletter-bottom-image">
+  
+</div>
+
+{% style %}
+.tps-newsletter-bottom-image {
+	margin-top: 50px;
+	padding-bottom: 42.5%;
+	width: 100%;
+	background-image: url({{ section.settings.tps_newsletter_bottom_image_mobile | img_url : '' }});
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+@media screen and (min-width: 768px) {
+  .tps-newsletter-bottom-image {
+		margin-top: 100px;
+		padding-bottom: 20.5%;
+		max-height: 500px;
+		background-image: url({{ section.settings.tps_newsletter_bottom_image_desktop | img_url : '' }});
+  }
+}
+{% endstyle %}
+
+{% javascript %}
+{% endjavascript %}

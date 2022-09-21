@@ -1,0 +1,23 @@
+{% schema %}
+  {
+    "name": "Newsletter Text",
+    "settings": [
+		{
+           "type": "textarea",
+           "id": "tps_newsletter_text",
+           "label": "Text",
+		   "placeholder" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco labori."
+        }
+	]
+  }
+{% endschema %}
+
+<div class="tps-newsletter-landing-text">
+  {{ section.settings.tps_newsletter_text }}
+</div>
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

@@ -1,0 +1,390 @@
+<!doctype html>
+<html>
+<head>
+  <title>{{ page_title }}</title>
+  
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="description" content="{{ page_description | escape }}">
+  <link rel="canonical" href="{{ canonical_url }}">
+  <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
+  <meta content="width=device-width, initial-scale=1.0,maximum-scale=1.0, viewport-fit=cover" name="viewport"/>
+  <link rel="shortcut icon" href="{{ 'favicon.png' | asset_url}}" type="image/png" />
+
+  {% include 'social-meta-info' %}
+
+  {{ 'jquery-2.2.3.min.js' | asset_url | script_tag }}
+  {{ content_for_header }} <!-- Header hook for plugins -->
+  {{ 'application.scss.css' | asset_url | stylesheet_tag }}
+  
+ 
+  {{ 'timber-cart.scss.css' | asset_url | stylesheet_tag }}
+  {{ 'custom.css' | asset_url | stylesheet_tag }}
+  {{ 'theme.scss.css' | asset_url | stylesheet_tag }}
+  {{ 'modernizr.min.js' | asset_url | script_tag }}
+  <!-- <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.css"/> -->
+
+  {{ 'slick.css' | asset_url | stylesheet_tag }}
+  {{ 'slick-theme.css' | asset_url | stylesheet_tag }}
+  <style class='jdgm-miracle-styles'>
+    @-webkit-keyframes jdgm-spin{0%{-webkit-transform:rotate(0deg);-ms-transform:rotate(0deg);transform:rotate(0deg)}100%{-webkit-transform:rotate(359deg);-ms-transform:rotate(359deg);transform:rotate(359deg)}}@keyframes jdgm-spin{0%{-webkit-transform:rotate(0deg);-ms-transform:rotate(0deg);transform:rotate(0deg)}100%{-webkit-transform:rotate(359deg);-ms-transform:rotate(359deg);transform:rotate(359deg)}}@font-face{font-family:'JudgemeStar';src:url("data:application/x-font-woff;charset=utf-8;base64,d09GRgABAAAAAAScAA0AAAAABrAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABGRlRNAAAEgAAAABoAAAAcbyQ+3kdERUYAAARgAAAAHgAAACAAMwAGT1MvMgAAAZgAAABGAAAAVi+vS9xjbWFwAAAB8AAAAEAAAAFKwBMjvmdhc3AAAARYAAAACAAAAAj//wADZ2x5ZgAAAkAAAAEJAAABdH33LXtoZWFkAAABMAAAAC0AAAA2BroQKWhoZWEAAAFgAAAAHAAAACQD5QHQaG10eAAAAeAAAAAPAAAAFAYAAABsb2NhAAACMAAAAA4AAAAOAO4AeG1heHAAAAF8AAAAHAAAACAASgAvbmFtZQAAA0wAAADeAAABkorWfVZwb3N0AAAELAAAACkAAABEp3ubLXgBY2BkYADhPPP4OfH8Nl8ZuJkYQODS2fRrCPr/aSYGxq1ALgcDWBoAO60LkwAAAHgBY2BkYGDc+v80gx4TAwgASaAICmABAFB+Arl4AWNgZGBgYGPQYWBiAAIwyQgWc2AAAwAHVQB6eAFjYGRiYJzAwMrAwejDmMbAwOAOpb8ySDK0MDAwMbByMsCBAAMCBKS5pjA4PGB4wMR44P8BBj3GrQymQGFGkBwAjtgK/gAAeAFjYoAAEA1jAwAAZAAHAHgB3crBCcAwDEPRZydkih567CDdf4ZskmLwFBV8xBfCaC4BXkOUmx4sU0h2ngNb9V0vQCxaRKIAevT7fGWuBrEAAAAAAAAAAAA0AHgAugAAeAF9z79Kw1AUx/FzTm7un6QmJtwmQ5Bg1abgEGr/BAqlU6Gju+Cgg1MkQ/sA7Vj7BOnmO/gUvo2Lo14NqIO6/IazfD8HEODtmQCfoANwNsyp2/GJt3WKQrd1NLiYYWx2PBqOsmJMEOznPOTzfSCrhAtbbLdmeFLJV9eKd63WLrZcIcuaEVdssWCKM6pLCfTVOYbz/0pNSMSZKLIZpvh78sAUH6PlMrreTCabP9r+Z/puPZ2ur/RqpQHgh+MIegCnXeM4MRAPjYN//5tj4ZtTjkFqEdmeMShlEJ7tVAly2TAkx6R68Fl4E/aVvn8JqHFQ4JS1434gXKcuL31dDhzs3YbsEOAd/IU88gAAAHgBfY4xTgMxEEVfkk0AgRCioKFxQYd2ZRtpixxgRU2RfhU5q5VWseQ4JdfgAJyBlmNwAM7ABRhZQ0ORwp7nr+eZAa54YwYg9zm3ynPOeFRe8MCrciXOh/KSS76UV5L/iDmrLiS5AeU519wrL3jmSbkS5115yR2fyivJv9kx0ZMZ2RLZw27q87iNQi8EBo5FSPIMw3HqBboi5lKTGAGDp8FKXWP+t9TU01Lj5His1Ba6uM9dTEMwvrFmbf5GC/q2drW3ruXUhhsCiQOjznFlCzYhHUZp4xp76vsvQh89CQAAeAFjYGJABowM6IANLMrEyMTIzMjCXpyRWJBqZshWXJJYBKOMAFHFBucAAAAAAAAB//8AAngBY2BkYGDgA2IJBhBgAvKZGViBJAuYxwAABJsAOgAAeAFjYGBgZACCk535hiD60tn0azAaAEqpB6wAAA==") format("woff");font-weight:normal;font-style:normal}.jdgm-star{font-family:'JudgemeStar';display:inline !important;text-decoration:none !important;padding:0 4px 0 0 !important;margin:0 !important;font-weight:bold;opacity:1;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}.jdgm-star:hover{opacity:1}.jdgm-star:last-of-type{padding:0 !important}.jdgm-star.jdgm--on:before{content:"\e000"}.jdgm-star.jdgm--off:before{content:"\e001"}.jdgm-star.jdgm--half:before{content:"\e002"}.jdgm-widget *{margin:0;line-height:1.4;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;-webkit-overflow-scrolling:touch}.jdgm-hidden{display:none !important;visibility:hidden !important}.jdgm-temp-hidden{display:none}.jdgm-spinner{width:40px;height:40px;margin:auto;border-radius:50%;border-top:2px solid #eee;border-right:2px solid #eee;border-bottom:2px solid #eee;border-left:2px solid #ccc;-webkit-animation:jdgm-spin 0.8s infinite linear;animation:jdgm-spin 0.8s infinite linear}.jdgm-prev-badge{display:block !important}
+  
+  </style>
+
+{% include 'adwords-remarketing' %} 
+
+
+  <script>
+    //window objects
+   // window.assetPath = "https://cdn.shopify.com/s/files/1/1148/7426/t/31/assets";
+
+   var customAssetPath = `{{ 'Ruby.jpg' | asset_url  }}`;
+
+   window.assetPath = customAssetPath.split('Ruby')[0];
+
+   //console.log("asset path : ", customAssetPath);
+   //console.log("asset path window : ", window.assetPath);
+
+
+   
+
+  </script>
+
+
+{% include 'boost-pfs-style' %}
+<script async src="https://assets.apphero.co/script_tags/713421_598606.js"></script>  {% include 'judgeme_core' %}
+
+  {% render 'shogun-head' %}
+<script async src="https://assets.apphero.co/script_tags/713421_427319.js"></script></head>
+<body>
+
+ <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WQNSL3V"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+ {%section 'header' %}
+
+  <main role="main">
+    {{ content_for_layout }}
+  </main>
+
+  {%section 'footer' %}
+
+  {{ 'application.js' | asset_url | script_tag }}
+
+  <!-- <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script> -->
+  {{ 'slick.min.js' | asset_url | script_tag }}
+  <!-- <script>
+    $('.hero-slider .slides-test').slick({
+      dots:true
+    });
+  </script> -->
+  <script>
+    $('.test-grid').slick({
+dots: true,
+infinite: false,
+speed: 300,
+slidesToShow: 3,
+slidesToScroll: 1,
+responsive: [
+{
+  breakpoint: 1025,
+  settings: {
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    infinite: true,
+    dots: true
+  }
+},
+{
+  breakpoint: 600,
+  settings: {
+    slidesToShow: 1,
+    slidesToScroll: 1
+  }
+},
+{
+  breakpoint: 480,
+  settings: {
+    slidesToShow: 1,
+    slidesToScroll: 1
+  }
+}
+// You can unslick at a given breakpoint now by adding:
+// settings: "unslick"
+// instead of a settings object
+]
+});
+
+var leftSVG = `<div><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M3.54102 10.2287L16.041 10.2287" stroke="#F7F7F7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M8.58203 15.249L3.54036 10.229L8.58203 5.20813" stroke="#F7F7F7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg></div>`;
+
+var rightSVG = `<div><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M16.459 9.77132H3.95898" stroke="#F7F7F7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M11.418 4.75104L16.4596 9.77104L11.418 14.7919" stroke="#F7F7F7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg></div>`;
+
+
+$(".test-grid .slick-prev").html(leftSVG);
+$(".test-grid .slick-next").html(rightSVG);
+</script>
+
+
+
+<script>
+
+$('.side-cart-upsell-grid').slick({
+dots: true,
+infinite: false,
+speed: 300,
+slidesToShow: 3,
+slidesToScroll: 1,
+responsive: [
+{
+  breakpoint: 1025,
+  settings: {
+    slidesToShow: 2,
+    slidesToScroll: 1,
+    infinite: true,
+    dots: true
+  }
+},
+{
+  breakpoint: 600,
+  settings: {
+    slidesToShow: 2,
+    slidesToScroll: 1
+  }
+},
+{
+  breakpoint: 480,
+  settings: {
+    slidesToShow: 2,
+    slidesToScroll: 1
+  }
+}
+// You can unslick at a given breakpoint now by adding:
+// settings: "unslick"
+// instead of a settings object
+]
+});
+
+var cartLeftSVG = `<div><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M2.8335 8.18294L12.8335 8.18294" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M6.8667 12.1992L2.83337 8.18317L6.8667 4.1665" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg></div>`;
+
+var cartRightSVG = `<div><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M13.1665 8.18294L3.1665 8.18294" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M9.1333 12.1992L13.1666 8.18317L9.1333 4.1665" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+</div>`;
+
+
+$(".side-cart-upsell-grid .slick-prev").html(cartLeftSVG);
+$(".side-cart-upsell-grid .slick-next").html(cartRightSVG);
+
+  
+</script>
+<script>
+
+$('.jdgm-carousel__item-wrapper').slick({
+  dots: true,
+  infinite: false,
+  speed: 300,
+  slidesToShow: 3,
+  slidesToScroll: 1,
+  responsive: [
+    {
+      breakpoint: 1024,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        infinite: true,
+        dots: false,
+        arrows: false,
+      }
+    },
+    {
+      breakpoint: 600,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        infinite: true,
+        dots: false,
+        arrows: false,
+      }
+    },
+    {
+      breakpoint: 480,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        infinite: true,
+        dots: false,
+        arrows: false,
+      }
+    }
+    // You can unslick at a given breakpoint now by adding:
+    // settings: "unslick"
+    // instead of a settings object
+  ]
+});
+
+var reviewsLeftSVG = `<div><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M2.8335 8.18294L12.8335 8.18294" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M6.8667 12.1992L2.83337 8.18317L6.8667 4.1665" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg></div>`;
+
+var reviewsRightSVG = `<div><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M13.1665 8.18294L3.1665 8.18294" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M9.1333 12.1992L13.1666 8.18317L9.1333 4.1665" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+</div>`;
+
+
+$(".jdgm-carousel__item-wrapper .slick-prev").html(reviewsLeftSVG);
+$(".jdgm-carousel__item-wrapper .slick-next").html(reviewsRightSVG);
+</script>
+
+
+<script>
+
+  $('.jdgm-rev-widg__reviews').slick({
+    dots: true,
+    infinite: false,
+    speed: 300,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          infinite: true,
+          dots: true
+        }
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1
+        }
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1
+        }
+      }
+      // You can unslick at a given breakpoint now by adding:
+      // settings: "unslick"
+      // instead of a settings object
+    ]
+  });
+  
+  var reviewsLeftSVG = `<div><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M2.8335 8.18294L12.8335 8.18294" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M6.8667 12.1992L2.83337 8.18317L6.8667 4.1665" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg></div>`;
+  
+  var reviewsRightSVG = `<div><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M13.1665 8.18294L3.1665 8.18294" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M9.1333 12.1992L13.1666 8.18317L9.1333 4.1665" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+  </div>`;
+  
+  
+  $(".jdgm-rev-widg__reviews .slick-prev").html(reviewsLeftSVG);
+  $(".jdgm-rev-widg__reviews .slick-next").html(reviewsRightSVG);
+  </script>
+
+
+<script>
+  // For pagination on the collections page
+
+var paginateLeftSVG = `<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M3.54199 10.2286L16.042 10.2286" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M8.58301 15.2489L3.54134 10.2289L8.58301 5.20807" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>`;
+
+var paginateRightSVG = `<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M16.458 9.77144H3.95801" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M11.417 4.7511L16.4587 9.7711L11.417 14.7919" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>`;
+
+$(".paginate-link .prev a").html(paginateLeftSVG);
+$(".paginate-link .next a").html(paginateRightSVG);
+
+
+</script>
+
+<script>
+  //slick slider pdp
+
+  $(".four-card-grid-items ul").slick(
+    {
+    infinite: true,
+	dots: true,
+	arrows: true,
+	autoplay: false,
+	autoplaySpeed: 0,
+	fade: false,
+	fadeSpeed: 0
+}
+  );
+
+  var pdpMobileRightSVG = `<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M13.167 7.81706L3.16699 7.81706" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M9.13379 3.80083L13.1671 7.81683L9.13379 11.8335" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>`;
+
+$(".four-card-grid-items ul .slick-next").html(reviewsRightSVG);
+
+
+
+</script>
+
+
+
+<script type="text/javascript" src="//www.klaviyo.com/media/js/public/klaviyo_subscribe.js"></script>
+<script>
+  KlaviyoSubscribe.attachToForms('#email_signup', {
+      hide_form_on_success: true,
+      // success_message: "Thank you for signing up! Your special offer is on its way!",
+      custom_success_message: true,
+      success: function ($form) {
+        console.log("email was submitted");
+        $("#email-success").show();
+        $("#email-error").hide();
+        //$("#email-error").text("Thank You!").css("color", "green");
+        //$("#email-error").show();
+       // $("#email_signup button").html('<span class="check-svg"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.99826.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z" fill="currentColor"></path></svg></span><span>Thank You!</span>');
+      },
+      extra_properties: {
+        $source: 'HomePageSignUp',
+        Brand: 'Klaviyo'
+      }
+    });
+</script>
+
+{% include 'boost-pfs' %}
+
+
+{% include 'booster-discounts' %}
+  
+<script type="text/javascript"> (function(a,b,c,d,e,f,g){e['ire_o']=c;e[c]=e[c]||function(){(e[c].a=e[c].a||[]).push(arguments)};f=d.createElement(b);g=d.getElementsByTagName(b)[0];f.async=1;f.src=a;g.parentNode.insertBefore(f,g);})('https://utt.impactcdn.com/A2903219-d8d5-4ea3-a4af-08b832c389a21.js','script','ire',document,window); ire('identify'); </script>
+
+<!-- **BEGIN** Hextom QAB Integration // Main Include - DO NOT MODIFY -->
+    {% render 'hextom_qab_main', product: product, customer: customer %}
+    <!-- **END** Hextom QAB Integration // Main Include - DO NOT MODIFY -->
+{% render "afterpay" %}
+  {% render 'preorder-now' %}
+  </body>
+</html>

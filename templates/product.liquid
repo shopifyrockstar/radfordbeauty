@@ -1,0 +1,11 @@
+{% render 'shogun-products', content: product %}
+{{product.metafields.shogun.above}}
+{% section 'side-cart' %}
+{% section 'product-template-new' %}
+
+
+
+
+
+{% render 'judgeme_widgets', widget_type: 'judgeme_review_widget', concierge_install: true, auto_install: true, product: product %}
+{{product.metafields.shogun.below}}

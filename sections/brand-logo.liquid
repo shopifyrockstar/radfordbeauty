@@ -1,0 +1,99 @@
+<div class="brand-logos">
+    <div class="container">
+        <div class="brand-text" style="color:{{section.settings.section_text_color}};font-size:{{section.settings.section_text_fontsize}}px;">{{section.settings.section_title}}</div>
+        <div class="brand-logo-sec">
+            <!-- <a href="{{section.settings.button_link}}" target="_blank">
+                <img src="{{section.settings.brand_images | img_url: 'master'}}" alt="brand-logos">
+            </a> -->
+
+            <!-- <a href="{{section.settings.brand_link_1}}" target="_blank">
+                <img src="{{section.settings.brand_img_1 | img_url: 'master'}}" alt="brand_img_1">
+            </a>
+            <a href="{{section.settings.brand_link_2}}" target="_blank">
+                <img src="{{section.settings.brand_img_2 | img_url: 'master'}}" alt="brand_img_2">
+            </a>
+            <a href="{{section.settings.brand_link_3}}" target="_blank">
+                <img src="{{section.settings.brand_img_3 | img_url: 'master'}}" alt="brand_img_3">
+            </a> -->
+
+            <div>
+                <img src="{{section.settings.brand_img_1 | img_url: 'master'}}" alt="brand_img_1">
+            </div>
+            <div>
+                <img src="{{section.settings.brand_img_2 | img_url: 'master'}}" alt="brand_img_2">
+            </div>
+            <div>
+                <img src="{{section.settings.brand_img_3 | img_url: 'master'}}" alt="brand_img_3">
+            </div>
+           
+        </div>
+    </div>
+</div>
+
+
+
+
+{%schema%}
+{
+    "name" : "Brand Logos",
+    "settings" : [
+    {
+        "type": "text",
+        "id": "section_title",
+        "label": "Section Title",
+        "default": "As seen in"
+    },
+	{
+       "type": "color",
+       "id": "section_text_color",
+       "label": "Color for Section Title",
+       "default": "#000"
+    },
+    {
+      "type": "number",
+      "id": "section_text_fontsize",
+      "label": "Font size for Section Title"
+    },
+    {
+        "type": "image_picker",
+        "id": "brand_img_1",
+        "label": "Brand Image - 1"
+    },
+    {
+        "type": "url",
+        "id": "brand_link_1",
+        "label": "Brand link - 1"
+        
+    },
+    {
+        "type": "image_picker",
+        "id": "brand_img_2",
+        "label": "Brand Image - 2"
+    },
+    {
+        "type": "url",
+        "id": "brand_link_2",
+        "label": "Brand link - 2"
+        
+    },
+    {
+        "type": "image_picker",
+        "id": "brand_img_3",
+        "label": "Brand Image - 3"
+    },
+    {
+        "type": "url",
+        "id": "brand_link_3",
+        "label": "Brand link - 3"
+        
+    }
+    
+    ],
+    "presets" : [
+    {
+        "category": "Images",
+        "name": "Brand Logos"
+    }
+    ]
+}
+{%endschema%}

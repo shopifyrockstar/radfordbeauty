@@ -1,0 +1,100 @@
+<div class="our-promises">
+    <div class="container">
+        <h2>{{section.settings.section_title}}</h2>
+        <p class="promise-p hide-mobile"> {{section.settings.section_p_desk}}</p>
+        <p class="promise-p hide-desktop">{{section.settings.section_p_mob}}</p>
+        <div class="promise-grid">
+            <div class="promise-grid-item promise-grid-item-1">
+                <!-- {{'radford-promise-1.png'  | asset_img_url: 'master' | img_tag}} -->
+                <img src="{{section.settings.user_img_1 | img_url: 'master'}}" alt="radford-promise-1">
+               
+                <p>Vegan <br> Skincare</p>       
+            </div>
+
+            <div class="promise-grid-item promise-grid-item-2">
+                <!-- {{'radford-promise-2.png'  | asset_img_url: 'master' | img_tag}} -->
+                <img src="{{section.settings.user_img_2 | img_url: 'master'}}" alt="radford-promise-2">
+               
+                <p>No Toxins</p>       
+            </div>
+
+            <div class="promise-grid-item promise-grid-item-3">
+                <!-- {{'radford-promise-3.png'  | asset_img_url: 'master' | img_tag}} -->
+                <img src="{{section.settings.user_img_3 | img_url: 'master'}}" alt="radford-promise-3">
+                
+                <p>No Animal <br> Testing</p>       
+            </div>
+
+            <div class="promise-grid-item promise-grid-item-4">
+                <!-- {{'radford-promise-4.png'  | asset_img_url: 'master' | img_tag}} -->
+                <img src="{{section.settings.user_img_4 | img_url: 'master'}}" alt="radford-promise-4">
+                
+                <p>No Artificial <br> Fragrances</p>       
+            </div>
+        </div>
+        <div class="promise-button">
+            <a href="pages/about-us-1">{{section.settings.button_text}}</a>
+        </div>
+    </div>
+</div>
+
+
+
+{%schema%}
+{
+    "name" : "Our Promises",
+    "settings" : [
+    {
+        "type": "text",
+        "id": "section_title",
+        "label": "Section Title",
+        "default": "Our Promise"
+    },
+    {
+        "type": "text",
+        "id": "section_p_mob",
+        "label": "Section Paragraph Mobile",
+        "default": "Victoria Radford is a celebrity makeup artist and skin expert driven by a fearless approach to beauty."
+    },
+    {
+        "type": "text",
+        "id": "section_p_desk",
+        "label": "Section Paragraph Desktop",
+        "default": "To us, clean beauty is about finding the best ingredient for the best outcome. We believe not every natural ingredient is good for skin, nor is every synthetic ingredient bad. We believe in sourcing REAL ingredients that deliver REAL results."
+    },
+    {
+        "type": "image_picker",
+        "id": "user_img_1",
+        "label": "Logo - Vegan Skincare"
+    },
+    {
+        "type": "image_picker",
+        "id": "user_img_2",
+        "label": "Logo - No Toxins"
+    },
+    {
+        "type": "image_picker",
+        "id": "user_img_3",
+        "label": "Logo - No Animal Testing"
+    },
+    {
+        "type": "image_picker",
+        "id": "user_img_4",
+        "label": "Logo - No Artificial Fragrances"
+    },
+    {
+        "type": "text",
+        "id": "button_text",
+        "label": "Button Text",
+        "default": "Learn More"
+
+    }
+    ],
+    "presets" : [
+    {
+        "category": "Images",
+        "name": "Our Promises"
+    }
+    ]
+}
+{%endschema%}

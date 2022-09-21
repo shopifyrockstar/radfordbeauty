@@ -1,0 +1,922 @@
+{% assign current_variant = product.selected_or_first_available_variant %}
+{% assign featured_image = current_variant.featured_image | default: product.featured_image %}
+
+{% assign imageFlag = false %}
+{% for variant in product.variants %}
+{% if variant.image %}
+{% assign imageFlag = true %}
+{% break %}
+{% endif %}
+{% endfor %}
+
+
+
+
+<div class="product-template-new">
+  <div class="container">
+
+    <div class="top-section">
+
+      <div class="product-images">
+        <div class="main-images {% if imageFlag %} main-variant-image {% endif %}">
+          {% for image in product.images %}
+          <div class="prd_img">
+            <img src="{{image | img_url : 'master'}}" alt="">
+          </div>
+          {%endfor%}
+
+        </div>
+        <div class="thumb-images">
+          {%if product.images.size > 1%}
+          {% for image in product.images %}
+          <div class="prd_img">
+            <img src="{{image | img_url : 'master'}}" alt="">
+          </div>
+          {%endfor%}
+          {%endif%}
+        </div>
+      </div>
+
+      <div class="product-images-mobile {% if imageFlag %} main-variant-image {% endif %}">
+        {% for image in product.images %}
+        <div class="prd_img">
+          <img src="{{image | img_url : 'master'}}" alt="">
+        </div>
+        {%endfor%} 
+      </div>
+
+      <div class="product-details">
+        <div class="inner-div">
+
+          <form action="/cart/add" data-productid="{{ product.id }}" method="post" enctype="multipart/form-data" class="AddToCartForm-submit" id="AddToCartForm-new">
+
+
+            {% if product.variants.size > 1%}	
+            {%unless product.tags contains 'Bundles' or product.tags contains '_bundles'%} 
+            <div class="variant-swatches variant-swatches-mobile">
+              {% if product.type == 'Gift Cards'%}
+<!--               <p class="color-swatch-name">AMOUNT: <span>{{product.variants.first.price }}</span> </p> -->
+              {%else%}
+              <p class="color-swatch-name">{% for option in product.options %}
+                {{option}}: 
+                {% endfor %} <span>{{product.variants.first.title}}</span> </p>
+              {%endif%}
+              {% if product.type == 'Gift Cards'%}
+              <div class="variant-swatch-options gift-variants">
+                {%for variant in product.variants%}
+                {% assign addClass = '' %}
+                {% if forloop.index == 1 %}{% assign addClass = 'input-check' %} {% endif %}
+                <label for="color-{{variant.id}}" data-index="{{ forloop.index }}" class="variant-color-swatch variant-color-swatch-pdp {{addClass}}" data-variant-title="{{variant.title}}"  data-inventory-qty="{{variant.inventory_quantity}}">
+                  <!--                             <img class="swatch-images" data-index="{{ forloop.index }}" src="{{ variant.image.src | img_url:'master'}}" alt="{{variant.title}}" onerror="this.src='{{product | img_url}}'"> -->
+                  <input type="radio" name="id" data-productid="{{ product.id }}" value="{{ variant.id }}" id="radio_{{ variant.id }}" class="radio-click" style="display: none;" >
+                  <span for="radio_{{ variant.id }}" class="radio-text w-form-label">{{ variant.title | escape }}</span>
+
+                </label>
+                <input type="radio" value="{{ variant.id }}" class="variant-color-input" name="id" data-productid="{{ product.id }}" id="color-{{variant.id}}" style="display: none;">
+                {%endfor%}
+
+              </div>
+              {% else %}
+              <div class="variant-swatch-options">
+                {%for variant in product.variants%}
+                {% assign discount_text = '' %}
+                {% if variant.compare_at_price > variant.price %}
+                {% assign discount_text =  variant.compare_at_price | minus: variant.price | times: 100.0 | divided_by: variant.compare_at_price | money_without_currency | replace: ',', '.' | times: 100 | remove: '.0' | append: "% off" %}
+                {% endif %}
+                {% for option in product.options %}
+                {% if option == 'Colour' %}
+                <label for="color-{{variant.id}}" data-price-val="{{ variant.price | divided_by: 100 }}" data-price='{{ variant.price | money }}' {%if variant.compare_at_price %} data-compare-price='{{ variant.compare_at_price | money }}'{%endif%} data-index="{{ forloop.index }}" class="variant-color-swatch variant-color-swatch-pdp " data-variant-title="{{variant.title}}" data-discount="{{discount_text}}" data-inventory-qty="{{variant.inventory_quantity}}">
+                  <img class="swatch-images" data-index="{{ forloop.index }}" src="{{variant.title | escape | append : '.jpg' | strip | asset_url}}" alt="{{variant.title}}" onerror="this.src='{{product | img_url}}'">
+                </label>
+                {% else %}
+                <label for="color-{{variant.id}}" data-price-val="{{ variant.price | divided_by: 100 }}" data-index="{{ forloop.index }}" class="variant-color-swatch variant-color-swatch-pdp " data-variant-title="{{variant.title}}" data-discount="{{discount_text}}"  data-inventory-qty="{{variant.inventory_quantity}}">
+                  <img class="swatch-images" data-index="{{ forloop.index }}" src="{{ variant.image.src | img_url:'master'}}" alt="{{variant.title}}" onerror="this.src='{{product | img_url}}'">
+                </label>
+                {% endif %}
+                {% endfor %}
+                <input type="radio" value="{{ variant.id }}" class="variant-color-input" name="id" data-productid="{{ product.id }}" id="color-{{variant.id}}" style="display: none;">
+                {%endfor%}
+
+              </div>
+              {%endif%}
+            </div>
+            {%endunless%}
+
+            {%endif%}    
+
+            {% if product.id == 1987382837299 or product.id == 7132480241824 %} 
+            <a href="javascript:;" id="myBtn1" class="btn-mob">Find My Shade</a>
+
+            {% endif %}	
+
+            <div class="discount__badge">
+              {% if product.variants.size > 1 and product.variants[0].compare_at_price != '' %}
+                {% if product.variants[0].compare_at_price > product.variants[0].price %}
+                  <span>
+                    {{ product.variants[0].compare_at_price | minus: product.variants[0].price | times: 100.0 | divided_by: product.variants[0].compare_at_price | money_without_currency | replace: ',', '.' | times: 100 | remove: '.0'}}% off
+                  </span>
+                {% endif %}
+              {%else%}
+                {% if product.compare_at_price_max > product.price %}
+                  <span>
+                    {{ product.compare_at_price_max | minus: product.price | times: 100.0 | divided_by: product.compare_at_price_max | money_without_currency | replace: ',', '.' | times: 100 | remove: '.0'}}% off
+                  </span>
+                {% endif %}
+              {% endif %}
+            </div>
+            
+            {% if product.metafields.tpsmeta.badge_label != null %}
+              <div class="discount__badge">
+                <span style="background-color: {{product.metafields.tpsmeta.badge_color}}">{{ product.metafields.tpsmeta.badge_label }}</span>
+              </div>
+            {% endif %}
+            
+            <h1 style="margin-bottom: 3px; padding-bottom: 0px;">{{ product.title }}</h1>
+            {%if product.metafields.global.subtitle != blank%}
+            <small>{{product.metafields.global.subtitle}}</small><br />             
+            {%endif%}
+            
+            {% if product.type != 'Gift Cards' %}
+            <div class="prod-reviews">
+              <span id="product-page-review-stars"></span>
+              <span id="product-page-review-btn" class="product-page-review-btn"> <span></span> Reviews</span>
+            </div>
+            {%endif%}
+            
+            <div class="variant-swatches variant-swatches-desktop">
+              {% if product.type == 'Gift Cards'%}
+<!--               <p class="color-swatch-name prod-price"><span>{{current_variant.price | money}}</span> </p> -->
+              {%else%}
+            </div>
+            <p class="prod-price">{{ current_variant.price | money }}{% if product.compare_at_price_max != 0 %} <strike><span style="font-size: 11px; font-weight: 300; display: inline !important;">{{ product.compare_at_price_max | money }}</span></strike>{% endif %} <span style="font-size: 11px; font-weight: 300; display: inline !important;">{%if product.metafields.global.product-size != blank%}{{product.metafields.global.product-size}} {%endif%}</span></p> 
+
+            {% endif %}
+            <div class="product-details-meta">
+
+              {% if product.vendor == 'Radford'%}
+              {%if product.metafields.global.product-description != blank%}
+              <p>{{product.metafields.global.product-description}}</p> 
+              {%else%}
+              <div class="desciption-box-first">
+                {{product.description}}
+              </div>
+              {%endif%}
+              {%endif%}
+
+
+              {% if product.vendor == 'Radford' and product.type != 'Gift Cards' %}
+
+              <div class="product-details-meta-grid">
+                <div class="product-grid-item product-grid-item-1">
+                  {{'radford-promise-1.png'  | asset_img_url: 'master' | img_tag}}
+
+                  <p>Vegan Skincare</p>       
+                </div>
+
+                <div class="product-grid-item product-grid-item-2">
+                  {{'radford-promise-2.png'  | asset_img_url: 'master' | img_tag}}
+
+                  <p>No Toxins</p>       
+                </div>
+
+                <div class="product-grid-item product-grid-item-3">
+                  {{'radford-promise-3.png'  | asset_img_url: 'master' | img_tag}}
+
+                  <p>No Animal Testing</p>       
+                </div>
+
+                <div class="product-grid-item product-grid-item-4">
+                  {{'radford-promise-4.png'  | asset_img_url: 'master' | img_tag}}
+
+                  <p>No Artificial Fragrances</p>       
+                </div>
+              </div>
+
+              {% endif %}
+
+            </div>
+
+            <input class="default-variant-id-pdp" id="default-variant-box" name="id" data-productid="{{ product.id }}" value="{{ product.variants.first.id }}" type="hidden">
+
+            {% if product.variants.size > 1%}
+
+            {% if product.tags contains 'Bundles' or product.tags contains '_bundles' %}
+            <div class="variant-swatches varaint-swatches-bundles">
+              <p class="color-swatch-name">CHOOSE YOUR BUNDLE</p>
+
+              <div class="variant-swatch-options">
+
+                {%for variant in product.variants%}
+                <input type="radio" value="{{ variant.id }}" class="variant-color-input" name="id" data-productid="{{ product.id }}" id="color-bun-{{variant.id}}" >
+
+                <label for="color-bun-{{variant.id}}" class="variant-color-swatch variant-color-swatch-pdp" data-variant-title="{{variant.title}}"  data-inventory-qty="{{variant.inventory_quantity}}" data-variant-price="{{variant.price | money}}">
+                  <div class="swatch-images">
+                    <div class="custom-radio-btn"></div>
+                    {{variant.title}}
+                  </div> 
+                </label>
+                {%endfor%}
+
+              </div>
+
+            </div>
+            {% else %}
+
+            <div class="variant-swatches variant-swatches-desktop">
+              {% if product.type == 'Gift Cards'%}
+              <p class="color-swatch-name">AMOUNT: </p>
+              {%else%}
+              <p class="color-swatch-name">
+                {% for option in product.options %}
+                {{option}}: 
+                {% endfor %}
+                <span>{{product.variants.first.title}}</span> </p>
+              {%endif%}
+              {% if product.type == 'Gift Cards'%}
+              <div class="variant-swatch-options gift-variants">
+                {%for variant in product.variants%}
+                {% assign addClass = '' %}
+                {% if forloop.index == 1 %}{% assign addClass = 'input-check' %} {% endif %}
+                {% assign discount_text = '' %}
+                {% if variant.compare_at_price > variant.price %}
+                {% assign discount_text =  variant.compare_at_price | minus: variant.price | times: 100.0 | divided_by: variant.compare_at_price | money_without_currency | replace: ',', '.' | times: 100 | remove: '.0' | append: "% off" %}
+                {% endif %}
+                <label for="color-{{variant.id}}" data-price-val="{{ variant.price | divided_by: 100 }}" data-price='{{ variant.price | money }}' {%if variant.compare_at_price %} data-compare-price='{{ variant.compare_at_price | money }}'{%endif%} data-index="{{ forloop.index }}" class="variant-color-swatch variant-color-swatch-pdp {{addClass}}" data-variant-title="{{variant.title}}" data-discount="{{discount_text}}" data-inventory-qty="{{variant.inventory_quantity}}">
+                  <!--                             <img class="swatch-images" data-index="{{ forloop.index }}" src="{{ variant.image.src | img_url:'master'}}" alt="{{variant.title}}" onerror="this.src='{{product | img_url}}'"> -->
+                  <input type="radio" name="id" data-productid="{{ product.id }}" value="{{ variant.id }}" id="radio_{{ variant.id }}" class="radio-click" style="display: none;" >
+                  <span for="radio_{{ variant.id }}" class="radio-text w-form-label">{{ variant.price | money }}</span>
+
+                </label>
+                <input type="radio" value="{{ variant.id }}" class="variant-color-input" name="id" data-productid="{{ product.id }}" id="color-{{variant.id}}" style="display: none;">
+                {%endfor%}
+
+              </div>
+              {% else %}
+              <div class="variant-swatch-options">
+                {%for variant in product.variants%}
+                {% assign discount_text = '' %}
+                {% if variant.compare_at_price > variant.price %}
+                {% assign discount_text =  variant.compare_at_price | minus: variant.price | times: 100.0 | divided_by: variant.compare_at_price | money_without_currency | replace: ',', '.' | times: 100 | remove: '.0' | append: "% off" %}
+                {% endif %}
+                {% for option in product.options %}
+                {% if option == 'Colour' %}
+                <label for="color-{{variant.id}}" data-price-val="{{ variant.price | divided_by: 100 }}" data-price='{{ variant.price | money }}' {%if variant.compare_at_price %} data-compare-price='{{ variant.compare_at_price | money }}'{%endif%} data-index="{{ forloop.index }}" class="variant-color-swatch variant-color-swatch-pdp " data-variant-title="{{variant.title}}" data-discount="{{discount_text}}"  data-inventory-qty="{{variant.inventory_quantity}}">
+                  <img class="swatch-images" data-index="{{ forloop.index }}" src="{{variant.title | escape | append : '.jpg' | strip | asset_url}}" alt="{{variant.title}}" onerror="this.src='{{product | img_url}}'">
+<!--                   <input name="variant-id" value="{{ variant.id }}" type="radio" data-qty="{{variant.inventory_quantity}}" style="display: block;"> -->
+                </label>
+                {% else %}
+                <label for="color-{{variant.id}}" data-price-val="{{ variant.price | divided_by: 100 }}" data-price='{{ variant.price | money }}' {%if variant.compare_at_price %} data-compare-price='{{ variant.compare_at_price | money }}'{%endif%} data-index="{{ forloop.index }}" class="variant-color-swatch variant-color-swatch-pdp " data-variant-title="{{variant.title}}" data-discount="{{discount_text}}"  data-inventory-qty="{{variant.inventory_quantity}}">
+                  <img class="swatch-images" data-index="{{ forloop.index }}" src="{{ variant.image.src | img_url:'master'}}" alt="{{variant.title}}" onerror="this.src='{{product | img_url}}'">
+<!--                   <input type="radio" value="{{ variant.id }}" class="variant-color-input" name="id" data-productid="{{ product.id }}" data-qty="{{variant.inventory_quantity}}" id="color-{{variant.id}}" style="display: none;"> -->
+                </label>
+                {% endif %}
+                {% endfor %}
+                <input type="radio" value="{{ variant.id }}" class="variant-color-input" name="id" data-productid="{{ product.id }}" data-qty="{{variant.inventory_quantity}}" id="color-{{variant.id}}" style="display: none;">
+                {%endfor%}
+
+              </div>
+              {%endif%}
+
+            </div>
+
+            {%endif%}
+
+            {%endif%}    
+            {% if product.id == 1987382837299 or product.id == 7132480241824 %} 
+            <a href="javascript:;" id="myBtn" class="btn-des">Find My Shade</a>
+
+            {% endif %}	
+ <div class="rc-widget-injection-parent" style="display: initial;"></div>
+
+            {% if product.available %}
+            <input type="hidden" id="Quantity" name="quantity" value="1" min="1">
+            <button type="submit" name="add" class="add-to-cart-btn add-to-cart-pdp" id="AddToCart">Add to cart</button>
+            <button class="buy-now-btn"> <a href="/checkout">Buy Now</a> </button>
+            {% else %}
+            <button type="submit" name="sold-out" class="add-to-cart-btn add-to-cart-pdp" id="soldout">Sold Out</button>
+            {% unless current_variant.available %}
+            <button type="submit" name="sold-out" class="add-to-cart-btn add-to-cart-pdp" id="soldout">Sold Out</button>
+            <a class="add-to-cart-btn add-to-cart-pdp klaviyo-bis-trigger" href="#">Notify Me When Available</a>
+            {% endunless %}
+            {% endif %}
+
+          </form>
+
+          {% if product.vendor != 'Radford'%}
+          <div class="desciption-box-other-brands">
+            {{product.description}}
+          </div>
+          {%endif%}
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    {% if product.vendor == 'Radford' and product.type != 'Gift Cards'%}
+    <div class="bottom-section">
+      <div class="product-desc-metadata">
+
+        <div class="tab-titles">
+          <ul>
+            <li class="tab tab-active" data-value=".how-to-use">Description</li>
+            <li class="tab" data-value=".pro-tip">Pro Tip</li>
+            {% if product.id != 7244649627808 %}
+            <li class="tab" data-value=".ingredients">Ingredients</li>
+            {% endif %}
+            {%if product.metafields.details.faqs != blank%}
+            <li class="tab" data-value=".faqs">FAQ's</li>
+            {% endif %}
+            {%if product.metafields.details.consumer-study != blank%}
+            <li class="tab" data-value=".consumer-study">Consumer Study</li>
+            {% endif %}
+          </ul>
+
+        </div>
+
+        <div class="tab-container">
+
+          <div id="tab-content-1" class="tab-content how-to-use active">
+            <div class="text-content">
+              {%if product.metafields.details.how-to-use != blank%}
+              <p>{{product.metafields.details.how-to-use}}</p> 
+              {%else%}
+              <p>How to use Metafields - placeholder</p>
+              {%endif%}
+            </div>
+            <div class="img-content">
+
+              {%if product.metafields.custom-video-how-to.video-link != blank%}
+              {% render "custom-video-how-to" %}
+              {% elsif product.metafields.custom-image-how-to.image-link != blank %}
+              <img src="{{product.metafields.custom-image-how-to.image-link}}"/>
+              {%else%}
+              {{'radford-product-page-metadata-img.jpg'  | asset_img_url: 'master' | img_tag}}
+              {%endif%}
+
+            </div> 
+          </div>
+
+          <div id="tab-content-2" class="tab-content pro-tip" style="display: none;">
+            <div class="text-content">
+              <h4>Pro Tip</h4>
+
+              {%if product.metafields.details.pro-tip != blank%}
+              <p>{{product.metafields.details.pro-tip}}</p> 
+              {%else%}
+              <p>Pro Tip Metafields - placeholder</p>
+              {%endif%}
+            </div>
+            <div class="img-content">
+
+              {%if product.metafields.custom-video-pro-tip.video-link != blank%}
+              {% render "custom-video-pro-tip" %}
+              {% elsif product.metafields.custom-image-pro-tip.image-link != blank %}
+              <img src="{{product.metafields.custom-image-pro-tip.image-link}}"/>
+              {%else%}
+              {{'radford-product-page-metadata-img.jpg'  | asset_img_url: 'master' | img_tag}}
+              {%endif%}
+            </div> 
+          </div>
+          
+          <div id="tab-content-4" class="tab-content faqs" style="display: none;">
+            <div class="text-content">
+              <h4>FAQ's</h4>
+
+              {%if product.metafields.details.faqs != blank%}
+              <p>{{product.metafields.details.faqs}}</p> 
+              {%else%}
+              <p>No FAQ's yet for this product</p>
+              {%endif%}
+            </div>
+            
+          </div>
+          
+          <div id="tab-content-5" class="tab-content consumer-study" style="display: none;">
+            <div class="text-content">
+              <h4>Consumer Study</h4>
+
+              {%if product.metafields.details.consumer-study != blank%}
+              <p>{{product.metafields.details.consumer-study}}</p> 
+              {%else%}
+              <p>No Consumer Study's yet for this product</p>
+              {%endif%}
+            </div>
+            
+          </div>
+
+          <div id="tab-content-2" class="tab-content ingredients" style="display: none;">
+
+            <div class="text-content">
+              <div class="accordian accordian-active">
+                <p>Key Ingredients</p>
+                <div class="icon plus-icon">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M16.4661 6.45492C16.2226 6.20653 15.8416 6.18395 15.5731 6.38718L15.4961 6.45492L10.0003 12.0612L4.50452 6.45492C4.26102 6.20653 3.87998 6.18395 3.61147 6.38718L3.53455 6.45492C3.29105 6.7033 3.26891 7.09198 3.46814 7.36587L3.53455 7.44434L9.51534 13.5451C9.75884 13.7935 10.1399 13.816 10.4084 13.6128L10.4853 13.5451L16.4661 7.44434C16.734 7.17112 16.734 6.72814 16.4661 6.45492Z" fill="white"/>
+                  </svg>                
+                </div>
+              </div>
+              <div class="accordian-content">
+
+                {%if product.metafields.details.key-ingredients != blank%}
+                <p>{{product.metafields.details.key-ingredients}}</p> 
+                {%else%}
+                <p>
+                  <strong>Vitamin C: </strong>Brightens and energizes the skin and is effective at reducing overall redness. <br>
+                  <strong>Glycolic Acid: </strong>removes dulling skin cells and helps Vitamin C (and anything else you apply after) penetrate more effectively. <br>
+                  <strong>Canadian Glacial Clay:</strong> detoxifies, removes dead skin cells, and replenishes minerals to protect and renew the skin. <br>
+                  <strong>Activated Charcoal: </strong> deep cleans by drawing impurities without stripping the moisture barrier, leaving skin CLEAN and smooth. 
+                </p>
+                {%endif%}
+
+              </div>
+
+              <div class="accordian">
+                <p>All Ingredients</p>
+                <div class="icon plus-icon">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M16.4661 6.45492C16.2226 6.20653 15.8416 6.18395 15.5731 6.38718L15.4961 6.45492L10.0003 12.0612L4.50452 6.45492C4.26102 6.20653 3.87998 6.18395 3.61147 6.38718L3.53455 6.45492C3.29105 6.7033 3.26891 7.09198 3.46814 7.36587L3.53455 7.44434L9.51534 13.5451C9.75884 13.7935 10.1399 13.816 10.4084 13.6128L10.4853 13.5451L16.4661 7.44434C16.734 7.17112 16.734 6.72814 16.4661 6.45492Z" fill="white"/>
+                  </svg>
+                </div>
+              </div>
+              <div class="accordian-content">
+
+                {%if product.metafields.details.all-ingredients != blank%}
+                <p>{{product.metafields.details.all-ingredients}}</p> 
+                {%else%}
+                <p>
+                  Water/aqua, Sodium Laureth Sulfate, Glycerin, Disodium Laureth Sulfosucci- nate, Bentonite, Decyl Glucoside, Cetyl Hydroxyethylcellulose, Cocamidopropyl Betaine, Sodium Hydroxide, Xanthan Hum, Sorbitol, Sodium Ascorbyl Phosphate, PEG-7 Glyceryl Cocoate, Cannabis Sativa Seed Oil, Sea silt (Canadian Glacial Clay), Tocopheryl Acetate, Glyceryl Linoleate, Glyceryl Linolenate, Glycol Distearate, Cocamide MEA, Laureth-10
+                </p> 
+                {%endif%}
+
+              </div>
+
+            </div>
+            <div class="img-content">
+
+              {%if product.metafields.custom-video-ingr.video-link != blank%}
+              {% render "custom-video-ingr" %}
+              {% elsif product.metafields.custom-image-ingr.image-link != blank %}
+              <img src="{{product.metafields.custom-image-ingr.image-link}}"/>
+              {%else%}
+              {{'radford-product-page-metadata-img.jpg'  | asset_img_url: 'master' | img_tag}}
+              {%endif%}
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+    {% endif %}
+  </div>
+</div>
+
+
+
+<!-- START | This is the CODE for PAIRS WELL WITH  ======  Desktop ====== (same code as Recommended for You) -->
+
+<div class="pairs-well-with-desktop">
+  <div class="container">
+    <h2 class="section-heading">{{section.settings.collection_title}}</h2>
+
+    {% if product.metafields.custom.product_recommendations.value %}
+      {% assign product_recommendations = product.metafields.custom.product_recommendations.value %}
+    {%else%}
+      {% assign product_recommendations = collections[section.settings.collection_main].products %}      
+    {%endif%}
+    
+    <ul class="test-grid">
+
+      {%for featured_product_1 in product_recommendations%}
+        <li>
+          <div class="product-div">
+            <!-- implementing the infinite scroll hence removed the logic for blocks -->
+            <!-- {%- assign featured_product_1 = all_products[block.settings.product_block] -%} -->
+            {% assign first_variant = featured_product_1.selected_or_first_available_variant %}
+            {% assign featured_img_src = first_variant.featured_img.src | default: featured_product_1.featured_image.src %}
+            {% assign price = first_variant.price %}
+            {% assign compare_at_price = first_variant.compare_at_price %}
+            {%- assign custom_variant = featured_product_1.variants -%}
+  
+            <div class="boost-pfs-filter-product-item-image">
+              <a href="{{featured_product_1.url}}">
+                <img src="{{featured_img_src | img_url: 'master'}}" alt="{{ featured_product_1.featured_img.alt }}">
+              </a>
+  
+              <span class="product-path" style="display: none;">
+                {{featured_product_1.featured_image.src | img_url: 'small' | split: '/products' | first }}
+              </span>
+              
+              <div style="display:none;" class="variant-data">
+                {%for i in (0..featured_product_1.variants.size)%}
+                <p>{{ featured_product_1.variants[i].image }}</p>
+                {%endfor%}
+              </div>
+            </div>
+  
+  
+            <form method="post" action="/cart/add" data-productid="{{ product.id }}" class="AddToCartForm-submit" id="AddToCartForm-new">
+  
+              {%if featured_product_1.has_only_default_variant != true%}
+              <div class="swatches-popup-mobile">
+                <p class="swatch-popup-btn" id="swatch-popup-btn">{{featured_product_1.variants.size}} shades</p>  
+  
+                <div class="variant-swatch-popup" id="variant-swatch-popup" >
+                  <div class="variant-swatch-titles">
+                    <p>SELECT SHADE</p>
+                    <button class="swatch-popup-btn-close" id="swatch-popup-btn-close">
+                      <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M5.91616 4.84372L9.80997 1.07149C10.0634 0.826121 10.0634 0.429394 9.80997 0.184026C9.55669 -0.0613421 9.14716 -0.0613421 8.89388 0.184026L4.99995 3.95626L1.10614 0.184026C0.852742 -0.0613421 0.443335 -0.0613421 0.190052 0.184026C-0.0633506 0.429394 -0.0633506 0.826121 0.190052 1.07149L4.08386 4.84372L0.190052 8.61596C-0.0633506 8.86133 -0.0633506 9.25805 0.190052 9.50342C0.316278 9.62582 0.482247 9.68731 0.648098 9.68731C0.813948 9.68731 0.979799 9.62582 1.10614 9.50342L4.99995 5.73119L8.89388 9.50342C9.02022 9.62582 9.18607 9.68731 9.35192 9.68731C9.51777 9.68731 9.68362 9.62582 9.80997 9.50342C10.0634 9.25805 10.0634 8.86133 9.80997 8.61596L5.91616 4.84372Z" fill="black"/>
+                      </svg>   
+                    </button>
+                  </div>
+  
+                  <div class="variant-swatches">
+  
+  
+                    <div class="variant-swatch-options">
+  
+                      {%for variant in featured_product_1.variants%}
+                      <div class="current-variant">
+                        <input type="radio" value="{{ variant.id }}" class="variant-color-input" name="id" data-productid="{{ product.id }}" id="color-{{forloop.index}}" >
+  
+  
+                        <!-- <p>COLOR:{{variant.title}} </p>  -->
+                        <label for="color-{{forloop.index}}" class="variant-color-swatch" data-variant-title="{{variant.title}}">
+                          <img class="swatch-images" src="{{ variant.image.src | img_url:'master'}}" alt="{{variant.title}}" onerror="this.src='{{featured_product_1 | img_url}}'">
+                          <p>{{variant.title}}</p>
+                        </label>
+  
+                        <!-- {{variant.title | escape | append : '.jpg' | strip }} -->
+                      </div>
+  
+                      {%endfor%}
+  
+                    </div>
+  
+                  </div>
+  
+                </div>
+                <div class="variant-swatch-popup-overlay">
+  
+                </div>
+              </div>
+  
+              {%else%}
+              <div class="swatch-btn-placeholder"></div>
+  
+              {%endif%}
+  
+              <a href="{{featured_product_1.url }}">
+                <h5 class="prod-title">{{ featured_product_1.title }}</h5>
+              </a>
+  
+  
+              <!-- {% if featured_product_1.has_only_default_variant %}
+                <input name="id" data-productid="{{ product.id }}" id="productSelect" value="{{ featured_product_1.id }}" type="hidden">
+                {% else %}
+                <select name="id" data-productid="{{ product.id }}">
+                {% for variant in featured_product_1.variants %}
+                <option value="{{ variant.id }}">{{ variant.title }}</option>
+                {% endfor%}
+                </select>
+              {% endif %} -->
+  
+              <div class="price-swatch-div">
+  
+                <p class="product__product-price">{{ price | money }}</p>
+  
+                {% if featured_product_1.has_only_default_variant %}
+                <input class="default-variant-box-def" name="id" data-productid="{{ product.id }}" value="{{ featured_product_1.variants.first.id }}" type="hidden">
+                {% else %}
+  
+                <input class="default-variant-id-pdp default-variant-box-def" id="default-variant-box-def" name="id" data-productid="{{ product.id }}" value="{{ featured_product_1.variants.first.id  }}" type="hidden">
+  
+                <div class="variant-swatches">
+  
+                  <div class="variant-swatch-options">
+  
+                    {%for variant in featured_product_1.variants limit:3%}
+  
+                    {%unless featured_product_1.tags contains 'Bundles' or featured_product_1.tags contains '_bundles'%}
+  
+  
+                    <!-- <p>COLOR:{{variant.title}} </p>  -->
+                    <label for="color-{{variant.id}}" class="variant-color-swatch variant-color-swatch-def" data-variant-title="{{variant.title}}">
+                      <img class="swatch-images" src="{{ variant.image.src | img_url:'master'}}" alt="{{variant.title}}" onerror="this.src='{{featured_product_1 | img_url}}';this.style.display='none'">
+                    </label>
+  
+                    {%endunless%}
+  
+                    <!-- {{variant.title | escape | append : '.jpg' | strip }} -->
+                    <input type="radio" value="{{ variant.id }}" class="variant-color-input" name="id" data-productid="{{ product.id }}" id="color-{{variant.id}}" style="display: none;">
+  
+                    {%endfor%}
+  
+                    {%if featured_product_1.variants.size > 3%}
+                    <a href="{{featured_product_1.url}}" style="color: black;text-decoration: underline;">
+                      +{{featured_product_1.variants.size | minus:3}}
+                    </a>
+                    {%endif%}
+  
+                  </div>
+  
+                </div>
+  
+  
+                {% endif %}
+  
+              </div>
+  
+              {%comment%}
+              <!-- <input type="hidden" name="id" data-productid="{{ product.id }}" value="{{ featured_product_1.variants.first.id }}" /> -->
+              {%endcomment%}
+              <input min="1" type="hidden" id="quantity" name="quantity" value="1"/>
+              <input type="submit" value="Add to cart" class="add-to-cart-btn"/>
+            </form>
+  
+          </div>
+  
+        </li>
+        
+      {%endfor%}
+    </ul>
+  </div>
+</div>
+<!-- END | This is the CODE for PAIRS WELL WITH  ======  Desktop ====== (same code as Recommended for You) -->
+
+
+
+<!-- For the product reviews section   ======  Desktop ======  -->
+<div class="product-reviews-section-desktop product-reviews-section">
+  {% include 'judgeme_widgets', widget_type: 'judgeme_review_widget', concierge_install: false, product: product %}
+</div>
+
+
+
+
+
+<!-- This is the CODE for PAIRS WELL WITH  ======  Mobile ====== ( 4 card design ) -->
+
+<div class="pairs-well-with-mobile">
+  <div class="container">
+
+    <h2 class="section-heading">{{section.settings.collection_title}}</h2>
+
+
+    {% assign collection_main = collections[section.settings.collection_main] %}
+
+
+    <div class="four-card-grid-items">
+
+      <ul>
+        <!-- {{collection_main.products.size}} -->
+        {%assign pagination = collection_main.products.size | divided_by:4  | ceil %}
+        <!-- {%assign pagination = 20%} -->
+        <!-- {{pagination}} -->
+
+        {%for i in (0..4)%}
+
+        <div class="prod-inside-pagination">
+          {% assign counter = 4 | times:i%}
+          {% assign counterEnd = 4 | times:i | plus:3%}
+          {%for x in (counter..counterEnd)%}
+          <div class="individual-prod">
+            <!-- {{collection_main.products[x].title}} -->
+            {%assign currentProduct = collection_main.products[x]%}
+            {%if currentProduct %}
+
+
+
+
+
+            <div class="product-div">
+
+
+              <div class="boost-pfs-filter-product-item-image">
+                <a href="{{currentProduct.url}}">
+                  <img src="{{ currentProduct.featured_image.src| img_url: 'master'}}" alt="{{ currentProduct.featured_img.alt }}">
+                </a>
+
+                <span class="product-path" style="display: none;">
+                  {{currentProduct.featured_image.src | img_url: 'small' | split: '/products' | first }}
+                </span>
+                <div style="display:none;" class="variant-data">
+                  {%for p in (0..currentProduct.variants.size)%}
+                  <p>{{ currentProduct.variants[p].image }}</p>
+                  {%endfor%}
+                </div>
+              </div>
+
+
+
+              <form method="post" action="/cart/add" data-productid="{{ product.id }}" class="AddToCartForm-submit" id="AddToCartForm-new">
+
+                {%if currentProduct.has_only_default_variant != true%}
+                <div class="swatches-popup-mobile">
+                  <p class="swatch-popup-btn" id="swatch-popup-btn">{{currentProduct.variants.size}} 
+                    {% if currentProduct.tags contains 'Bundles' or currentProduct.tags contains '_bundles' %}
+                    options</p>
+                  {%else%}
+                  shades</p>  
+                {% endif %}
+
+                <div class="variant-swatch-popup" id="variant-swatch-popup" >
+                  <div class="variant-swatch-titles">
+                    {% if currentProduct.tags contains 'Bundles' or currentProduct.tags contains '_bundles' %}
+                    <p>SELECT OPTIONS</p>
+                    {%else%}
+                    <p>SELECT SHADE</p>
+                    {% endif %}
+
+                    <button class="swatch-popup-btn-close" id="swatch-popup-btn-close">
+                      <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M5.91616 4.84372L9.80997 1.07149C10.0634 0.826121 10.0634 0.429394 9.80997 0.184026C9.55669 -0.0613421 9.14716 -0.0613421 8.89388 0.184026L4.99995 3.95626L1.10614 0.184026C0.852742 -0.0613421 0.443335 -0.0613421 0.190052 0.184026C-0.0633506 0.429394 -0.0633506 0.826121 0.190052 1.07149L4.08386 4.84372L0.190052 8.61596C-0.0633506 8.86133 -0.0633506 9.25805 0.190052 9.50342C0.316278 9.62582 0.482247 9.68731 0.648098 9.68731C0.813948 9.68731 0.979799 9.62582 1.10614 9.50342L4.99995 5.73119L8.89388 9.50342C9.02022 9.62582 9.18607 9.68731 9.35192 9.68731C9.51777 9.68731 9.68362 9.62582 9.80997 9.50342C10.0634 9.25805 10.0634 8.86133 9.80997 8.61596L5.91616 4.84372Z" fill="black"/>
+                      </svg>   
+                    </button>
+                  </div>
+
+                  <input class="default-variant-id-pdp default-variant-box-def" id="default-variant-box-def" name="id" data-productid="{{ product.id }}" value="{{ currentProduct.variants.first.id  }}" type="hidden">
+
+
+                  <div class="variant-swatches">
+
+
+                    <div class="variant-swatch-options">
+
+                      {%for variant in currentProduct.variants%}
+                      <div class="current-variant" data-current-product-tags="{{currentProduct.tags}}">
+                        <input type="radio" value="{{ variant.id }}" data-swatch-for ="color-p-{{variant.id}}" class="variant-color-input variant-color-swatch-mob" name="id" data-productid="{{ product.id }}" id="color-p-{{variant.id}}" >
+
+
+                        <!-- <p>COLOR:{{variant.title}} </p>  -->
+                        <label for="color-p-{{variant.id}}" data-swatch-for ="color-p-{{variant.id}}" class="variant-color-swatch variant-color-swatch-mob" data-variant-title="{{variant.title}}">
+                          <img class="swatch-images" src="{{ variant.image.src | img_url:'master'}}" alt="{{variant.title}}" onerror="this.src='{{featured_product_1 | img_url}}'">
+                          <p>{{variant.title}}</p>
+                        </label>
+
+                        <!-- {{variant.title | escape | append : '.jpg' | strip }} -->
+                      </div>
+
+                      {%endfor%}
+
+                    </div>
+
+                  </div>
+
+                </div>
+                <div class="variant-swatch-popup-overlay">
+
+                </div>
+                </div>
+
+              {%else%}
+              <div class="swatch-btn-placeholder"></div>
+
+              {%endif%}
+
+              <a href="{{currentProduct.url }}">
+                <h5 class="prod-title">{{ currentProduct.title }}</h5>
+              </a>
+
+
+
+              <div class="price-swatch-div">
+
+                <p class="product__product-price">{{ currentProduct.price | money }}</p>
+
+
+                {% if currentProduct.has_only_default_variant %}
+                <input class="default-variant-box-def" name="id" data-productid="{{ product.id }}" value="{{ currentProduct.variants.first.id }}" type="hidden">
+                {% else %}
+
+                <input class="default-variant-id-pdp default-variant-box-def" id="default-variant-box-def" name="id" data-productid="{{ product.id }}" value="{{ currentProduct.variants.first.id  }}" type="hidden">
+
+
+
+                <div class="variant-swatches">
+
+
+                  <div class="variant-swatch-options">
+
+                    {%for variant in currentProduct.variants limit:3%}
+
+                    <!-- <p>COLOR:{{variant.title}} </p>  -->
+                    <label for="color-{{variant.id}}" class="variant-color-swatch variant-color-swatch-def" data-variant-title="{{variant.title}}">
+                      <img class="swatch-images" src="{{variant.title | escape | append : '.jpg' | strip | asset_url}}" alt="{{variant.title}}" onerror="this.src='{{featured_product_1 | img_url}}'">
+                    </label>
+
+                    <!-- {{variant.title | escape | append : '.jpg' | strip }} -->
+                    <input type="radio" value="{{ variant.id }}" class="variant-color-input" name="id" data-productid="{{ product.id }}" id="color-{{variant.id}}" style="display: none;">
+
+                    {%endfor%}
+
+                    {%if currentProduct.variants.size > 3%}
+                    <a href="{{currentProduct.url}}" style="color: black;text-decoration: underline;">
+                      +{{fcurrentProduct.variants.size | minus:3}}
+                    </a>
+                    {%endif%}
+
+                  </div>
+
+                </div>
+
+
+
+
+
+
+
+
+
+
+                {% endif %}
+
+              </div>
+
+
+              <!-- <input type="hidden" name="id" data-productid="{{ product.id }}" value="{{ featured_product_1.variants.first.id }}" /> -->
+              <input min="1" type="hidden" id="quantity" name="quantity" value="1"/>
+              <input type="submit" value="Add to cart" class="add-to-cart-btn"/>
+              </form>
+
+
+
+          </div>
+          {%endif%}
+        </div>
+        {%endfor%}
+
+
+        </div>
+      {%endfor%}
+
+      </ul>
+
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+</div>
+
+
+
+
+
+<!-- For the product reviews section   ======  Mobile ======  -->
+<div class="product-reviews-section-mobile product-reviews-section">
+  {% include 'judgeme_widgets', widget_type: 'judgeme_review_widget', concierge_install: false, product: product %}
+</div>
+
+
+{% if product.id == 1987382837299 or product.id == 7132480241824 %}
+{% include 'tint-swatch-chooser' %}
+{% endif %}
+
+
+
+
+{%schema%}
+{
+"name": "PDP - Pairs well with",
+"settings": [
+{
+"type": "collection",
+"id": "collection_main",
+"label": "Choose a Collection"
+},
+{
+"type": "text",
+"id": "collection_title",
+"label": "Section Heading",
+"default": "Pairs Well With"
+}],
+"blocks":[
+{
+"type": "product",
+"name": "Product Block",
+"settings":[
+{
+"type": "product",
+"id": "product_block",
+"label": "choose your product"
+}]
+}]
+}
+{%endschema%}
+
+        
